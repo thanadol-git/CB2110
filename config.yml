@@ -15,6 +15,7 @@ dependencies:
   - r-parallelly=1.37.1
   - r-reticulate=1.37.0
   - r-stringr=1.5.1
+  - r-quarto=1.4.4
  
 
 
