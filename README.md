@@ -30,11 +30,10 @@ conda env create -f config.yml
 4. Now, you should install your environment with the name `R-cb2110`. You can list your env with: 
 ```
 conda env list 
-
 ```
 5. Activate your environment. 
 ```
 conda activate R-cb2110
 ```
 
-6. You should be able to work with every labs in this course.
+6. Now, you have the environment ready. You should be able to work with every labs in this course. 
