@@ -9,7 +9,9 @@ There are two softwares that we require for this course. Please follow the instr
 ## Steps 
 Here we will show you how to setup the environment for this course. EVvery lab is base on R language and we will execute them through VScode with Conda environment. Please follow the instruction here for conda installation and then follow the instruction for VScode installation. 
 
-1. Clone this github repository to your local. Open terminal and change the directory to your local computer of choice. Run this command 
+1. Open your vscode. 
+
+2. Clone this github repository to your local. Open terminal and change the directory to your local computer of choice. Run this command 
 
 ```
 git clone <github repo link>
@@ -19,3 +21,16 @@ In this case the link should be `git@github.com:thanadol-git/CB2110.git`. You ca
 ![alt_text](images/lab0_1.png)
 
 
+
+3. Set up conda environment. 
+```
+conda create env -f config.yml
+```
+
+4. Now, you should install your environment with the name `R-cb2110`.
+5. Activate your environment. 
+```
+conda activate R-cb2110
+```
+
+6. You should be able to work with every labs in this course.
