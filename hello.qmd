@@ -1,0 +1,12 @@
+---
+title: "Lab 0"
+format: 
+  html:
+    toc: true
+    code-fold: true
+---
+
+```{r}
+print("Hello")
+```
+
