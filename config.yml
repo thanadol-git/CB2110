@@ -1,4 +1,4 @@
-name: R-env 
+name: R-cb2110 
 channels: 
   - conda-forge
   - bioconda
