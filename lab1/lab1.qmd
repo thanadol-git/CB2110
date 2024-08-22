@@ -27,14 +27,36 @@ On completion of the lab, the student should be able to:
 
 ## Let's start! 
 
-We have created a simple exercise for you on <https://github.com/thanadol-git/quantms_example/>. Please try to follow it along with answering the questions here. The TA will try to help you in the class so don't worry if it looks a bit difficult. We are always here to help. I would suggest here for you to spend some times setting up the container and nextflow following the instruction on the page. It is not a difficult process but it may take some time with you laptop. Once the you are at **Step 3. Running**, you may start answering the questions here. The rule for this exercise is when you see :smile:
+We have created a simple exercise for you on <https://github.com/thanadol-git/quantms_example/>. Please try to follow it along with answering the questions here. The TA will try to help you in the class so don't worry if it looks a bit difficult. We are always here to help. I would suggest here for you to spend some times setting up the container and nextflow following the instruction on the page. It is not a difficult process but it may take some time with you laptop. Once the you are at **Step 3. Running**, you may start answering the questions here. Just write down your answer under the question.
 
-You may know that mass spectrometry has been 
+You may learn a bit about mass spectrometry from Fredrik. Now, we are touching a real dataset. First look at the SDRF file. 
 
-## Q1 
-## Q2
-## Q3 
-## Q4 
+## Q1. 
+**What do you see in the SDRF file? How many sample are there?** 
+
+Ans.
+
+## Q2.
+**What PRIDE Summarise the experiment in a short paragraph.** 
+
+## Q3. 
+**What proteome that did you download from Uniprot? How many protein are there? Please elaborate.**
+
+
+Ans. 
+
+## Q4.
+**What is the set-up of mass spectrometry? Is it labelled or labelled-free quantification? What is the model of the instrument?**
+
+Ans. 
+
+
+## Q5.
+**Once you run the pipeline with quantms, what is the peptide identification process?**
+
+Ans. 
+
+
 ## Q5 
 ## Q6 
 ## Q7 
