@@ -37,7 +37,8 @@ You may learn a bit about mass spectrometry from Fredrik. Now, we are touching a
 Ans.
 
 ## Q2.
-**What PRIDE Summarise the experiment in a short paragraph.** 
+**What PRIDE accession ID for this data? Summarise the experiment in a short paragraph.**
+
 
 ## Q3. 
 **What proteome that did you download from Uniprot? How many protein are there? Please elaborate.**
