@@ -92,7 +92,7 @@ Hooray! Once you finish answering the questions, please render this markdown to 
 Ans. 
 
 ### BQ2
-**Between mass spectromerty and next-generation sequencing, what would be the advantages or disadvantages betweeb these two advance techniques?**  
+**How can we run mass spectrometry experiments sustainably?**  
 Ans. 
 
 ### BQ3. 
