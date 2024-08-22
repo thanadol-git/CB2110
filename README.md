@@ -37,5 +37,11 @@ conda env list
 ```
 conda activate R-cb2110
 ```
-
 6. Now, you have the environment ready. You should be able to work with every labs in this course. 
+
+## For every labs
+1. Activate your environment. 
+2. Open the markdown file in the lab folder.
+3. Answer the questions in the markdown file. 
+4. Export the file to pdf.
+5. Submit the pdf file to Canvas.

@@ -1,0 +1,114 @@
+---
+title: "Lab 1"
+format: 
+  html:
+    toc: true
+    code-fold: true
+    theme: lumen
+---
+
+Welcome everyone to lab one. This worksheep will guide you to everything that you need including instructions, the questions and definitely the bonus questions for your extra scores. Before we start with anything, please fill in your information here so we can give you nice some nice scores later. 
+
+- Member1:
+- Member2: 
+- Contact email: 
+
+There will be ten questions and three binus questions for you to answer. Please try to elaborate this exercise with the lectures from the first week. The goal of this lab is for you to enjoy mass spectrometry data much more. MS is an intrigueing technology. In other words, it is not that simple to understand it with in a few minutes but we are here to explore them all together. Nevertheless, we try to reduce several steps into just a simple exercise. 
+
+## Intended learning outcomes (ILOs)
+
+On completion of the lab, the student should be able to:
+
+1. Demonstrate understandings and insights in mass spectrometry
+2. Retrieve open access mass spectrometry data
+3. Access organism proteome from database 
+4. Identify the relevant issues of complexity in high-throughput data structure from mass spectrometry
+5. Demonstrate capacity to store and handle high throughput data with efficiency 
+
+## Let's start! 
+
+We have created a simple exercise for you on <https://github.com/thanadol-git/quantms_example/>. Please try to follow it along with answering the questions here. The TA will try to help you in the class so don't worry if it looks a bit difficult. We are always here to help. I would suggest here for you to spend some times setting up the container and nextflow following the instruction on the page. It is not a difficult process but it may take some time with you laptop. Once the you are at **Step 3. Running**, you may start answering the questions here. Just write down your answer under the question.
+
+You may learn a bit about mass spectrometry from Fredrik. Now, we are touching a real dataset. First look at the SDRF file. 
+
+## Q1. 
+**What do you see in the SDRF file? How many samples are there?** 
+
+Ans.
+
+## Q2.
+**What is PRIDE accession ID for this dataset? Summarise the experiment in a short paragraph (<100 words).**
+
+Ans. 
+
+## Q3. 
+**What samples were used and located in the organism/s in this experiment?**
+
+Ans.
+
+## Q4.
+**What is the model of the instrument? What is its set-up? Is it labelled or labelled-free quantification?**
+
+Ans. 
+
+## Q5. 
+<em>Now, you need a proteome to search with your experiment. Please just go to Uniprot.</em> **What proteome did you download from Uniprot? How many protein are there?**
+
+Ans. 
+
+## Q6. 
+**Does the number of proteins in the proteome impact the search? How?**
+
+Ans. 
+
+## Q7.
+<em>At this step, you are probably able to run quantms. It may take some minutes.</em>
+**Once you run the pipeline with quantms, what is the name of peptide identification step?**
+
+Ans. 
+
+## Q8. 
+**Why do we need to add target decoys? How do they work?**
+
+Ans. 
+
+## Q9. 
+**Instead of running quantms here, can you give an example of ways to process this MS dataset?**
+
+Ans. 
+ 
+## Q10.
+**What is the database containing adventitious proteins? Why are these proteins important?**
+
+Ans. 
+
+
+Hooray! Once you finish answering the questions, please render this markdown to pdf and upload it on Canvas togather with the results file in <em>proteomicslfq </em> folder.
+
+
+## Bonus questions
+### BQ1
+***How does peptide identification step in [Q7.](## Q7.) work? ***  
+Ans. 
+
+### BQ2
+**How can we run mass spectrometry experiments sustainably?**  
+Ans. 
+
+### BQ3. 
+**Can we search with proteomes from more than one organism? How?**
+
+Ans. 
+
+```{r}
+#| echo: false
+library(base)
+```
+
+- - -
+
+## Edit
+Generated: `r Sys.Date()`
+
+## References
+<em>https://pwilmart.github.io/blog/2020/09/19/shotgun-quantification-part2</em>
