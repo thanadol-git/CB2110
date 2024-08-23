@@ -6,10 +6,10 @@ Welcome to the lab session. Every materials for every labs in this  course can b
 
 | Lab |  Status  | Submission | Comments |
 |:-----|:--------:|:--------:| :--------|
-| Lab 1   |- [x] |  `code`  |   `code`  |
-| Lab 2   |:white_check_mark: |   `code`  |  `code`  |
-| Lab 3   |:white_check_mark: | `code`  | `code`  |  
-| Lab 4   |:white_check_mark: |  `code`  | `code`  |
+| Lab 1   |:white_check_mark:|  `code`  |   `code`  |
+| Lab 2   |:*:\cross::|   `code`  |  `code`  |
+| Lab 3   |:*:\cross::| `code`  | `code`  |  
+| Lab 4   |:*:\cross::|  `code`  | `code`  |
 
 
 ## Downloads
