@@ -29,11 +29,11 @@ In this case the link should be `git@github.com:thanadol-git/CB2110.git`. You ca
 conda env create -f config.yml
 ```
 
-4. Now, you should install your environment with the name `R-cb2110`. You can list your env with: 
+4. Now, you should have installed this environment with the name `R-cb2110`. You can list your env with: 
 ```
 conda env list 
 ```
-5. Activate your environment. 
+5. Activate the environment. 
 ```
 conda activate R-cb2110
 ```
