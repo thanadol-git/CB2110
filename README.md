@@ -13,13 +13,13 @@ Here we will show you how to setup the environment for this course. EVvery lab i
 
 1. Open your vscode. 
 
-2. Clone this github repository to your local. Open terminal and change the directory to your local computer of choice. Run this comman. 
+2. Clone this github repository to your local. Open terminal and change the directory to your local computer of choice. Run this command. 
 
 ```
 git clone <github repo link>
 ```
  
-In this case the link should be `git@github.com:thanadol-git/CB2110.git`. You can also find it in the code/ssh tab. 
+In this case the link should be `git@github.com:thanadol-git/CB2110.git`. You can also find it in the code/ssh tab. Similarly, you can basically download it directly from the github page in zip file.
 ![alt_text](images/lab0_1.png)
 
 
