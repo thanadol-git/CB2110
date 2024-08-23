@@ -7,9 +7,9 @@ Welcome to the lab session. Every materials for every labs in this  course can b
 | Lab |  Status  | Submission | Comments |
 |:-----|:--------:|:--------:| :--------|
 | Lab 1   |:white_check_mark:|  `code`  |   `code`  |
-| Lab 2   |:*:\cross::|   `code`  |  `code`  |
-| Lab 3   |:*:\cross::| `code`  | `code`  |  
-| Lab 4   |:*:\cross::|  `code`  | `code`  |
+| Lab 2   |:cross_mark:|   `code`  |  `code`  |
+| Lab 3   |:cross_mark:| `code`  | `code`  |  
+| Lab 4   |:cross_mark:|  `code`  | `code`  |
 
 
 ## Downloads
