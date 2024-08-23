@@ -1,0 +1,16 @@
+---
+title: "Lab 1"
+format: 
+  html:
+    toc: true
+    code-fold: true
+    theme: lumen
+---
+
+Welcome back to the lab again. From last week, you may have worked with mass spectrometry data and processed a bit of them by yourself. This lab will look into the results that you have make and we will practice a bit of data wrangling and visualization with R. So, you can now understand the dataset much better with a much bigger view. As usual, please fill in your information here so we can give you nice some nice scores later. 
+
+- Member1:
+- Member2: 
+- Contact email: 
+
+Same here, there will be ten questions and three bonus questions for you to answer. Please try to elaborate this exercise with the lectures from the first week. The main goal of this lab is that you are not afraid to work with mass spectrometry. You will understand mass spectrometry much better. 
