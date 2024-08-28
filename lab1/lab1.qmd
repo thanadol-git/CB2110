@@ -7,13 +7,13 @@ format:
     theme: lumen
 ---
 
-Welcome everyone to lab one. This worksheep will guide you to everything that you need including instructions, the questions and definitely the bonus questions for your extra scores. Before we start with anything, please fill in your information here so we can give you nice some nice scores later. 
+Welcome everyone to lab one. This worksheet will guide you to everything that you need including instructions, the questions and definitely the bonus questions for your extra scores. Before we start with anything, please fill in your information here so we can give you nice some nice scores later. 
 
 - Member1:
 - Member2: 
 - Contact email: 
 
-There will be ten questions and three binus questions for you to answer. Please try to elaborate this exercise with the lectures from the first week. The goal of this lab is for you to enjoy mass spectrometry data much more. MS is an intrigueing technology. In other words, it is not that simple to understand it with in a few minutes but we are here to explore them all together. Nevertheless, we try to reduce several steps into just a simple exercise. 
+There will be ten questions and three bonus questions for you to answer. Please try to elaborate this exercise with the lectures from the first week. The goal of this lab is for you to enjoy mass spectrometry data much more. MS is an intriguing technology. In other words, it is not that simple to understand it within a few minutes but we are here to explore them all together. Nevertheless, we try to reduce several steps into just a simple exercise. 
 
 ## Intended learning outcomes (ILOs)
 
@@ -27,7 +27,7 @@ On completion of the lab, the student should be able to:
 
 ## Let's start! 
 
-We have created a simple exercise for you on <https://github.com/thanadol-git/quantms_example/>. Please try to follow it along with answering the questions here. The TA will try to help you in the class so don't worry if it looks a bit difficult. We are always here to help. I would suggest here for you to spend some times setting up the container and nextflow following the instruction on the page. It is not a difficult process but it may take some time with you laptop. Once the you are at **Step 3. Running**, you may start answering the questions here. Just write down your answer under the question.
+We have created a simple exercise for you on <https://github.com/thanadol-git/quantms_example/>. Please try to follow it along with answering the questions here. The TA will try to help you in the class so don't worry if it looks a bit difficult. We are always here to help. I would suggest here for you to spend some time setting up the container and nextflow following the instructions on the page. It is not a difficult process but it may take some time with your laptop. Once you are at **Step 3. Running**, you may start answering the questions here. Just write down your answer under the question.
 
 You may learn a bit about mass spectrometry from Fredrik. Now, we are touching a real dataset. First look at the SDRF file. 
 
@@ -37,7 +37,7 @@ You may learn a bit about mass spectrometry from Fredrik. Now, we are touching a
 Ans.
 
 ## Q2.
-**What is PRIDE accession ID for this dataset? Summarise the experiment in a short paragraph (<100 words).**
+**What is the PRIDE accession ID for this dataset? Summarise the experiment in a short paragraph (<100 words).**
 
 Ans. 
 
@@ -52,7 +52,7 @@ Ans.
 Ans. 
 
 ## Q5. 
-<em>Now, you need a proteome to search with your experiment. Please just go to Uniprot.</em> **What proteome did you download from Uniprot? How many protein are there?**
+<em>Now, you need a proteome to search with your experiment. Please just go to Uniprot.</em> **What proteome did you download from Uniprot? How many proteins are there?**
 
 Ans. 
 
@@ -63,7 +63,7 @@ Ans.
 
 ## Q7.
 <em>At this step, you are probably able to run quantms. It may take some minutes.</em>
-**Once you run the pipeline with quantms, what is the name of peptide identification step?**
+**Once you run the pipeline with quantms, what is the name of the peptide identification step?**
 
 Ans. 
 
@@ -83,7 +83,7 @@ Ans.
 Ans. 
 
 
-Hooray! Once you finish answering the questions, please render this markdown to pdf and upload it on Canvas togather with the results file in <em>proteomicslfq </em> folder.
+Hooray! Once you finish answering the questions, please render this markdown to pdf and upload it on Canvas together with the results file in <em>proteomicslfq </em> folder.
 
 
 ## Bonus questions
