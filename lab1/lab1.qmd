@@ -13,7 +13,7 @@ Welcome everyone to lab one. This worksheep will guide you to everything that yo
 - Member2: 
 - Contact email: 
 
-There will be ten questions and three binus questions for you to answer. Please try to elaborate this exercise with the lectures from the first week. The goal of this lab is for you to enjoy mass spectrometry data much more. MS is an intrigueing technology. In other words, it is not that simple to understand it with in a few minutes but we are here to explore them all together. Nevertheless, we try to reduce several steps into just a simple exercise. 
+There will be ten questions and three bonus questions for you to answer. Please try to elaborate this exercise with the lectures from the first week. The goal of this lab is for you to enjoy mass spectrometry data much more. MS is an intrigueing technology. In other words, it is not that simple to understand it with in a few minutes but we are here to explore them all together. Nevertheless, we try to reduce several steps into just a simple exercise. 
 
 ## Intended learning outcomes (ILOs)
 

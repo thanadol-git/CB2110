@@ -2,6 +2,17 @@
 
 Welcome to the lab session. Every material for every lab in this  course can be found here. Please try to set up the environment that you have here as you need it for every lab in this course. What we need here is the environment so that you can execute the codes that we provide you during the lab. You will also be able to code some parts of them yourself. Once you finish answering the questions, you will just need to export the pdf file and upload them to Canvas where we can grade you with a lot of points there. There usually are 10 questions in each lab with additional 3 bonus questions that can help you with your final grade. This will definitely be a fun session so that you can enjoy and indulge with proteomics much better with a bit of coding. Don't worry if you need some help, we are always available for assistance during the labs. Besides, you can also try it yourself in advance. We will announce through canvas when each lab is ready. Good luck and have fun.  
 
+## LABs
+Please check the status of each lab here. 
+
+|  Status | Lab | Submission | Comments |
+|:-----|:-----| :--------:| :--------|
+|:white_check_mark:| Lab 1   | 170924 |   `code`  |
+|:x:| Lab 2   | 240924|  `code`  |
+|:x:| Lab 3   | `code`  | `code`  |  
+|:x:| Lab 4   | `code`  | `code`  |  
+
+Usually, the lab will be available 2 days before the session. You are advised to work by yourself. The submission is always 2 weeks after the lab session. 
 ## Downloads
 There are two softwares that we require for this course. Please follow the instructions below to download them.
 
@@ -19,7 +30,7 @@ Here we will show you how to setup the environment for this course. Every lab is
 git clone <github repo link>
 ```
  
-In this case the link should be `git@github.com:thanadol-git/CB2110.git`. You can also find it in the code/ssh tab. 
+In this case the link should be `git@github.com:thanadol-git/CB2110.git`. You can also find it in the code/ssh tab. Similarly, you can basically download it directly from the github page in zip file.
 ![alt_text](images/lab0_1.png)
 
 
@@ -29,11 +40,11 @@ In this case the link should be `git@github.com:thanadol-git/CB2110.git`. You ca
 conda env create -f config.yml
 ```
 
-4. Now, you should install your environment with the name `R-cb2110`. You can list your env with: 
+4. Now, you should have installed this environment with the name `R-cb2110`. You can list your env with: 
 ```
 conda env list 
 ```
-5. Activate your environment. 
+5. Activate the environment. 
 ```
 conda activate R-cb2110
 ```
