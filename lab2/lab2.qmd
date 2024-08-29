@@ -14,3 +14,23 @@ Welcome back to the lab again. From last week, you may have worked with mass spe
 - Contact email: 
 
 Same here, there will be ten questions and three bonus questions for you to answer. Please try to elaborate this exercise with the lectures from the first week. The main goal of this lab is that you are not afraid to work with mass spectrometry. You will understand mass spectrometry much better. 
+
+
+## Intended learning outcomes (ILOs) 
+
+On completion of the lab, the student should be able to:
+1. demonstrate data-processing procedures in mass spectrometry proteomics
+2. demonstrate the ability to answer statistical questions with computational tools in mass spectrometry
+3. identify quality of high-throughput dataset and handle with statistical understandings
+4. identify relevant issues in technologies and data with accessible visualization techniques
+
+## Let's start! 
+
+We have created a simple exercise for you on <https://github.com/thanadol-git/quantms_example/>. Please try to follow it along with answering the questions here. The TA will try to help you in the class so don't worry if it looks a bit difficult. We are always here to help. I would suggest here for you to spend some times setting up the container and nextflow following the instruction on the page. It is not a difficult process but it may take some time with you laptop. Once the you are at **Step 3. Running**, you may start answering the questions here. Just write down your answer under the question.
+
+You may learn a bit about mass spectrometry from Fredrik. Now, we are touching a real dataset. First look at the SDRF file. 
+
+## Q1. 
+**What do you see in the SDRF file? How many samples are there?** 
+
+Ans.
