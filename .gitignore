@@ -1,6 +1,7 @@
 # Edit ignore files 
 # Folders
 *libs*
+env
 
 # Files 
 *code-workspace
