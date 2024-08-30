@@ -26,11 +26,95 @@ On completion of the lab, the student should be able to:
 
 ## Let's start! 
 
-We have created a simple exercise for you on <https://github.com/thanadol-git/quantms_example/>. Please try to follow it along with answering the questions here. The TA will try to help you in the class so don't worry if it looks a bit difficult. We are always here to help. I would suggest here for you to spend some times setting up the container and nextflow following the instruction on the page. It is not a difficult process but it may take some time with you laptop. Once the you are at **Step 3. Running**, you may start answering the questions here. Just write down your answer under the question.
+You may recall from what we have done in the first lab. Now, we want to look at them properly. Let's start with some basic R programming skill. So, please just copy the file and change the path below. 
 
-You may learn a bit about mass spectrometry from Fredrik. Now, we are touching a real dataset. First look at the SDRF file. 
+```{r}
+# Libraries ---- 
+library(dplyr)
+library(ggplot2)
+library(tidyverse)
+library(stringr)
 
+# File path of 
+path <- '/home/thanadol/Documents/GitHub/CB2110/lab2/sdrf_openms_design_msstats_in.csv'
+ms_result <- read.csv(path)
+
+```
+
+# Data overview
+Let's check how do your data look. You can do it basically by take a look at your dataset. 
+
+```{r}
+head(ms_result)
+# or 
+View(ms_result)
+```
 ## Q1. 
-**What do you see in the SDRF file? How many samples are there?** 
+**What do you see in the output file? What are the columns and the rows** 
 
 Ans.
+
+We can now check how many samples are there. These should be related to what you have with the SDRF file previously. 
+
+```{r}
+# Number of samples and what are they
+ms_result %>% 
+  select(Reference, Condition) %>% 
+  distinct()
+```
+
+## Q2. Let's check the peptides, and which protein do they belong
+```{r}
+# Peptides and Protein 
+# Extract a table of two columns with unique proteins and peptides
+
+ms_result %>% 
+  select(___) 
+  distinct(___)
+
+```
+
+Ans. 
+
+## BQ1. Can you show how many proteins containing with the same number of peptides for? For example, there are 20 proteins were detected with 2 peptides. 
+```{r}
+# Peptide per protein count
+
+```
+
+# Dynamic range
+```{r}
+ms_result %>% 
+  ggplot(aes(x =reorder(PeptideSequence, Intensity, mean), y = Intensity, color = Reference)) +
+  geom_point(alpha = .4) + 
+  geom_line(aes(group = Reference)) +
+  scale_y_log10() + 
+  theme_minimal() +
+  labs(x = "Peptides", y = "Intensity")+ 
+  theme(legend.position = "none",
+  axis.text.x = element_blank())
+```
+
+You now can see the dynamic range of every proteins that were detected. 
+
+## Q3. Pick one protein with the most detected peptide and visulize it. Do every peptide has the same intensity. If not, why? 
+
+
+```{r}
+# Intensities of Protein with multiple peptides
+# Hint: filter(ProteinName == "The Name")
+
+```
+
+Ans.
+
+# Missing data 
+Let's now visualize the data that you already have with their intensities. 
+
+```{r}
+ms_result %>% 
+  ggplot(aes(x =PeptideSequence, y = Reference, color = Intensity)) +
+  geom_point()
+
+
+```
