@@ -30,10 +30,13 @@ You may recall from what we have done in the first lab. Now, we want to look at 
 
 ```{r}
 # Libraries ---- 
-library(dplyr)
-library(ggplot2)
-library(tidyverse)
-library(stringr)
+#| warning: false
+suppressPackageStartupMessages({
+  library(dplyr)
+  library(ggplot2)
+  library(tidyverse)
+  library(stringr)
+}) 
 
 # File path of 
 path <- '/home/thanadol/Documents/GitHub/CB2110/lab2/sdrf_openms_design_msstats_in.csv'
@@ -45,6 +48,7 @@ ms_result <- read.csv(path)
 Let's check how do your data look. You can do it basically by take a look at your dataset. 
 
 ```{r}
+#| echo: true
 head(ms_result)
 # or 
 View(ms_result)
@@ -59,26 +63,50 @@ We can now check how many samples are there. These should be related to what you
 ```{r}
 # Number of samples and what are they
 ms_result %>% 
+  # Select column Reference and Condition
   select(Reference, Condition) %>% 
+  # Remove duplicated rows in the table
   distinct()
 ```
 
-## Q2. Let's check the peptides, and which protein do they belong
+## Q2. 
+**Let's check the peptides and proteins. How many unique proteins and peptides?**
 ```{r}
 # Peptides and Protein 
 # Extract a table of two columns with unique proteins and peptides
 
-ms_result %>% 
-  select(___) 
-  distinct(___)
+# ms_result %>% 
+#   select(___) 
+#   distinct(___)
+
+```
+Ans.
+
+```{r}
+# Peptides and Protein 
+# Extract a table of two columns with unique proteins and peptides
+
+# ms_result %>% 
+#   select(___) 
+#   distinct(___)
 
 ```
 
 Ans. 
 
-## BQ1. Can you show how many proteins containing with the same number of peptides for? For example, there are 20 proteins were detected with 2 peptides. 
+## BQ1. 
+**Please show a summarised table containing numbers of protein counts and the detectable peptide numbers. For example, there are 10 proteins and each of them has 5 detectable peptides.**
 ```{r}
 # Peptide per protein count
+# Hint: %>% count()
+# This will give you numbers of duplicated items in a particular vectir column
+
+ms_result %>% 
+  select(ProteinName, PeptideSequence) %>%
+  distinct() %>% 
+  count(ProteinName) %>% 
+  arrange(n) %>% count(n)
+
 
 ```
 
@@ -86,18 +114,20 @@ Ans.
 ```{r}
 ms_result %>% 
   ggplot(aes(x =reorder(PeptideSequence, Intensity, mean), y = Intensity, color = Reference)) +
-  geom_point(alpha = .4) + 
-  geom_line(aes(group = Reference)) +
+ # geom_point(alpha = .4) + 
+  geom_smooth(aes(group = Reference)) +
   scale_y_log10() + 
-  theme_minimal() +
   labs(x = "Peptides", y = "Intensity")+ 
+  theme_classic() +
   theme(legend.position = "none",
-  axis.text.x = element_blank())
+  axis.text.x = element_blank()) 
+
 ```
 
-You now can see the dynamic range of every proteins that were detected. 
+You now can see the dynamic range of every proteins that were detected. Optionally, please arrange peptide names by its protein concentration. 
 
-## Q3. Pick one protein with the most detected peptide and visulize it. Do every peptide has the same intensity. If not, why? 
+## Q4. 
+**Pick one protein that is comprised of 10 detectable peptides. Visulize the peptide intensity. Does every peptide have the same intensity in each sample for each  peptide. If not, why?**
 
 
 ```{r}
