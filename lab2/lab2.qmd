@@ -29,6 +29,10 @@ On completion of the lab, the student should be able to:
 
 You may recall from what we have done in the first lab. Now, we want to look at them properly. Let's start with some basic R programming skill. So, please just copy the file and change the path below. (If you don't rememer, just take it from your submission)
 
+<!-- ```{r}
+library(naniar)
+``` -->
+
 ```{r}
 # Libraries ---- 
 #| warning: false
@@ -39,7 +43,8 @@ library(dplyr)
 library(ggplot2)
 library(tidyverse)
 library(stringr)
-library(naniar)
+# library(visdat)
+# library(naniar)
 
 
 
@@ -144,28 +149,28 @@ You now can see the dynamic range of every proteins that were detected. Optional
 ```{r}
 
 ## Select a protein with 10 peptides that are detected in every sample
-prot_10 <- ms_result %>% 
-  select(ProteinName, PeptideSequence) %>%
-  distinct() %>%
-  count(ProteinName) %>%
-  filter(n == 10) %>%
-  slice_sample(n = 1) %>% 
-  pull(ProteinName)
+# prot_10 <- ms_result %>% 
+#   select(ProteinName, PeptideSequence) %>%
+#   distinct() %>%
+#   count(ProteinName) %>%
+#   filter(n == 10) %>%
+#   slice_sample(n = 1) %>% 
+#   pull(ProteinName)
 
-print(prot_10)
+# print(prot_10)
 ## Vislualize it 
 
-ms_result %>% 
-  filter(ProteinName == prot_10) %>%  
-  ggplot(aes(x =reorder(PeptideSequence, Intensity, mean), y = Intensity, color = Reference, group=Reference)) +
-  geom_point(alpha = .4) + geom_line() +
-  theme_classic() 
+# ms_result %>% 
+#   filter(ProteinName == prot_10) %>%  
+#   ggplot(aes(x =reorder(PeptideSequence, Intensity, mean), y = Intensity, color = Reference, group=Reference)) +
+#   geom_point(alpha = .4) + geom_line() +
+#   theme_classic() 
 
 ```
 
-
+```
 Ans.
-
+```
 # Missing data 
 Let's now visualize the data that you already have with their intensities. We will look the data at the peptide level. 
 
@@ -177,5 +182,5 @@ ms_result %>%
   View()
 
 # Plot missing data
-vis_miss(ms_resul, cluster = TRUE)
+# gg_miss_upset(ms_result)
 ```
