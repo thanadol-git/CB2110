@@ -9,10 +9,11 @@ format:
 
 Welcome back to the lab again. From last week, you may have worked with mass spectrometry data and processed a bit of them by yourself. This lab will look into the results that you have make and we will practice a bit of data wrangling and visualization with R. Thus, you can now understand the dataset much better with many more aspects of your result. As usual, please fill in your information here so we can give you nice some nice scores later. 
 
+```
 - Member1:
 - Member2: 
 - Contact email: 
-
+```
 Same here, there will be ten questions and three bonus questions for you to answer. Please try to elaborate this exercise with the lectures from the first weeks. The main goal of this lab is that you are not afraid to work with mass spectrometry as it is amazing. Woo hoo. 
 
 
@@ -38,6 +39,8 @@ library(dplyr)
 library(ggplot2)
 library(tidyverse)
 library(stringr)
+library(naniar)
+
 
 
 # File path of 
@@ -58,7 +61,9 @@ head(ms_result)
 ## Q1. 
 **What do you see in the output file? What are the columns and the rows** 
 
+```
 Ans.
+```
 
 You can see that it's difficult to see them clearly as there are many rows. It's hard to get an overview of the dataset. Let's dig a bit deeper and make it a little more organized. Let's now check numbers of samples  there. These should be related to what you have with the SDRF file previously. 
 
@@ -87,7 +92,10 @@ Now, look at the proteins.
 
 ```
 
+```
 Ans.
+
+```
 
 
 ## BQ1. 
@@ -131,34 +139,43 @@ ms_result %>%
 You now can see the dynamic range of every proteins that were detected. Optionally, please arrange peptide names by its protein concentration. 
 
 ## Q4. 
-**Pick one protein that is comprised of 10 detectable peptides. Visulize the peptide intensity. Do we see every peptide? Does every peptide have the same intensity in each sample for each  peptide. If not, why?**
+**Pick one protein that is comprised of 10 detectable peptides. Visulize the peptide intensity. Do we see every peptide in every sample? Does every peptide have the same intensity in each sample for each  peptide. If not, why?**
 
 ```{r}
 
-## Select a protein with 10 peptides
+## Select a protein with 10 peptides that are detected in every sample
 prot_10 <- ms_result %>% 
   select(ProteinName, PeptideSequence) %>%
   distinct() %>%
   count(ProteinName) %>%
   filter(n == 10) %>%
-  head(1)
+  slice_sample(n = 1) %>% 
+  pull(ProteinName)
 
+print(prot_10)
 ## Vislualize it 
 
 ms_result %>% 
-  filter(ProteinName == prot_10$ProteinName) %>%  
+  filter(ProteinName == prot_10) %>%  
   ggplot(aes(x =reorder(PeptideSequence, Intensity, mean), y = Intensity, color = Reference, group=Reference)) +
-  geom_point(alpha = .4) + geom_line()
+  geom_point(alpha = .4) + geom_line() +
+  theme_classic() 
 
 ```
 
-```{r}
-# Intensities of Protein with multiple peptides
-# Hint: filter(ProteinName == "The Name")
-
-```
 
 Ans.
 
 # Missing data 
-Let's now visualize the data that you already have with their intensities. 
+Let's now visualize the data that you already have with their intensities. We will look the data at the peptide level. 
+
+```{r}
+ms_result %>% 
+  select(Reference, PeptideSequence, Intensity) %>%
+  # spread by row is the sample
+  pivot_wider(names_from = PeptideSequence, values_from = Intensity) %>%
+  View()
+
+# Plot missing data
+vis_miss(ms_resul, cluster = TRUE)
+```
