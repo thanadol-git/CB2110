@@ -1,5 +1,5 @@
 ---
-title: "Lab 1"
+title: "Lab 2"
 format: 
   html:
     toc: true
@@ -7,13 +7,13 @@ format:
     theme: lumen
 ---
 
-Welcome back to the lab again. From last week, you may have worked with mass spectrometry data and processed a bit of them by yourself. This lab will look into the results that you have make and we will practice a bit of data wrangling and visualization with R. So, you can now understand the dataset much better with a much bigger view. As usual, please fill in your information here so we can give you nice some nice scores later. 
+Welcome back to the lab again. From last week, you may have worked with mass spectrometry data and processed a bit of them by yourself. This lab will look into the results that you have make and we will practice a bit of data wrangling and visualization with R. Thus, you can now understand the dataset much better with many more aspects of your result. As usual, please fill in your information here so we can give you nice some nice scores later. 
 
 - Member1:
 - Member2: 
 - Contact email: 
 
-Same here, there will be ten questions and three bonus questions for you to answer. Please try to elaborate this exercise with the lectures from the first week. The main goal of this lab is that you are not afraid to work with mass spectrometry. You will understand mass spectrometry much better. 
+Same here, there will be ten questions and three bonus questions for you to answer. Please try to elaborate this exercise with the lectures from the first weeks. The main goal of this lab is that you are not afraid to work with mass spectrometry as it is amazing. Woo hoo. 
 
 
 ## Intended learning outcomes (ILOs) 
@@ -26,17 +26,19 @@ On completion of the lab, the student should be able to:
 
 ## Let's start! 
 
-You may recall from what we have done in the first lab. Now, we want to look at them properly. Let's start with some basic R programming skill. So, please just copy the file and change the path below. 
+You may recall from what we have done in the first lab. Now, we want to look at them properly. Let's start with some basic R programming skill. So, please just copy the file and change the path below. (If you don't rememer, just take it from your submission)
 
 ```{r}
 # Libraries ---- 
 #| warning: false
-suppressPackageStartupMessages({
-  library(dplyr)
-  library(ggplot2)
-  library(tidyverse)
-  library(stringr)
-}) 
+#| message: false
+#| error: false
+#| echo: true 
+library(dplyr)
+library(ggplot2)
+library(tidyverse)
+library(stringr)
+
 
 # File path of 
 path <- '/home/thanadol/Documents/GitHub/CB2110/lab2/sdrf_openms_design_msstats_in.csv'
@@ -45,20 +47,20 @@ ms_result <- read.csv(path)
 ```
 
 # Data overview
-Let's check how do your data look. You can do it basically by take a look at your dataset. 
+Let's check how do your data look. You can do it basically with any spreadsheet or texteditor software. R is also one of them so don't be afraid. 
 
 ```{r}
 #| echo: true
 head(ms_result)
 # or 
-View(ms_result)
+#View(ms_result)
 ```
 ## Q1. 
 **What do you see in the output file? What are the columns and the rows** 
 
 Ans.
 
-We can now check how many samples are there. These should be related to what you have with the SDRF file previously. 
+You can see that it's difficult to see them clearly as there are many rows. It's hard to get an overview of the dataset. Let's dig a bit deeper and make it a little more organized. Let's now check numbers of samples  there. These should be related to what you have with the SDRF file previously. 
 
 ```{r}
 # Number of samples and what are they
@@ -68,34 +70,29 @@ ms_result %>%
   # Remove duplicated rows in the table
   distinct()
 ```
+Does it look similar? Definitely, haha. 
+
+Now, look at the proteins. 
 
 ## Q2. 
-**Let's check the peptides and proteins. How many unique proteins and peptides?**
+**Let's check the peptides and proteins. How many unique proteins and peptides? What percentaged of matched protein from your library?**
+
 ```{r}
 # Peptides and Protein 
 # Extract a table of two columns with unique proteins and peptides
 
 # ms_result %>% 
-#   select(___) 
+#   select(_,__) 
 #   distinct(___)
 
 ```
+
 Ans.
 
-```{r}
-# Peptides and Protein 
-# Extract a table of two columns with unique proteins and peptides
-
-# ms_result %>% 
-#   select(___) 
-#   distinct(___)
-
-```
-
-Ans. 
 
 ## BQ1. 
 **Please show a summarised table containing numbers of protein counts and the detectable peptide numbers. For example, there are 10 proteins and each of them has 5 detectable peptides.**
+
 ```{r}
 # Peptide per protein count
 # Hint: %>% count()
@@ -107,28 +104,53 @@ ms_result %>%
   count(ProteinName) %>% 
   arrange(n) %>% count(n)
 
-
 ```
 
+
 # Dynamic range
+
+Now, let's look at the intensity of the peptides. We will use ggplot2 to visualize the data.
+
 ```{r}
 ms_result %>% 
-  ggplot(aes(x =reorder(PeptideSequence, Intensity, mean), y = Intensity, color = Reference)) +
+  ggplot(aes(x =reorder(PeptideSequence, Intensity, mean), 
+  y = Intensity, color = Condition)) +
  # geom_point(alpha = .4) + 
   geom_smooth(aes(group = Reference)) +
+  labs(x = "Peptides", y = "Intensity",
+  title = "Overall peptide Intensity")+ 
   scale_y_log10() + 
-  labs(x = "Peptides", y = "Intensity")+ 
-  theme_classic() +
+ # theme_classic() +
   theme(legend.position = "none",
-  axis.text.x = element_blank()) 
+  axis.text.x = element_blank(),
+  axis.ticks.x = element_blank(),
+  plot.title = element_text(hjust = 0.5)) 
 
 ```
 
 You now can see the dynamic range of every proteins that were detected. Optionally, please arrange peptide names by its protein concentration. 
 
 ## Q4. 
-**Pick one protein that is comprised of 10 detectable peptides. Visulize the peptide intensity. Does every peptide have the same intensity in each sample for each  peptide. If not, why?**
+**Pick one protein that is comprised of 10 detectable peptides. Visulize the peptide intensity. Do we see every peptide? Does every peptide have the same intensity in each sample for each  peptide. If not, why?**
 
+```{r}
+
+## Select a protein with 10 peptides
+prot_10 <- ms_result %>% 
+  select(ProteinName, PeptideSequence) %>%
+  distinct() %>%
+  count(ProteinName) %>%
+  filter(n == 10) %>%
+  head(1)
+
+## Vislualize it 
+
+ms_result %>% 
+  filter(ProteinName == prot_10$ProteinName) %>%  
+  ggplot(aes(x =reorder(PeptideSequence, Intensity, mean), y = Intensity, color = Reference, group=Reference)) +
+  geom_point(alpha = .4) + geom_line()
+
+```
 
 ```{r}
 # Intensities of Protein with multiple peptides
@@ -140,11 +162,3 @@ Ans.
 
 # Missing data 
 Let's now visualize the data that you already have with their intensities. 
-
-```{r}
-ms_result %>% 
-  ggplot(aes(x =PeptideSequence, y = Reference, color = Intensity)) +
-  geom_point()
-
-
-```
