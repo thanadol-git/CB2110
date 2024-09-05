@@ -9,11 +9,11 @@ format:
 
 Welcome back to the lab again. From last week, you may have worked with mass spectrometry data and processed a bit of them by yourself. This lab will look into the results that you have make and we will practice a bit of data wrangling and visualization with R. Thus, you can now understand the dataset much better with many more aspects of your result. As usual, please fill in your information here so we can give you nice some nice scores later. 
 
-```
+
 - Member1:
 - Member2: 
 - Contact email: 
-```
+
 Same here, there will be ten questions and three bonus questions for you to answer. Please try to elaborate this exercise with the lectures from the first weeks. The main goal of this lab is that you are not afraid to work with mass spectrometry as it is amazing. Woo hoo. 
 
 
@@ -29,22 +29,18 @@ On completion of the lab, the student should be able to:
 
 You may recall from what we have done in the first lab. Now, we want to look at them properly. Let's start with some basic R programming skill. So, please just copy the file and change the path below. (If you don't rememer, just take it from your submission)
 
-<!-- ```{r}
-library(naniar)
-``` -->
+
 
 ```{r}
 # Libraries ---- 
 #| warning: false
-#| message: false
-#| error: false
-#| echo: true 
+
 library(dplyr)
 library(ggplot2)
 library(tidyverse)
 library(stringr)
-# library(visdat)
-# library(naniar)
+library(visdat)
+library(naniar)
 
 
 
@@ -66,11 +62,9 @@ head(ms_result)
 ## Q1. 
 **What do you see in the output file? What are the columns and the rows** 
 
-```
 Ans.
-```
 
-You can see that it's difficult to see them clearly as there are many rows. It's hard to get an overview of the dataset. Let's dig a bit deeper and make it a little more organized. Let's now check numbers of samples  there. These should be related to what you have with the SDRF file previously. 
+You can see that it's difficult to see them clearly as there are many rows. It's hard to get an overview of the dataset. Let's dig a bit deeper and make it a little more organized. Let's now check numbers of samples. These should be related to what you have with the SDRF file previously. 
 
 ```{r}
 # Number of samples and what are they
@@ -97,10 +91,12 @@ Now, look at the proteins.
 
 ```
 
-```
 Ans.
 
-```
+## Q3. 
+**Do you see any modification during smaple pereparation? If yes, why do we need them?**
+
+Ans. 
 
 
 ## BQ1. 
@@ -109,7 +105,7 @@ Ans.
 ```{r}
 # Peptide per protein count
 # Hint: %>% count()
-# This will give you numbers of duplicated items in a particular vectir column
+# This will give you numbers of duplicated items in a particular vector column
 
 ms_result %>% 
   select(ProteinName, PeptideSequence) %>%
@@ -168,19 +164,38 @@ You now can see the dynamic range of every proteins that were detected. Optional
 
 ```
 
-```
 Ans.
-```
+
 # Missing data 
 Let's now visualize the data that you already have with their intensities. We will look the data at the peptide level. 
+ 
+```{r}
+select_pept <- ms_result %>% 
+  select(Reference, PeptideSequence, Intensity) %>% 
+  pivot_wider(names_from = Reference, values_from = Intensity, 
+  values_fn = list) %>%
+  head()
+
+```
+
+
+The problem now is that we can detect some missing data in the dataset. This is a common problem in mass spectrometry data. We can see that some peptides are not detected in some samples.At the same time, some detectable peptides are not unique to a particular protein.
+
+## Q4. 
+**Summarise the list of unique peptide to only one protein**
 
 ```{r}
 ms_result %>% 
-  select(Reference, PeptideSequence, Intensity) %>%
-  # spread by row is the sample
-  pivot_wider(names_from = PeptideSequence, values_from = Intensity) %>%
-  View()
+  select(PeptideSequence, ProteinName) %>%
+  distinct() %>%
+  count(PeptideSequence) %>%
+  head()
+```
 
-# Plot missing data
-# gg_miss_upset(ms_result)
+```{r}
+ms_result %>% 
+  select(PeptideSequence, ProteinName) %>%
+  distinct()  %>%
+  count(PeptideSequence) %>% 
+  head()
 ```
