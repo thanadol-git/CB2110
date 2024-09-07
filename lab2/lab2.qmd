@@ -5,9 +5,14 @@ format:
     toc: true
     code-fold: true
     theme: lumen
+
+execute: 
+  # warning: false
+  message: false
+  # echo: false
 ---
 
-Welcome back to the lab again. From last week, you may have worked with mass spectrometry data and processed a bit of them by yourself. This lab will look into the results that you have make and we will practice a bit of data wrangling and visualization with R. Thus, you can now understand the dataset much better with many more aspects of your result. As usual, please fill in your information here so we can give you nice some nice scores later. 
+Welcome back to the lab again. From last week, you may have worked with mass spectrometry data and processed a bit of them by yourself. This lab will look into the results that you have make and we will practice a bit of data wrangling and visualization with R. Thus, you can now understand the dataset much better with many more aspects from your result. As usual, please fill in your information here so we can give you nice some nice scores later. 
 
 
 - Member1:
@@ -20,11 +25,12 @@ Same here, there will be ten questions and three bonus questions for you to answ
 ## Intended learning outcomes (ILOs) 
 
 On completion of the lab, the student should be able to:
-1. demonstrate data-processing procedures in mass spectrometry proteomics
-2. demonstrate the ability to answer statistical questions with computational tools in mass spectrometry
-3. identify quality of high-throughput dataset and handle with statistical understandings
-4. identify relevant issues in technologies and data with accessible visualization techniques
-
+```
+* demonstrate data-processing procedures in mass spectrometry proteomics
+* demonstrate the ability to answer statistical questions with computational tools in mass spectrometry
+* identify quality of high-throughput dataset and handle with statistical understandings
+* identify relevant issues in technologies and data with accessible visualization techniques
+```
 ## Let's start! 
 
 You may recall from what we have done in the first lab. Now, we want to look at them properly. Let's start with some basic R programming skill. So, please just copy the file and change the path below. (If you don't rememer, just take it from your submission)
@@ -34,6 +40,8 @@ You may recall from what we have done in the first lab. Now, we want to look at 
 ```{r}
 # Libraries ---- 
 #| warning: false
+#| echo: false
+#| message: false
 
 library(dplyr)
 library(ggplot2)
@@ -44,7 +52,8 @@ library(naniar)
 
 
 
-# File path of 
+# File path of the result
+# Fix when export
 path <- '/home/thanadol/Documents/GitHub/CB2110/lab2/sdrf_openms_design_msstats_in.csv'
 ms_result <- read.csv(path)
 
@@ -57,14 +66,14 @@ Let's check how do your data look. You can do it basically with any spreadsheet 
 #| echo: true
 head(ms_result)
 # or 
-#View(ms_result)
+# View(ms_result)
 ```
 ## Q1. 
 **What do you see in the output file? What are the columns and the rows** 
 
 Ans.
 
-You can see that it's difficult to see them clearly as there are many rows. It's hard to get an overview of the dataset. Let's dig a bit deeper and make it a little more organized. Let's now check numbers of samples. These should be related to what you have with the SDRF file previously. 
+You can now see that it's difficult to see them clearly as there are many rows. It's hard to get an overview of the dataset. Let's dig a bit deeper and make it a little more organized. Let's now check numbers of samples. These should be related to what you have with the SDRF file previously. 
 
 ```{r}
 # Number of samples and what are they
@@ -94,7 +103,7 @@ Now, look at the proteins.
 Ans.
 
 ## Q3. 
-**Do you see any modification during smaple pereparation? If yes, why do we need them?**
+**Do you see any modification during sample pereparation? If yes, why do we need them?**
 
 Ans. 
 
@@ -104,9 +113,9 @@ Ans.
 
 ```{r}
 # Peptide per protein count
-# Hint: %>% count()
+# Hint: count()
 # This will give you numbers of duplicated items in a particular vector column
-
+# Fix
 ms_result %>% 
   select(ProteinName, PeptideSequence) %>%
   distinct() %>% 
@@ -181,7 +190,7 @@ select_pept <- ms_result %>%
 
 The problem now is that we can detect some missing data in the dataset. This is a common problem in mass spectrometry data. We can see that some peptides are not detected in some samples.At the same time, some detectable peptides are not unique to a particular protein.
 
-## Q4. 
+## Q5. 
 **Summarise the list of unique peptide to only one protein**
 
 ```{r}
