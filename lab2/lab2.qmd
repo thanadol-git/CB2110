@@ -92,10 +92,10 @@ Now, look at the proteins.
 
 ```{r}
 # Peptides and Protein 
-# Extract a table of two columns with unique proteins and peptides
+# Extract a table of three columns with unique proteins, peptides and precursor charge
 
 # ms_result %>% 
-#   select(_,__) 
+#   select(_,_,_) 
 #   distinct(___)
 
 ```
@@ -115,7 +115,7 @@ Ans.
 # Peptide per protein count
 # Hint: count()
 # This will give you numbers of duplicated items in a particular vector column
-# Fix
+# Fix the code below
 ms_result %>% 
   select(ProteinName, PeptideSequence) %>%
   distinct() %>% 
@@ -127,84 +127,214 @@ ms_result %>%
 
 # Dynamic range
 
-Now, let's look at the intensity of the peptides. We will use ggplot2 to visualize the data.
+Now, let's roughly look at the intensity of the peptides. We will use ggplot2 to visualize the data.
 
 ```{r}
 ms_result %>% 
-  ggplot(aes(x =reorder(PeptideSequence, Intensity, mean), 
+  # Cobcatenate PeptideSequence and PrecursorCharge to new column
+  mutate(PeptideSequencePC = str_c(PeptideSequence, "_", PrecursorCharge)) %>%
+  # plot the all peptide and Precursor and 
+  # color by Condition
+  ggplot(aes(x =reorder(PeptideSequencePC, Intensity), 
   y = Intensity, color = Condition)) +
- # geom_point(alpha = .4) + 
+  geom_point(alpha = .4, aes(color = Reference)) + 
   geom_smooth(aes(group = Reference)) +
   labs(x = "Peptides", y = "Intensity",
   title = "Overall peptide Intensity")+ 
-  scale_y_log10() + 
- # theme_classic() +
-  theme(legend.position = "none",
+  scale_y_log10(trans = 'log10', breaks = 10^(7:12)) + 
+  theme_classic() +
+  theme(legend.position = "bottom",
   axis.text.x = element_blank(),
   axis.ticks.x = element_blank(),
   plot.title = element_text(hjust = 0.5)) 
 
 ```
 
-You now can see the dynamic range of every proteins that were detected. Optionally, please arrange peptide names by its protein concentration. 
+You now can see the dynamic range of every proteins that were detected. The intensity of the peptides is quite different maybe in some samples.
 
 ## Q4. 
+**What can we imply from this plot? What is the dynamic range of the dataset?**
+
+Ans.
+
+## Q5. 
 **Pick one protein that is comprised of 10 detectable peptides. Visulize the peptide intensity. Do we see every peptide in every sample? Does every peptide have the same intensity in each sample for each  peptide. If not, why?**
 
 ```{r}
 
-## Select a protein with 10 peptides that are detected in every sample
-# prot_10 <- ms_result %>% 
-#   select(ProteinName, PeptideSequence) %>%
-#   distinct() %>%
-#   count(ProteinName) %>%
-#   filter(n == 10) %>%
-#   slice_sample(n = 1) %>% 
-#   pull(ProteinName)
+# Select a protein with 10 peptides that are detected in every sample
+# Fix the code below
 
-# print(prot_10)
-## Vislualize it 
+prot_10 <- ms_result %>% 
+  select(ProteinName, PeptideSequence) %>%
+  distinct() %>%
+  count(ProteinName) %>%
+  filter(n == 10) %>%
+  slice_sample(n = 1) %>% 
+  pull(ProteinName)
 
-# ms_result %>% 
-#   filter(ProteinName == prot_10) %>%  
-#   ggplot(aes(x =reorder(PeptideSequence, Intensity, mean), y = Intensity, color = Reference, group=Reference)) +
-#   geom_point(alpha = .4) + geom_line() +
-#   theme_classic() 
+# Print out the protein name
+
+print(prot_10)
+
+# Vislualize it 
+
+ms_result %>% 
+  filter(ProteinName == prot_10) %>%  
+  ggplot(aes(x =reorder(PeptideSequence, Intensity, mean), y = Intensity, color = Reference, group=Reference)) +
+  facet_wrap(~PrecursorCharge) +
+  geom_point(alpha = .4) + geom_line() +
+  theme_classic() 
 
 ```
 
 Ans.
 
 # Missing data 
-Let's now visualize the data that you already have with their intensities. We will look the data at the peptide level. 
- 
+Let's now visualize the data that you already have with their intensities. We will look the data at the peptide precursor level. 
+
 ```{r}
 select_pept <- ms_result %>% 
-  select(Reference, PeptideSequence, Intensity) %>% 
-  pivot_wider(names_from = Reference, values_from = Intensity, 
-  values_fn = list) %>%
-  head()
+  select(Reference, PeptideSequence, PrecursorCharge, Intensity) %>% 
+  pivot_wider(names_from = Reference, values_from = Intensity) 
 
+
+vis_miss(select_pept, cluster = TRUE)
 ```
 
 
-The problem now is that we can detect some missing data in the dataset. This is a common problem in mass spectrometry data. We can see that some peptides are not detected in some samples.At the same time, some detectable peptides are not unique to a particular protein.
+The problem now is that we can detect some missing data in the dataset. This is a common problem in mass spectrometry data. We can see that some peptides are not detected in some samples. 
 
-## Q5. 
-**Summarise the list of unique peptide to only one protein**
+
+## Q6. 
+**Why there are missing values with MS? Summarise the list of unique peptide to only one protein**
+
+
+Ans. 
+
+
+Let's now select good quality peptide based on the missing data. We will remove the peptides that are not detected in more than 50% of the samples.
+
+## Q7. 
+**From `select_pept` table, remove the peptides that are not detected in more than 50% of the samples. How many protiens and peptides are left?**
 
 ```{r}
-ms_result %>% 
-  select(PeptideSequence, ProteinName) %>%
+# Remove the peptides that are not detected in more than 50% of the samples
+# Hint: pivot_longer() and filter()
+# Fix the code below
+
+filter_pept <- select_pept %>% 
+  pivot_longer(cols = -c(PeptideSequence, PrecursorCharge), names_to = "Reference", values_to = "Intensity") %>% 
+  group_by(PeptideSequence, PrecursorCharge) %>%
+  summarise(n_na = sum(is.na(Intensity))) %>%
+  filter(n_na < 3) %>% 
+  select(PeptideSequence, PrecursorCharge)
+  
+ms_result_filt <- ms_result %>%
+  inner_join(filter_pept, by = c("PeptideSequence", "PrecursorCharge")) 
+
+# Protein count
+ms_result_filt %>% 
+  select(ProteinName, PeptideSequence) %>%
   distinct() %>%
-  count(PeptideSequence) %>%
-  head()
+  count(ProteinName) %>% 
+  count(n)
+
+# Peptide count
+ms_result_filt %>% 
+  select(ProteinName, PeptideSequence) %>%
+  distinct() %>%
+  count(PeptideSequence) %>% 
+  count(n)
 ```
 
+Looks like we are more confident with the data now. Let's now calculate the missing data in the dataset. The rule is we expect all peptide precursors to be detected with similar intensity in every protein. Meaning that, we can average the intensity of the peptides in each protein and compare them with the rest.
+
+## Q8.
+**Calculate the missing data in the dataset. What is the protein concentration in each sample**
+
 ```{r}
-ms_result %>% 
-  select(PeptideSequence, ProteinName) %>%
-  distinct()  %>%
-  count(PeptideSequence) %>% 
-  head()
+# Hint: # group_by() and summarise()
+# Fix the code below
+
+prot_level <- ms_result_filt %>% 
+  group_by(ProteinName, Reference) %>% 
+  summarise(mean_intensity = mean(Intensity, na.rm = TRUE)) %>% 
+  ungroup()
+
 ```
+
+
+# Protein concentration
+## Q9.
+**Let's plot a dynamic range of protein concentration in each sample. What can we imply from this plot?**
+
+```{r}
+prot_level %>% 
+   left_join(ms_result %>% select(Reference, Condition) %>% distinct(), by = "Reference") %>%
+   ggplot(aes(x = reorder(ProteinName, mean_intensity), y = mean_intensity, color= Reference)) +
+   geom_point(alpha = .4) +  
+  geom_smooth(aes(group = Condition, color = Condition)) +
+    scale_y_log10() + 
+  labs(x = "Proteins", y = "Intensity",
+  title = "Overall protein Intensity")+ 
+  theme_classic() +
+  theme(legend.position = "bottom",
+  axis.text.x = element_blank(),
+  axis.ticks.x = element_blank(),
+  plot.title = element_text(hjust = 0.5))
+
+```
+
+## Q10. 
+**Visualize the concentration of protein from PSMB3 gene with boxplot. What can we summarise here? What shall we find next?**
+```{r}
+# hint
+# Fix this code below
+
+# Select Protein
+prot <- prot_level %>% 
+    left_join(ms_result %>% select(Reference, Condition) %>% distinct(), by = "Reference") %>%
+    select(ProteinName, Condition, mean_intensity) %>%
+    filter(ProteinName == 'sp|O00264|PGRC1_HUMAN')
+# # Boxplot
+prot %>% 
+  ggplot(aes(x = Condition, y = mean_intensity, fill = Condition)) + 
+  geom_boxplot() + 
+  geom_point() + 
+  theme_classic()
+# prot
+```
+
+## BQ2. 
+**Plot the concentration of the most highly differentiated protein**
+
+```{r}
+prot_max <- prot_level %>% 
+    left_join(ms_result %>% select(Reference, Condition) %>% distinct(), by = "Reference") %>%
+    select(ProteinName, Condition, mean_intensity) %>%
+    group_by(ProteinName, Condition) %>% 
+    summarise(mean_intensity = mean(mean_intensity)) %>% 
+    ungroup() %>%
+    pivot_wider(names_from = Condition, values_from = mean_intensity) %>% 
+    rename(cancer = `colorectal cancer liver metastases`) %>% 
+    mutate(diff = abs(normal-cancer)) %>%
+    filter(diff == max(diff)) %>%
+    pull(ProteinName)
+
+print(prot_max)
+prot_max <- prot_level %>% 
+    left_join(ms_result %>% select(Reference, Condition) %>% distinct(), by = "Reference") %>%
+    select(ProteinName, Condition, mean_intensity) %>%
+    filter(ProteinName == prot_max)
+
+# # Boxplot
+prot_max %>% 
+  ggplot(aes(x = Condition, y = mean_intensity, fill = Condition)) + 
+  geom_boxplot() + 
+  geom_point() + 
+  theme_classic() 
+```
+
+## BQ3.
+**What are the advanageous and dis advantageous of MS acquition?**
