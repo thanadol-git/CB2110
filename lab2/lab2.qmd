@@ -39,8 +39,15 @@ On completion of the lab, the student should be able to:
 ## Let's start! 
 
 You may recall from what we have done in the first lab. Now, we want to look at them properly. Let's start with some basic R programming skill. So, please just copy the file and change the path below. (If you don't rememer, just take it from your submission)
- 
+
 ```{r}
+%config IPCompleter.greedy=True
+%config InlineBackend.figure_format = 'retina'
+```
+```{r}
+# indicate that you're running R code
+%%R
+
 # Libraries ---- 
 #| warning: false
 #| echo: false
@@ -66,6 +73,9 @@ ms_result <- read.csv(path)
 Let's check how do your data look. You can do it basically with any spreadsheet or texteditor software. R is also one of them so don't be afraid. 
 
 ```{r}
+# indicate that you're running R code
+%%R
+
 #| echo: true
 head(ms_result)
 # or 
@@ -79,6 +89,9 @@ Ans.
 You can now see that it's difficult to see them clearly as there are many rows. It's hard to get an overview of the dataset. Let's dig a bit deeper and make it a little more organized. Let's now check numbers of samples. These should be related to what you have with the SDRF file previously. 
 
 ```{r}
+# indicate that you're running R code
+%%R
+
 # Number of samples and what are they
 ms_result %>% 
   # Select column Reference and Condition
@@ -94,6 +107,9 @@ Now, look at the proteins.
 **Let's check the peptides and proteins. How many unique proteins and peptides? What percentaged of matched protein from your library?**
 
 ```{r}
+# indicate that you're running R code
+%%R
+
 # Peptides and Protein 
 # Extract a table of three columns with unique proteins, peptides and precursor charge
 
@@ -115,6 +131,9 @@ Ans.
 **Please show a summarised table containing numbers of protein counts and the detectable peptide numbers. For example, there are 10 proteins and each of them has 5 detectable peptides.**
 
 ```{r}
+# indicate that you're running R code
+%%R
+
 # Peptide per protein count
 # Hint: count()
 # This will give you numbers of duplicated items in a particular vector column
@@ -133,6 +152,9 @@ ms_result %>%
 Now, let's roughly look at the intensity of the peptides. We will use ggplot2 to visualize the data.
 
 ```{r} 
+# indicate that you're running R code
+%%R
+
 ms_result %>% 
   # Cobcatenate PeptideSequence and PrecursorCharge to new column
   mutate(PeptideSequencePC = str_c(PeptideSequence, "_", PrecursorCharge)) %>%
@@ -164,6 +186,9 @@ Ans.
 **Pick one protein that is comprised of 10 detectable peptides. Visulize the peptide intensity. Do we see every peptide in every sample? Does every peptide have the same intensity in each sample for each  peptide. If not, why?**
 
 ```{r} 
+# indicate that you're running R code
+%%R
+
 # Select a protein with 10 peptides that are detected in every sample
 # Fix the code below
 
@@ -196,6 +221,8 @@ ms_result %>%
 Let's now visualize the data that you already have with their intensities. We will look the data at the peptide precursor level. 
 
 ```{r}
+# indicate that you're running R code
+%%R
 
 select_pept <- ms_result %>% 
   select(Reference, PeptideSequence, PrecursorCharge, Intensity) %>% 
@@ -222,6 +249,9 @@ Let's now select good quality peptide based on the missing data. We will remove 
 **From `select_pept` table, remove the peptides that are not detected in more than 50% of the samples. How many nique protiens and peptides are left?**
 
 ```{r} 
+# indicate that you're running R code
+%%R
+
 # Remove the peptides that are not detected in more than 50% of the samples
 # Hint: pivot_longer() and filter()
 # Fix the code below
@@ -259,6 +289,9 @@ Looks like we are more confident with the data now. Let's now calculate the miss
 **What are the protein concentrations in each sample?**
 
 ```{r} 
+# indicate that you're running R code
+%%R
+
 # Hint: # group_by() and summarise()
 # Fix the code below
 
@@ -275,6 +308,9 @@ prot_level <- ms_result_filt %>%
 **Let's plot a dynamic range of protein concentration in each sample. What can we imply from this plot?**
 
 ```{r} 
+# indicate that you're running R code
+%%R
+
 prot_level %>% 
    left_join(ms_result %>% select(Reference, Condition) %>% distinct(), by = "Reference") %>%
    ggplot(aes(x = reorder(ProteinName, mean_intensity), y = mean_intensity, color= Reference)) +
@@ -294,6 +330,10 @@ prot_level %>%
 ## Q10. 
 **Visualize the concentration of protein from PSMB3 gene with boxplot. What can we summarise here? Additionally, if it is in your experiment, how would you proceed?**
 ```{r} 
+# indicate that you're running R code
+%%R
+
+
 # hint
 # Fix this code below
 
@@ -315,6 +355,9 @@ prot %>%
 **Plot the concentration of the most highly differentiated protein**
 
 ```{r} 
+# indicate that you're running R code
+%%R
+
 prot_max <- prot_level %>% 
     left_join(ms_result %>% select(Reference, Condition) %>% distinct(), by = "Reference") %>%
     select(ProteinName, Condition, mean_intensity) %>%
