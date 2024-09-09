@@ -5,6 +5,12 @@ format:
     toc: true
     code-fold: true
     theme: lumen
+
+jupyter:
+    kernelspec:
+        name: "ir43"
+        language: "R"
+        display_name: "R 4.3.2"
 ---
 
 Welcome everyone to lab one. This worksheep will guide you to everything that you need including instructions, the questions and definitely the bonus questions for your extra scores. Before we start with anything, please fill in your information here so we can give you nice some nice scores later. 
@@ -99,11 +105,6 @@ Ans.
 **Can we search with proteomes from more than one organism? How?**
 
 Ans. 
-
-```{r}
-#| echo: false
-library(base)
-```
 
 - - -
 
