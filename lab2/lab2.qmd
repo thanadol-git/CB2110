@@ -1,16 +1,319 @@
 ---
-title: "Lab 1"
-format: 
-  html:
-    toc: true
-    code-fold: true
-    theme: lumen
+title: "Lab 2"
+
+
+jupyter:
+    kernelspec:
+        name: "ir43"
+        language: "R"
+        display_name: "R 4.3.2"
+
+execute: 
+  # warning: false
+  message: false
+  # echo: false
 ---
 
-Welcome back to the lab again. From last week, you may have worked with mass spectrometry data and processed a bit of them by yourself. This lab will look into the results that you have make and we will practice a bit of data wrangling and visualization with R. So, you can now understand the dataset much better with a much bigger view. As usual, please fill in your information here so we can give you nice some nice scores later. 
+Welcome back to the lab again. From last week, you may have worked with mass spectrometry data and processed a bit of them by yourself. This lab will look into the results that you have make and we will practice a bit of data wrangling and visualization with R. Thus, you can now understand the dataset much better with many more aspects from your result. As usual, please fill in your information here so we can give you nice some nice scores later. 
+
 
 - Member1:
 - Member2: 
 - Contact email: 
 
-Same here, there will be ten questions and three bonus questions for you to answer. Please try to elaborate this exercise with the lectures from the first week. The main goal of this lab is that you are not afraid to work with mass spectrometry. You will understand mass spectrometry much better. 
+Same here, there will be ten questions and three bonus questions for you to answer. Please try to elaborate this exercise with the lectures from the first weeks. The main goal of this lab is that you are not afraid to work with mass spectrometry as it is amazing. Woo hoo. 
+
+
+## Intended learning outcomes (ILOs) 
+
+On completion of the lab, the student should be able to:
+```
+* demonstrate data-processing procedures in mass spectrometry proteomics
+* demonstrate the ability to answer statistical questions with computational tools in mass spectrometry
+* identify quality of high-throughput dataset and handle with statistical understandings
+* identify relevant issues in technologies and data with accessible visualization techniques
+```
+## Let's start! 
+
+You may recall from what we have done in the first lab. Now, we want to look at them properly. Let's start with some basic R programming skill. So, please just copy the file and change the path below. (If you don't rememer, just take it from your submission)
+
+```{r}
+%reload_ext rpy2.ipython
+%config IPCompleter.greedy=True
+%config InlineBackend.figure_format = 'retina'
+```
+
+```{r}
+# indicate that you're running R code
+%%R
+# Install if it's your first time to run
+install.packages("dplyr")
+install.packages("ggplot2")
+install.packages("tidyverse")
+install.packages("stringr")
+install.packages("visdat")
+install.packages("naniar")
+```
+
+```{r}
+# indicate that you're running R code
+%%R
+
+
+# Libraries ---- 
+#| warning: false
+#| echo: false
+#| message: false
+
+library(dplyr)
+library(ggplot2)
+library(tidyverse)
+library(stringr)
+library(visdat)
+library(naniar)
+
+
+
+# File path of the result
+# Fix when export
+path <- 'sdrf_openms_design_msstats_in.csv'
+ms_result <- read.csv(path)
+
+```
+
+# Data overview
+Let's check how do your data look. You can do it basically with any spreadsheet or texteditor software. R is also one of them so don't be afraid. 
+
+```{r}
+# indicate that you're running R code
+%%R
+
+#| echo: true
+head(ms_result)
+# or 
+# View(ms_result)
+```
+## Q1. 
+**What do you see in the output file? What are the columns and the rows** 
+
+Ans.
+
+You can now see that it's difficult to see them clearly as there are many rows. It's hard to get an overview of the dataset. Let's dig a bit deeper and make it a little more organized. Let's now check numbers of samples. These should be related to what you have with the SDRF file previously. 
+
+```{r}
+# indicate that you're running R code
+%%R
+
+# Number of samples and what are they
+ms_result %>% 
+  # Select column Reference and Condition
+  select(Reference, Condition) %>% 
+  # Remove duplicated rows in the table
+  distinct()
+```
+Does it look similar? Definitely, haha. 
+
+Now, look at the proteins. 
+
+## Q2. 
+**Let's check the peptides and proteins. How many unique proteins and peptides? What percentaged of matched protein from your library?**
+
+```{r}
+# indicate that you're running R code
+%%R
+
+# Peptides and Protein 
+# Extract a table of three columns with unique proteins, peptides and precursor charge
+
+# ms_result %>% 
+#   select(_,_,_) 
+#   distinct(___)
+
+```
+
+Ans.
+
+## Q3. 
+**Do you see any peptide modification during sample pereparation? If yes, why do we need them?**
+
+Ans. 
+
+
+## BQ1. 
+**Please show a summarised table containing numbers of protein counts and the detectable peptide numbers. For example, there are 10 proteins and each of them has 5 detectable peptides.**
+
+```{r}
+# indicate that you're running R code
+%%R
+
+# Peptide per protein count
+# Hint: count()
+# This will give you numbers of duplicated items in a particular vector column
+
+
+```
+
+
+# Dynamic range
+
+Now, let's roughly look at the intensity of the peptides. We will use ggplot2 to visualize the data.
+
+```{r} 
+# indicate that you're running R code
+%%R
+
+ms_result %>% 
+  # Cobcatenate PeptideSequence and PrecursorCharge to new column
+  mutate(PeptideSequencePC = str_c(PeptideSequence, "_", PrecursorCharge)) %>%
+  # plot the all peptide and Precursor and 
+  # color by Condition
+  ggplot(aes(x =reorder(PeptideSequencePC, Intensity), 
+  y = Intensity, color = Condition)) +
+  geom_point(alpha = .4, aes(color = Reference)) + 
+  geom_smooth(aes(group = Reference)) +
+  labs(x = "Peptides", y = "Intensity",
+  title = "Overall peptide Intensity")+ 
+  scale_y_log10(trans = 'log10', breaks = 10^(7:12)) + 
+  theme_classic() +
+  theme(legend.position = "bottom",
+  axis.text.x = element_blank(),
+  axis.ticks.x = element_blank(),
+  plot.title = element_text(hjust = 0.5)) 
+
+```
+
+You now can see the dynamic range of every proteins that were detected. The intensity of the peptides is quite different maybe in some samples.
+
+## Q4. 
+**What can we imply from this plot? What is the dynamic range of the dataset?**
+
+Ans.
+
+## Q5. 
+**Pick one protein that is comprised of 10 detectable peptides. Visulize the peptide intensity. Do we see every peptide in every sample? Does every peptide have the same intensity in each sample for each  peptide. If not, why?**
+
+```{r} 
+# indicate that you're running R code
+%%R
+
+# Select a protein with 10 peptides that are detected in every sample
+ 
+# Print out the protein name
+
+ 
+
+# Vislualize it 
+
+
+```
+
+#Ans.
+
+# Missing data 
+Let's now visualize the data that you already have with their intensities. We will look the data at the peptide precursor level. 
+
+```{r}
+# indicate that you're running R code
+%%R
+
+select_pept <- ms_result %>% 
+  select(Reference, PeptideSequence, PrecursorCharge, Intensity) %>% 
+  pivot_wider(names_from = Reference, values_from = Intensity) 
+
+
+vis_miss(select_pept, cluster = TRUE)
+```
+
+
+The problem now is that we can detect some missing data in the dataset. This is a common problem in mass spectrometry data. We can see that some peptides are not detected in some samples. 
+
+
+## Q6. 
+**Why there are missing values with MS? Summarise the list of unique peptide to only one protein**
+
+
+Ans. 
+
+
+Let's now select good quality peptide based on the missing data. We will remove the peptides that are not detected in more than 50% of the samples.
+
+## Q7. 
+**From `select_pept` table, remove the peptides that are not detected in more than 50% of the samples. How many nique protiens and peptides are left?**
+
+```{r} 
+# indicate that you're running R code
+%%R
+
+# Remove the peptides that are not detected in more than 50% of the samples
+# Hint: pivot_longer() and filter()
+
+
+# Select filtered peptides 
+ms_result_filt <- ms_result %>%
+  inner_join(filter_pept, by = c("PeptideSequence", "PrecursorCharge")) 
+
+
+# Protein count
+ 
+
+# Peptide count
+
+
+```
+
+Looks like we are more confident with the data now. Let's now calculate the missing data in the dataset. The rule is we expect all peptide precursors to be detected with similar intensity in every protein. Meaning that, we can average the intensity of the peptides in each protein and compare them with the rest.
+
+## Q8.
+**What are the protein concentrations in each sample?**
+
+```{r} 
+# indicate that you're running R code
+%%R
+
+# Hint: # group_by() and summarise()
+
+
+
+```
+
+
+# Protein concentration
+## Q9.
+**Let's plot a dynamic range of protein concentration in each sample. What can we imply from this plot?**
+
+```{r} 
+# indicate that you're running R code
+%%R
+
+# Plot
+```
+
+## Q10. 
+**Visualize the concentration of protein from PSMB3 gene with boxplot. What can we summarise here? Additionally, if it is in your experiment, how would you proceed?**
+```{r} 
+# indicate that you're running R code
+%%R
+
+# hint
+# Fix this code below
+
+# Select Protein
+
+
+# # Boxplot
+
+```
+
+## BQ2. 
+**Plot the concentration of the most highly differentiated protein**
+
+```{r} 
+# indicate that you're running R code
+%%R
+ 
+# # Boxplot
+ 
+```
+
+## BQ3.
+**What are the advantages and disadvantages of MS acquisition?**

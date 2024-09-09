@@ -1,9 +1,15 @@
 # Edit ignore files 
 # Folders
 *libs*
+env
+
 
 # Files 
 *code-workspace
 *.pdf
 *.html
-
+lab2/lab2_files/
+.R*
+lab2/lab2.aux
+lab2/lab2.log
+lab2/lab2.tex
