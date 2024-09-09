@@ -1,10 +1,6 @@
 ---
 title: "Lab 2"
-format: 
-  html:
-    toc: true
-    code-fold: true
-    theme: lumen
+
 
 jupyter:
     kernelspec:
@@ -153,12 +149,7 @@ Ans.
 # Peptide per protein count
 # Hint: count()
 # This will give you numbers of duplicated items in a particular vector column
-# Fix the code below
-ms_result %>% 
-  select(ProteinName, PeptideSequence) %>%
-  distinct() %>% 
-  count(ProteinName) %>% 
-  arrange(n) %>% count(n)
+
 
 ```
 
@@ -206,28 +197,13 @@ Ans.
 %%R
 
 # Select a protein with 10 peptides that are detected in every sample
-# Fix the code below
-
-prot_10 <- ms_result %>% 
-  select(ProteinName, PeptideSequence) %>%
-  distinct() %>%
-  count(ProteinName) %>%
-  filter(n == 10) %>%
-  slice_sample(n = 1) %>% 
-  pull(ProteinName)
-
+ 
 # Print out the protein name
 
-print(prot_10)
+ 
 
 # Vislualize it 
 
-ms_result %>% 
-  filter(ProteinName == prot_10) %>%  
-  ggplot(aes(x =reorder(PeptideSequence, Intensity, mean), y = Intensity, color = Reference, group=Reference)) +
-  facet_wrap(~PrecursorCharge) +
-  geom_point(alpha = .4) + geom_line() +
-  theme_classic() 
 
 ```
 
@@ -270,33 +246,19 @@ Let's now select good quality peptide based on the missing data. We will remove 
 
 # Remove the peptides that are not detected in more than 50% of the samples
 # Hint: pivot_longer() and filter()
-# Fix the code below
 
-filter_pept <- select_pept %>% 
-  pivot_longer(cols = -c(PeptideSequence, PrecursorCharge), names_to = "Reference", values_to = "Intensity") %>% 
-  group_by(PeptideSequence, PrecursorCharge) %>%
-  summarise(n_na = sum(is.na(Intensity))) %>%
-  filter(n_na < 3) %>% 
-  select(PeptideSequence, PrecursorCharge)
-  
 
+# Select filtered peptides 
 ms_result_filt <- ms_result %>%
   inner_join(filter_pept, by = c("PeptideSequence", "PrecursorCharge")) 
 
 
 # Protein count
-ms_result_filt %>% 
-  select(ProteinName, PeptideSequence) %>%
-  distinct() %>%
-  count(ProteinName) %>% 
-  count(n)
+ 
 
 # Peptide count
-ms_result_filt %>% 
-  select(ProteinName, PeptideSequence) %>%
-  distinct() %>%
-  count(PeptideSequence) %>% 
-  count(n)
+
+
 ```
 
 Looks like we are more confident with the data now. Let's now calculate the missing data in the dataset. The rule is we expect all peptide precursors to be detected with similar intensity in every protein. Meaning that, we can average the intensity of the peptides in each protein and compare them with the rest.
@@ -309,12 +271,8 @@ Looks like we are more confident with the data now. Let's now calculate the miss
 %%R
 
 # Hint: # group_by() and summarise()
-# Fix the code below
 
-prot_level <- ms_result_filt %>% 
-  group_by(ProteinName, Reference) %>% 
-  summarise(mean_intensity = mean(Intensity, na.rm = TRUE)) %>% 
-  ungroup()
+
 
 ```
 
@@ -327,20 +285,7 @@ prot_level <- ms_result_filt %>%
 # indicate that you're running R code
 %%R
 
-prot_level %>% 
-   left_join(ms_result %>% select(Reference, Condition) %>% distinct(), by = "Reference") %>%
-   ggplot(aes(x = reorder(ProteinName, mean_intensity), y = mean_intensity, color= Reference)) +
-   geom_point(alpha = .4) +  
-  geom_smooth(aes(group = Condition, color = Condition)) +
-    scale_y_log10() + 
-  labs(x = "Proteins", y = "Intensity",
-  title = "Overall protein Intensity")+ 
-  theme_classic() +
-  theme(legend.position = "bottom",
-  axis.text.x = element_blank(),
-  axis.ticks.x = element_blank(),
-  plot.title = element_text(hjust = 0.5))
-
+# Plot
 ```
 
 ## Q10. 
@@ -353,17 +298,10 @@ prot_level %>%
 # Fix this code below
 
 # Select Protein
-prot <- prot_level %>% 
-    left_join(ms_result %>% select(Reference, Condition) %>% distinct(), by = "Reference") %>%
-    select(ProteinName, Condition, mean_intensity) %>%
-    filter(ProteinName == 'sp|O00264|PGRC1_HUMAN')
+
+
 # # Boxplot
-prot %>% 
-  ggplot(aes(x = Condition, y = mean_intensity, fill = Condition)) + 
-  geom_boxplot() + 
-  geom_point() + 
-  theme_classic()
-# prot
+
 ```
 
 ## BQ2. 
@@ -372,31 +310,9 @@ prot %>%
 ```{r} 
 # indicate that you're running R code
 %%R
-
-prot_max <- prot_level %>% 
-    left_join(ms_result %>% select(Reference, Condition) %>% distinct(), by = "Reference") %>%
-    select(ProteinName, Condition, mean_intensity) %>%
-    group_by(ProteinName, Condition) %>% 
-    summarise(mean_intensity = mean(mean_intensity)) %>% 
-    ungroup() %>%
-    pivot_wider(names_from = Condition, values_from = mean_intensity) %>% 
-    rename(cancer = `colorectal cancer liver metastases`) %>% 
-    mutate(diff = abs(normal-cancer)) %>%
-    filter(diff == max(diff)) %>%
-    pull(ProteinName)
-
-print(prot_max)
-prot_max <- prot_level %>% 
-    left_join(ms_result %>% select(Reference, Condition) %>% distinct(), by = "Reference") %>%
-    select(ProteinName, Condition, mean_intensity) %>%
-    filter(ProteinName == prot_max)
-
+ 
 # # Boxplot
-prot_max %>% 
-  ggplot(aes(x = Condition, y = mean_intensity, fill = Condition)) + 
-  geom_boxplot() + 
-  geom_point() + 
-  theme_classic() 
+ 
 ```
 
 ## BQ3.
