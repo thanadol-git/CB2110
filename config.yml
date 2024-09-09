@@ -5,6 +5,7 @@ channels:
   - defaults 
   - R 
 dependencies: 
+  - jupyter
   - r-base=4.3
   - r-tidyverse=2.0.0
   - r-dplyr=1.1.4

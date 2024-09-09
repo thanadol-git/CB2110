@@ -5,6 +5,11 @@ format:
     toc: true
     code-fold: true
     theme: lumen
+jupyter:
+    kernelspec:
+        name: "ir43"
+        language: "R"
+        display_name: "R 4.3.2"
 
 execute: 
   # warning: false

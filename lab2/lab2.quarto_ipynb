@@ -1,0 +1,514 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: \"Lab 2\"\n",
+        "format: \n",
+        "  html:\n",
+        "    toc: true\n",
+        "    code-fold: true\n",
+        "    theme: lumen\n",
+        "jupyter:\n",
+        "    kernelspec:\n",
+        "        name: \"ir43\"\n",
+        "        language: \"R\"\n",
+        "        display_name: \"R 4.3.2\"\n",
+        "\n",
+        "execute: \n",
+        "  # warning: false\n",
+        "  message: false\n",
+        "  # echo: false\n",
+        "---\n",
+        "\n",
+        "\n",
+        "Welcome back to the lab again. From last week, you may have worked with mass spectrometry data and processed a bit of them by yourself. This lab will look into the results that you have make and we will practice a bit of data wrangling and visualization with R. Thus, you can now understand the dataset much better with many more aspects from your result. As usual, please fill in your information here so we can give you nice some nice scores later. \n",
+        "\n",
+        "\n",
+        "- Member1:\n",
+        "- Member2: \n",
+        "- Contact email: \n",
+        "\n",
+        "Same here, there will be ten questions and three bonus questions for you to answer. Please try to elaborate this exercise with the lectures from the first weeks. The main goal of this lab is that you are not afraid to work with mass spectrometry as it is amazing. Woo hoo. \n",
+        "\n",
+        "\n",
+        "## Intended learning outcomes (ILOs) \n",
+        "\n",
+        "On completion of the lab, the student should be able to:\n",
+        "```\n",
+        "* demonstrate data-processing procedures in mass spectrometry proteomics\n",
+        "* demonstrate the ability to answer statistical questions with computational tools in mass spectrometry\n",
+        "* identify quality of high-throughput dataset and handle with statistical understandings\n",
+        "* identify relevant issues in technologies and data with accessible visualization techniques\n",
+        "```\n",
+        "## Let's start! \n",
+        "\n",
+        "You may recall from what we have done in the first lab. Now, we want to look at them properly. Let's start with some basic R programming skill. So, please just copy the file and change the path below. (If you don't rememer, just take it from your submission)\n"
+      ],
+      "id": "73b621ee"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Libraries ---- \n",
+        "#| warning: false\n",
+        "#| echo: false\n",
+        "#| message: false\n",
+        "\n",
+        "library(dplyr)\n",
+        "library(ggplot2)\n",
+        "library(tidyverse)\n",
+        "library(stringr)\n",
+        "library(visdat)\n",
+        "library(naniar)\n",
+        "\n",
+        "\n",
+        "\n",
+        "# File path of the result\n",
+        "# Fix when export\n",
+        "path <- '/home/thanadol/Documents/GitHub/CB2110/lab2/sdrf_openms_design_msstats_in.csv'\n",
+        "ms_result <- read.csv(path)"
+      ],
+      "id": "66852e1c",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Data overview\n",
+        "Let's check how do your data look. You can do it basically with any spreadsheet or texteditor software. R is also one of them so don't be afraid. \n"
+      ],
+      "id": "9f783384"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| echo: true\n",
+        "head(ms_result)\n",
+        "# or \n",
+        "# View(ms_result)"
+      ],
+      "id": "a1bafc81",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Q1. \n",
+        "**What do you see in the output file? What are the columns and the rows** \n",
+        "\n",
+        "Ans.\n",
+        "\n",
+        "You can now see that it's difficult to see them clearly as there are many rows. It's hard to get an overview of the dataset. Let's dig a bit deeper and make it a little more organized. Let's now check numbers of samples. These should be related to what you have with the SDRF file previously. \n"
+      ],
+      "id": "56f77bfe"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Number of samples and what are they\n",
+        "ms_result %>% \n",
+        "  # Select column Reference and Condition\n",
+        "  select(Reference, Condition) %>% \n",
+        "  # Remove duplicated rows in the table\n",
+        "  distinct()"
+      ],
+      "id": "146050f6",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Does it look similar? Definitely, haha. \n",
+        "\n",
+        "Now, look at the proteins. \n",
+        "\n",
+        "## Q2. \n",
+        "**Let's check the peptides and proteins. How many unique proteins and peptides? What percentaged of matched protein from your library?**\n"
+      ],
+      "id": "7261e93d"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Peptides and Protein \n",
+        "# Extract a table of three columns with unique proteins, peptides and precursor charge\n",
+        "\n",
+        "# ms_result %>% \n",
+        "#   select(_,_,_) \n",
+        "#   distinct(___)"
+      ],
+      "id": "114010df",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Ans.\n",
+        "\n",
+        "## Q3. \n",
+        "**Do you see any peptide modification during sample pereparation? If yes, why do we need them?**\n",
+        "\n",
+        "Ans. \n",
+        "\n",
+        "\n",
+        "## BQ1. \n",
+        "**Please show a summarised table containing numbers of protein counts and the detectable peptide numbers. For example, there are 10 proteins and each of them has 5 detectable peptides.**\n"
+      ],
+      "id": "63973bb4"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Peptide per protein count\n",
+        "# Hint: count()\n",
+        "# This will give you numbers of duplicated items in a particular vector column\n",
+        "# Fix the code below\n",
+        "ms_result %>% \n",
+        "  select(ProteinName, PeptideSequence) %>%\n",
+        "  distinct() %>% \n",
+        "  count(ProteinName) %>% \n",
+        "  arrange(n) %>% count(n)"
+      ],
+      "id": "8fb51e0c",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Dynamic range\n",
+        "\n",
+        "Now, let's roughly look at the intensity of the peptides. We will use ggplot2 to visualize the data.\n"
+      ],
+      "id": "c4763c89"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "ms_result %>% \n",
+        "  # Cobcatenate PeptideSequence and PrecursorCharge to new column\n",
+        "  mutate(PeptideSequencePC = str_c(PeptideSequence, \"_\", PrecursorCharge)) %>%\n",
+        "  # plot the all peptide and Precursor and \n",
+        "  # color by Condition\n",
+        "  ggplot(aes(x =reorder(PeptideSequencePC, Intensity), \n",
+        "  y = Intensity, color = Condition)) +\n",
+        "  geom_point(alpha = .4, aes(color = Reference)) + \n",
+        "  geom_smooth(aes(group = Reference)) +\n",
+        "  labs(x = \"Peptides\", y = \"Intensity\",\n",
+        "  title = \"Overall peptide Intensity\")+ \n",
+        "  scale_y_log10(trans = 'log10', breaks = 10^(7:12)) + \n",
+        "  theme_classic() +\n",
+        "  theme(legend.position = \"bottom\",\n",
+        "  axis.text.x = element_blank(),\n",
+        "  axis.ticks.x = element_blank(),\n",
+        "  plot.title = element_text(hjust = 0.5)) "
+      ],
+      "id": "c6f3cea9",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "You now can see the dynamic range of every proteins that were detected. The intensity of the peptides is quite different maybe in some samples.\n",
+        "\n",
+        "## Q4. \n",
+        "**What can we imply from this plot? What is the dynamic range of the dataset?**\n",
+        "\n",
+        "Ans.\n",
+        "\n",
+        "## Q5. \n",
+        "**Pick one protein that is comprised of 10 detectable peptides. Visulize the peptide intensity. Do we see every peptide in every sample? Does every peptide have the same intensity in each sample for each  peptide. If not, why?**\n"
+      ],
+      "id": "328815d7"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Select a protein with 10 peptides that are detected in every sample\n",
+        "# Fix the code below\n",
+        "\n",
+        "prot_10 <- ms_result %>% \n",
+        "  select(ProteinName, PeptideSequence) %>%\n",
+        "  distinct() %>%\n",
+        "  count(ProteinName) %>%\n",
+        "  filter(n == 10) %>%\n",
+        "  slice_sample(n = 1) %>% \n",
+        "  pull(ProteinName)\n",
+        "\n",
+        "# Print out the protein name\n",
+        "\n",
+        "print(prot_10)\n",
+        "\n",
+        "# Vislualize it \n",
+        "\n",
+        "ms_result %>% \n",
+        "  filter(ProteinName == prot_10) %>%  \n",
+        "  ggplot(aes(x =reorder(PeptideSequence, Intensity, mean), y = Intensity, color = Reference, group=Reference)) +\n",
+        "  facet_wrap(~PrecursorCharge) +\n",
+        "  geom_point(alpha = .4) + geom_line() +\n",
+        "  theme_classic() "
+      ],
+      "id": "b0b5154d",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "#Ans.\n",
+        "\n",
+        "# Missing data \n",
+        "Let's now visualize the data that you already have with their intensities. We will look the data at the peptide precursor level. \n"
+      ],
+      "id": "24d3c108"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "select_pept <- ms_result %>% \n",
+        "  select(Reference, PeptideSequence, PrecursorCharge, Intensity) %>% \n",
+        "  pivot_wider(names_from = Reference, values_from = Intensity) \n",
+        "\n",
+        "\n",
+        "vis_miss(select_pept, cluster = TRUE)"
+      ],
+      "id": "ca7b656a",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "The problem now is that we can detect some missing data in the dataset. This is a common problem in mass spectrometry data. We can see that some peptides are not detected in some samples. \n",
+        "\n",
+        "\n",
+        "## Q6. \n",
+        "**Why there are missing values with MS? Summarise the list of unique peptide to only one protein**\n",
+        "\n",
+        "\n",
+        "Ans. \n",
+        "\n",
+        "\n",
+        "Let's now select good quality peptide based on the missing data. We will remove the peptides that are not detected in more than 50% of the samples.\n",
+        "\n",
+        "## Q7. \n",
+        "**From `select_pept` table, remove the peptides that are not detected in more than 50% of the samples. How many nique protiens and peptides are left?**\n"
+      ],
+      "id": "366c843e"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Remove the peptides that are not detected in more than 50% of the samples\n",
+        "# Hint: pivot_longer() and filter()\n",
+        "# Fix the code below\n",
+        "\n",
+        "filter_pept <- select_pept %>% \n",
+        "  pivot_longer(cols = -c(PeptideSequence, PrecursorCharge), names_to = \"Reference\", values_to = \"Intensity\") %>% \n",
+        "  group_by(PeptideSequence, PrecursorCharge) %>%\n",
+        "  summarise(n_na = sum(is.na(Intensity))) %>%\n",
+        "  filter(n_na < 3) %>% \n",
+        "  select(PeptideSequence, PrecursorCharge)\n",
+        "  \n",
+        "\n",
+        "ms_result_filt <- ms_result %>%\n",
+        "  inner_join(filter_pept, by = c(\"PeptideSequence\", \"PrecursorCharge\")) \n",
+        "\n",
+        "\n",
+        "# Protein count\n",
+        "ms_result_filt %>% \n",
+        "  select(ProteinName, PeptideSequence) %>%\n",
+        "  distinct() %>%\n",
+        "  count(ProteinName) %>% \n",
+        "  count(n)\n",
+        "\n",
+        "# Peptide count\n",
+        "ms_result_filt %>% \n",
+        "  select(ProteinName, PeptideSequence) %>%\n",
+        "  distinct() %>%\n",
+        "  count(PeptideSequence) %>% \n",
+        "  count(n)"
+      ],
+      "id": "f4fb5698",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Looks like we are more confident with the data now. Let's now calculate the missing data in the dataset. The rule is we expect all peptide precursors to be detected with similar intensity in every protein. Meaning that, we can average the intensity of the peptides in each protein and compare them with the rest.\n",
+        "\n",
+        "## Q8.\n",
+        "**What are the protein concentrations in each sample?**\n"
+      ],
+      "id": "b904a5aa"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Hint: # group_by() and summarise()\n",
+        "# Fix the code below\n",
+        "\n",
+        "prot_level <- ms_result_filt %>% \n",
+        "  group_by(ProteinName, Reference) %>% \n",
+        "  summarise(mean_intensity = mean(Intensity, na.rm = TRUE)) %>% \n",
+        "  ungroup()"
+      ],
+      "id": "fa91e46b",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Protein concentration\n",
+        "## Q9.\n",
+        "**Let's plot a dynamic range of protein concentration in each sample. What can we imply from this plot?**\n"
+      ],
+      "id": "15a242c6"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "prot_level %>% \n",
+        "   left_join(ms_result %>% select(Reference, Condition) %>% distinct(), by = \"Reference\") %>%\n",
+        "   ggplot(aes(x = reorder(ProteinName, mean_intensity), y = mean_intensity, color= Reference)) +\n",
+        "   geom_point(alpha = .4) +  \n",
+        "  geom_smooth(aes(group = Condition, color = Condition)) +\n",
+        "    scale_y_log10() + \n",
+        "  labs(x = \"Proteins\", y = \"Intensity\",\n",
+        "  title = \"Overall protein Intensity\")+ \n",
+        "  theme_classic() +\n",
+        "  theme(legend.position = \"bottom\",\n",
+        "  axis.text.x = element_blank(),\n",
+        "  axis.ticks.x = element_blank(),\n",
+        "  plot.title = element_text(hjust = 0.5))"
+      ],
+      "id": "b5d6d124",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Q10. \n",
+        "**Visualize the concentration of protein from PSMB3 gene with boxplot. What can we summarise here? Additionally, if it is in your experiment, how would you proceed?**"
+      ],
+      "id": "01dd71e8"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# hint\n",
+        "# Fix this code below\n",
+        "\n",
+        "# Select Protein\n",
+        "prot <- prot_level %>% \n",
+        "    left_join(ms_result %>% select(Reference, Condition) %>% distinct(), by = \"Reference\") %>%\n",
+        "    select(ProteinName, Condition, mean_intensity) %>%\n",
+        "    filter(ProteinName == 'sp|O00264|PGRC1_HUMAN')\n",
+        "# # Boxplot\n",
+        "prot %>% \n",
+        "  ggplot(aes(x = Condition, y = mean_intensity, fill = Condition)) + \n",
+        "  geom_boxplot() + \n",
+        "  geom_point() + \n",
+        "  theme_classic()\n",
+        "# prot"
+      ],
+      "id": "b12d4282",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## BQ2. \n",
+        "**Plot the concentration of the most highly differentiated protein**\n"
+      ],
+      "id": "dea6ccc8"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "prot_max <- prot_level %>% \n",
+        "    left_join(ms_result %>% select(Reference, Condition) %>% distinct(), by = \"Reference\") %>%\n",
+        "    select(ProteinName, Condition, mean_intensity) %>%\n",
+        "    group_by(ProteinName, Condition) %>% \n",
+        "    summarise(mean_intensity = mean(mean_intensity)) %>% \n",
+        "    ungroup() %>%\n",
+        "    pivot_wider(names_from = Condition, values_from = mean_intensity) %>% \n",
+        "    rename(cancer = `colorectal cancer liver metastases`) %>% \n",
+        "    mutate(diff = abs(normal-cancer)) %>%\n",
+        "    filter(diff == max(diff)) %>%\n",
+        "    pull(ProteinName)\n",
+        "\n",
+        "print(prot_max)\n",
+        "prot_max <- prot_level %>% \n",
+        "    left_join(ms_result %>% select(Reference, Condition) %>% distinct(), by = \"Reference\") %>%\n",
+        "    select(ProteinName, Condition, mean_intensity) %>%\n",
+        "    filter(ProteinName == prot_max)\n",
+        "\n",
+        "# # Boxplot\n",
+        "prot_max %>% \n",
+        "  ggplot(aes(x = Condition, y = mean_intensity, fill = Condition)) + \n",
+        "  geom_boxplot() + \n",
+        "  geom_point() + \n",
+        "  theme_classic() "
+      ],
+      "id": "83d84894",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## BQ3.\n",
+        "**What are the advantages and disadvantages of MS acquisition?**"
+      ],
+      "id": "9c22cbcc"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "ir43",
+      "language": "R",
+      "display_name": "R 4.3.2"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}
