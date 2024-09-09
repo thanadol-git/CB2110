@@ -9,7 +9,7 @@ jupyter:
     kernelspec:
         name: "ir43"
         language: "R"
-        display_name: "R 4.3.2"q
+        display_name: "R 4.3.2"
 
 execute: 
   # warning: false

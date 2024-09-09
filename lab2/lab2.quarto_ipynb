@@ -47,12 +47,45 @@
         "\n",
         "You may recall from what we have done in the first lab. Now, we want to look at them properly. Let's start with some basic R programming skill. So, please just copy the file and change the path below. (If you don't rememer, just take it from your submission)\n"
       ],
-      "id": "ed30eb4a"
+      "id": "d39cc8b0"
     },
     {
       "cell_type": "code",
       "metadata": {},
       "source": [
+        "%reload_ext rpy2.ipython\n",
+        "%config IPCompleter.greedy=True\n",
+        "%config InlineBackend.figure_format = 'retina'"
+      ],
+      "id": "6f4567d8",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# indicate that you're running R code\n",
+        "%%R\n",
+        "# Install if it's your first time to run\n",
+        "install.packages(\"dplyr\") \n",
+        "install.packages(\"ggplot2\") \n",
+        "install.packages(\"tidyverse\")\n",
+        "install.packages(\"stringr\")\n",
+        "install.packages(\"visdat\")\n",
+        "install.packages(\"naniar\")"
+      ],
+      "id": "1c7a7f83",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# indicate that you're running R code\n",
+        "%%R\n",
+        "\n",
         "# Libraries ---- \n",
         "#| warning: false\n",
         "#| echo: false\n",
@@ -69,10 +102,10 @@
         "\n",
         "# File path of the result\n",
         "# Fix when export\n",
-        "path <- '/home/thanadol/Documents/GitHub/CB2110/lab2/sdrf_openms_design_msstats_in.csv'\n",
+        "path <- 'sdrf_openms_design_msstats_in.csv'\n",
         "ms_result <- read.csv(path)"
       ],
-      "id": "8b590826",
+      "id": "9a2b3c89",
       "execution_count": null,
       "outputs": []
     },
@@ -83,18 +116,21 @@
         "# Data overview\n",
         "Let's check how do your data look. You can do it basically with any spreadsheet or texteditor software. R is also one of them so don't be afraid. \n"
       ],
-      "id": "d64a200a"
+      "id": "df0156a5"
     },
     {
       "cell_type": "code",
       "metadata": {},
       "source": [
+        "# indicate that you're running R code\n",
+        "%%R\n",
+        "\n",
         "#| echo: true\n",
         "head(ms_result)\n",
         "# or \n",
         "# View(ms_result)"
       ],
-      "id": "c162e1d2",
+      "id": "79abe88b",
       "execution_count": null,
       "outputs": []
     },
@@ -109,12 +145,15 @@
         "\n",
         "You can now see that it's difficult to see them clearly as there are many rows. It's hard to get an overview of the dataset. Let's dig a bit deeper and make it a little more organized. Let's now check numbers of samples. These should be related to what you have with the SDRF file previously. \n"
       ],
-      "id": "9444e73f"
+      "id": "eef99d45"
     },
     {
       "cell_type": "code",
       "metadata": {},
       "source": [
+        "# indicate that you're running R code\n",
+        "%%R\n",
+        "\n",
         "# Number of samples and what are they\n",
         "ms_result %>% \n",
         "  # Select column Reference and Condition\n",
@@ -122,7 +161,7 @@
         "  # Remove duplicated rows in the table\n",
         "  distinct()"
       ],
-      "id": "1c14a4a7",
+      "id": "b0de8ded",
       "execution_count": null,
       "outputs": []
     },
@@ -137,12 +176,15 @@
         "## Q2. \n",
         "**Let's check the peptides and proteins. How many unique proteins and peptides? What percentaged of matched protein from your library?**\n"
       ],
-      "id": "000ecf93"
+      "id": "a11489d6"
     },
     {
       "cell_type": "code",
       "metadata": {},
       "source": [
+        "# indicate that you're running R code\n",
+        "%%R\n",
+        "\n",
         "# Peptides and Protein \n",
         "# Extract a table of three columns with unique proteins, peptides and precursor charge\n",
         "\n",
@@ -150,7 +192,7 @@
         "#   select(_,_,_) \n",
         "#   distinct(___)"
       ],
-      "id": "27d61cb4",
+      "id": "3343e293",
       "execution_count": null,
       "outputs": []
     },
@@ -169,12 +211,15 @@
         "## BQ1. \n",
         "**Please show a summarised table containing numbers of protein counts and the detectable peptide numbers. For example, there are 10 proteins and each of them has 5 detectable peptides.**\n"
       ],
-      "id": "d040cafd"
+      "id": "8021ace6"
     },
     {
       "cell_type": "code",
       "metadata": {},
       "source": [
+        "# indicate that you're running R code\n",
+        "%%R\n",
+        "\n",
         "# Peptide per protein count\n",
         "# Hint: count()\n",
         "# This will give you numbers of duplicated items in a particular vector column\n",
@@ -185,7 +230,7 @@
         "  count(ProteinName) %>% \n",
         "  arrange(n) %>% count(n)"
       ],
-      "id": "feebee8d",
+      "id": "13e1ba27",
       "execution_count": null,
       "outputs": []
     },
@@ -197,12 +242,15 @@
         "\n",
         "Now, let's roughly look at the intensity of the peptides. We will use ggplot2 to visualize the data.\n"
       ],
-      "id": "6ce36e39"
+      "id": "182f28b7"
     },
     {
       "cell_type": "code",
       "metadata": {},
       "source": [
+        "# indicate that you're running R code\n",
+        "%%R\n",
+        "\n",
         "ms_result %>% \n",
         "  # Cobcatenate PeptideSequence and PrecursorCharge to new column\n",
         "  mutate(PeptideSequencePC = str_c(PeptideSequence, \"_\", PrecursorCharge)) %>%\n",
@@ -221,7 +269,7 @@
         "  axis.ticks.x = element_blank(),\n",
         "  plot.title = element_text(hjust = 0.5)) "
       ],
-      "id": "454770ca",
+      "id": "713ea05f",
       "execution_count": null,
       "outputs": []
     },
@@ -239,12 +287,15 @@
         "## Q5. \n",
         "**Pick one protein that is comprised of 10 detectable peptides. Visulize the peptide intensity. Do we see every peptide in every sample? Does every peptide have the same intensity in each sample for each  peptide. If not, why?**\n"
       ],
-      "id": "8174808d"
+      "id": "efff57ed"
     },
     {
       "cell_type": "code",
       "metadata": {},
       "source": [
+        "# indicate that you're running R code\n",
+        "%%R\n",
+        "\n",
         "# Select a protein with 10 peptides that are detected in every sample\n",
         "# Fix the code below\n",
         "\n",
@@ -269,7 +320,7 @@
         "  geom_point(alpha = .4) + geom_line() +\n",
         "  theme_classic() "
       ],
-      "id": "1b3378b6",
+      "id": "a0f6e2b0",
       "execution_count": null,
       "outputs": []
     },
@@ -282,12 +333,15 @@
         "# Missing data \n",
         "Let's now visualize the data that you already have with their intensities. We will look the data at the peptide precursor level. \n"
       ],
-      "id": "8974cd69"
+      "id": "db4a071e"
     },
     {
       "cell_type": "code",
       "metadata": {},
       "source": [
+        "# indicate that you're running R code\n",
+        "%%R\n",
+        "\n",
         "select_pept <- ms_result %>% \n",
         "  select(Reference, PeptideSequence, PrecursorCharge, Intensity) %>% \n",
         "  pivot_wider(names_from = Reference, values_from = Intensity) \n",
@@ -295,7 +349,7 @@
         "\n",
         "vis_miss(select_pept, cluster = TRUE)"
       ],
-      "id": "bb205c73",
+      "id": "25d4a2a5",
       "execution_count": null,
       "outputs": []
     },
@@ -318,12 +372,15 @@
         "## Q7. \n",
         "**From `select_pept` table, remove the peptides that are not detected in more than 50% of the samples. How many nique protiens and peptides are left?**\n"
       ],
-      "id": "65e002b8"
+      "id": "12fe2a1b"
     },
     {
       "cell_type": "code",
       "metadata": {},
       "source": [
+        "# indicate that you're running R code\n",
+        "%%R\n",
+        "\n",
         "# Remove the peptides that are not detected in more than 50% of the samples\n",
         "# Hint: pivot_longer() and filter()\n",
         "# Fix the code below\n",
@@ -354,7 +411,7 @@
         "  count(PeptideSequence) %>% \n",
         "  count(n)"
       ],
-      "id": "d777970b",
+      "id": "9cdea2bf",
       "execution_count": null,
       "outputs": []
     },
@@ -367,12 +424,15 @@
         "## Q8.\n",
         "**What are the protein concentrations in each sample?**\n"
       ],
-      "id": "a2977a89"
+      "id": "a07b5ae7"
     },
     {
       "cell_type": "code",
       "metadata": {},
       "source": [
+        "# indicate that you're running R code\n",
+        "%%R\n",
+        "\n",
         "# Hint: # group_by() and summarise()\n",
         "# Fix the code below\n",
         "\n",
@@ -381,7 +441,7 @@
         "  summarise(mean_intensity = mean(Intensity, na.rm = TRUE)) %>% \n",
         "  ungroup()"
       ],
-      "id": "64cdeab3",
+      "id": "06789217",
       "execution_count": null,
       "outputs": []
     },
@@ -393,7 +453,7 @@
         "## Q9.\n",
         "**Let's plot a dynamic range of protein concentration in each sample. What can we imply from this plot?**\n"
       ],
-      "id": "442222eb"
+      "id": "79ee3bec"
     },
     {
       "cell_type": "code",
@@ -413,7 +473,7 @@
         "  axis.ticks.x = element_blank(),\n",
         "  plot.title = element_text(hjust = 0.5))"
       ],
-      "id": "3ef37337",
+      "id": "f04d5900",
       "execution_count": null,
       "outputs": []
     },
@@ -424,12 +484,15 @@
         "## Q10. \n",
         "**Visualize the concentration of protein from PSMB3 gene with boxplot. What can we summarise here? Additionally, if it is in your experiment, how would you proceed?**"
       ],
-      "id": "e25128f4"
+      "id": "bafbc312"
     },
     {
       "cell_type": "code",
       "metadata": {},
       "source": [
+        "# indicate that you're running R code\n",
+        "%%R\n",
+        "\n",
         "# hint\n",
         "# Fix this code below\n",
         "\n",
@@ -446,7 +509,7 @@
         "  theme_classic()\n",
         "# prot"
       ],
-      "id": "9a516c44",
+      "id": "7db3da5c",
       "execution_count": null,
       "outputs": []
     },
@@ -457,12 +520,15 @@
         "## BQ2. \n",
         "**Plot the concentration of the most highly differentiated protein**\n"
       ],
-      "id": "34f121c5"
+      "id": "52633f50"
     },
     {
       "cell_type": "code",
       "metadata": {},
       "source": [
+        "# indicate that you're running R code\n",
+        "%%R\n",
+        "\n",
         "prot_max <- prot_level %>% \n",
         "    left_join(ms_result %>% select(Reference, Condition) %>% distinct(), by = \"Reference\") %>%\n",
         "    select(ProteinName, Condition, mean_intensity) %>%\n",
@@ -488,7 +554,7 @@
         "  geom_point() + \n",
         "  theme_classic() "
       ],
-      "id": "5bcb311c",
+      "id": "4cb6b14a",
       "execution_count": null,
       "outputs": []
     },
@@ -499,7 +565,7 @@
         "## BQ3.\n",
         "**What are the advantages and disadvantages of MS acquisition?**"
       ],
-      "id": "e14b9f5b"
+      "id": "657f5b66"
     }
   ],
   "metadata": {
