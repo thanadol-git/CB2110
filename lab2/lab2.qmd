@@ -41,6 +41,7 @@ On completion of the lab, the student should be able to:
 You may recall from what we have done in the first lab. Now, we want to look at them properly. Let's start with some basic R programming skill. So, please just copy the file and change the path below. (If you don't rememer, just take it from your submission)
 
 ```{r}
+%reload_ext rpy2.ipython
 %config IPCompleter.greedy=True
 %config InlineBackend.figure_format = 'retina'
 ```
