@@ -323,6 +323,9 @@ prot_level <- ms_result_filt %>%
 **Let's plot a dynamic range of protein concentration in each sample. What can we imply from this plot?**
 
 ```{r}
+# indicate that you're running R code
+%%R
+
 prot_level %>% 
    left_join(ms_result %>% select(Reference, Condition) %>% distinct(), by = "Reference") %>%
    ggplot(aes(x = reorder(ProteinName, mean_intensity), y = mean_intensity, color= Reference)) +
