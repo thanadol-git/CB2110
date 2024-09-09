@@ -45,6 +45,20 @@ You may recall from what we have done in the first lab. Now, we want to look at 
 %config IPCompleter.greedy=True
 %config InlineBackend.figure_format = 'retina'
 ```
+
+```{r}
+#indicate that you're running R code
+%%R
+
+# Install if it's your first time to run\n",
+install.packages("dplyr")
+install.packages("ggplot2")
+install.packages("tidyverse")
+install.packages("stringr")
+install.packages("visdat")
+install.packages("naniar")
+```
+
 ```{r}
 # indicate that you're running R code
 %%R

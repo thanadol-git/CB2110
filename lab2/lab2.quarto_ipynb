@@ -47,7 +47,7 @@
         "\n",
         "You may recall from what we have done in the first lab. Now, we want to look at them properly. Let's start with some basic R programming skill. So, please just copy the file and change the path below. (If you don't rememer, just take it from your submission)\n"
       ],
-      "id": "d39cc8b0"
+      "id": "8aed99a5"
     },
     {
       "cell_type": "code",
@@ -57,25 +57,7 @@
         "%config IPCompleter.greedy=True\n",
         "%config InlineBackend.figure_format = 'retina'"
       ],
-      "id": "6f4567d8",
-      "execution_count": null,
-      "outputs": []
-    },
-    {
-      "cell_type": "code",
-      "metadata": {},
-      "source": [
-        "# indicate that you're running R code\n",
-        "%%R\n",
-        "# Install if it's your first time to run\n",
-        "install.packages(\"dplyr\") \n",
-        "install.packages(\"ggplot2\") \n",
-        "install.packages(\"tidyverse\")\n",
-        "install.packages(\"stringr\")\n",
-        "install.packages(\"visdat\")\n",
-        "install.packages(\"naniar\")"
-      ],
-      "id": "1c7a7f83",
+      "id": "89bd0166",
       "execution_count": null,
       "outputs": []
     },
@@ -105,7 +87,7 @@
         "path <- 'sdrf_openms_design_msstats_in.csv'\n",
         "ms_result <- read.csv(path)"
       ],
-      "id": "9a2b3c89",
+      "id": "4514fac1",
       "execution_count": null,
       "outputs": []
     },
@@ -116,7 +98,7 @@
         "# Data overview\n",
         "Let's check how do your data look. You can do it basically with any spreadsheet or texteditor software. R is also one of them so don't be afraid. \n"
       ],
-      "id": "df0156a5"
+      "id": "4bd0e56d"
     },
     {
       "cell_type": "code",
@@ -130,7 +112,7 @@
         "# or \n",
         "# View(ms_result)"
       ],
-      "id": "79abe88b",
+      "id": "7fd3864d",
       "execution_count": null,
       "outputs": []
     },
@@ -145,7 +127,7 @@
         "\n",
         "You can now see that it's difficult to see them clearly as there are many rows. It's hard to get an overview of the dataset. Let's dig a bit deeper and make it a little more organized. Let's now check numbers of samples. These should be related to what you have with the SDRF file previously. \n"
       ],
-      "id": "eef99d45"
+      "id": "5f162bb1"
     },
     {
       "cell_type": "code",
@@ -161,7 +143,7 @@
         "  # Remove duplicated rows in the table\n",
         "  distinct()"
       ],
-      "id": "b0de8ded",
+      "id": "24445b69",
       "execution_count": null,
       "outputs": []
     },
@@ -176,7 +158,7 @@
         "## Q2. \n",
         "**Let's check the peptides and proteins. How many unique proteins and peptides? What percentaged of matched protein from your library?**\n"
       ],
-      "id": "a11489d6"
+      "id": "d27546db"
     },
     {
       "cell_type": "code",
@@ -192,7 +174,7 @@
         "#   select(_,_,_) \n",
         "#   distinct(___)"
       ],
-      "id": "3343e293",
+      "id": "6392b40d",
       "execution_count": null,
       "outputs": []
     },
@@ -211,7 +193,7 @@
         "## BQ1. \n",
         "**Please show a summarised table containing numbers of protein counts and the detectable peptide numbers. For example, there are 10 proteins and each of them has 5 detectable peptides.**\n"
       ],
-      "id": "8021ace6"
+      "id": "ee595fcc"
     },
     {
       "cell_type": "code",
@@ -230,7 +212,7 @@
         "  count(ProteinName) %>% \n",
         "  arrange(n) %>% count(n)"
       ],
-      "id": "13e1ba27",
+      "id": "ea86727f",
       "execution_count": null,
       "outputs": []
     },
@@ -242,7 +224,7 @@
         "\n",
         "Now, let's roughly look at the intensity of the peptides. We will use ggplot2 to visualize the data.\n"
       ],
-      "id": "182f28b7"
+      "id": "24dbc80d"
     },
     {
       "cell_type": "code",
@@ -269,7 +251,7 @@
         "  axis.ticks.x = element_blank(),\n",
         "  plot.title = element_text(hjust = 0.5)) "
       ],
-      "id": "713ea05f",
+      "id": "c6a73be8",
       "execution_count": null,
       "outputs": []
     },
@@ -287,7 +269,7 @@
         "## Q5. \n",
         "**Pick one protein that is comprised of 10 detectable peptides. Visulize the peptide intensity. Do we see every peptide in every sample? Does every peptide have the same intensity in each sample for each  peptide. If not, why?**\n"
       ],
-      "id": "efff57ed"
+      "id": "54f1131e"
     },
     {
       "cell_type": "code",
@@ -320,7 +302,7 @@
         "  geom_point(alpha = .4) + geom_line() +\n",
         "  theme_classic() "
       ],
-      "id": "a0f6e2b0",
+      "id": "b8300b94",
       "execution_count": null,
       "outputs": []
     },
@@ -333,7 +315,7 @@
         "# Missing data \n",
         "Let's now visualize the data that you already have with their intensities. We will look the data at the peptide precursor level. \n"
       ],
-      "id": "db4a071e"
+      "id": "b44a21a7"
     },
     {
       "cell_type": "code",
@@ -349,7 +331,7 @@
         "\n",
         "vis_miss(select_pept, cluster = TRUE)"
       ],
-      "id": "25d4a2a5",
+      "id": "ad218435",
       "execution_count": null,
       "outputs": []
     },
@@ -372,7 +354,7 @@
         "## Q7. \n",
         "**From `select_pept` table, remove the peptides that are not detected in more than 50% of the samples. How many nique protiens and peptides are left?**\n"
       ],
-      "id": "12fe2a1b"
+      "id": "93415092"
     },
     {
       "cell_type": "code",
@@ -411,7 +393,7 @@
         "  count(PeptideSequence) %>% \n",
         "  count(n)"
       ],
-      "id": "9cdea2bf",
+      "id": "7cd2561d",
       "execution_count": null,
       "outputs": []
     },
@@ -424,7 +406,7 @@
         "## Q8.\n",
         "**What are the protein concentrations in each sample?**\n"
       ],
-      "id": "a07b5ae7"
+      "id": "1224b9b6"
     },
     {
       "cell_type": "code",
@@ -441,7 +423,7 @@
         "  summarise(mean_intensity = mean(Intensity, na.rm = TRUE)) %>% \n",
         "  ungroup()"
       ],
-      "id": "06789217",
+      "id": "83b1e64b",
       "execution_count": null,
       "outputs": []
     },
@@ -453,12 +435,15 @@
         "## Q9.\n",
         "**Let's plot a dynamic range of protein concentration in each sample. What can we imply from this plot?**\n"
       ],
-      "id": "79ee3bec"
+      "id": "df7d9126"
     },
     {
       "cell_type": "code",
       "metadata": {},
       "source": [
+        "# indicate that you're running R code\n",
+        "%%R\n",
+        "\n",
         "prot_level %>% \n",
         "   left_join(ms_result %>% select(Reference, Condition) %>% distinct(), by = \"Reference\") %>%\n",
         "   ggplot(aes(x = reorder(ProteinName, mean_intensity), y = mean_intensity, color= Reference)) +\n",
@@ -473,7 +458,7 @@
         "  axis.ticks.x = element_blank(),\n",
         "  plot.title = element_text(hjust = 0.5))"
       ],
-      "id": "f04d5900",
+      "id": "bfccce68",
       "execution_count": null,
       "outputs": []
     },
@@ -484,7 +469,7 @@
         "## Q10. \n",
         "**Visualize the concentration of protein from PSMB3 gene with boxplot. What can we summarise here? Additionally, if it is in your experiment, how would you proceed?**"
       ],
-      "id": "bafbc312"
+      "id": "87147add"
     },
     {
       "cell_type": "code",
@@ -492,6 +477,7 @@
       "source": [
         "# indicate that you're running R code\n",
         "%%R\n",
+        "\n",
         "\n",
         "# hint\n",
         "# Fix this code below\n",
@@ -509,7 +495,7 @@
         "  theme_classic()\n",
         "# prot"
       ],
-      "id": "7db3da5c",
+      "id": "7df4befc",
       "execution_count": null,
       "outputs": []
     },
@@ -520,7 +506,7 @@
         "## BQ2. \n",
         "**Plot the concentration of the most highly differentiated protein**\n"
       ],
-      "id": "52633f50"
+      "id": "68d2b801"
     },
     {
       "cell_type": "code",
@@ -554,7 +540,7 @@
         "  geom_point() + \n",
         "  theme_classic() "
       ],
-      "id": "4cb6b14a",
+      "id": "b3cd84dc",
       "execution_count": null,
       "outputs": []
     },
@@ -565,7 +551,7 @@
         "## BQ3.\n",
         "**What are the advantages and disadvantages of MS acquisition?**"
       ],
-      "id": "657f5b66"
+      "id": "33d88a1c"
     }
   ],
   "metadata": {
