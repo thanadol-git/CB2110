@@ -5,11 +5,6 @@ format:
     toc: true
     code-fold: true
     theme: lumen
-jupyter:
-    kernelspec:
-        name: "ir43"
-        language: "R"
-        display_name: "R 4.3.2"
 
 execute: 
   # warning: false
@@ -57,7 +52,7 @@ library(naniar)
 
 # File path of the result
 # Fix when export
-path <- 'sdrf_openms_design_msstats_in.csv'
+path <- '/home/thanadol/Documents/GitHub/CB2110/lab2/sdrf_openms_design_msstats_in.csv'
 ms_result <- read.csv(path)
 
 ```

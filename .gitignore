@@ -11,3 +11,6 @@ env
 lab2/sdrf_openms_design_msstats_in.csv
 lab2/lab2_files/
 .R*
+lab2/lab2.aux
+lab2/lab2.log
+lab2/lab2.tex
