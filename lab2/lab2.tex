@@ -1,0 +1,827 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrartcl}
+
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else  
+    % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Lab 2},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\title{Lab 2}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+
+Welcome back to the lab again. From last week, you may have worked with
+mass spectrometry data and processed a bit of them by yourself. This lab
+will look into the results that you have make and we will practice a bit
+of data wrangling and visualization with R. Thus, you can now understand
+the dataset much better with many more aspects from your result. As
+usual, please fill in your information here so we can give you nice some
+nice scores later.
+
+\begin{itemize}
+\tightlist
+\item
+  Member1:
+\item
+  Member2:
+\item
+  Contact email:
+\end{itemize}
+
+Same here, there will be ten questions and three bonus questions for you
+to answer. Please try to elaborate this exercise with the lectures from
+the first weeks. The main goal of this lab is that you are not afraid to
+work with mass spectrometry as it is amazing. Woo hoo.
+
+\subsection{Intended learning outcomes
+(ILOs)}\label{intended-learning-outcomes-ilos}
+
+On completion of the lab, the student should be able to:
+
+\begin{verbatim}
+* demonstrate data-processing procedures in mass spectrometry proteomics
+* demonstrate the ability to answer statistical questions with computational tools in mass spectrometry
+* identify quality of high-throughput dataset and handle with statistical understandings
+* identify relevant issues in technologies and data with accessible visualization techniques
+\end{verbatim}
+
+\subsection{Let's start!}\label{lets-start}
+
+You may recall from what we have done in the first lab. Now, we want to
+look at them properly. Let's start with some basic R programming skill.
+So, please just copy the file and change the path below. (If you don't
+rememer, just take it from your submission)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Libraries {-}{-}{-}{-} }
+\CommentTok{\#| warning: false}
+\CommentTok{\#| echo: false}
+\CommentTok{\#| message: false}
+
+\FunctionTok{library}\NormalTok{(dplyr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+Attaching package: 'dplyr'
+\end{verbatim}
+
+\begin{verbatim}
+The following objects are masked from 'package:stats':
+
+    filter, lag
+\end{verbatim}
+
+\begin{verbatim}
+The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+-- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+v forcats   1.0.0     v stringr   1.5.1
+v lubridate 1.9.3     v tibble    3.2.1
+v purrr     1.0.2     v tidyr     1.3.1
+v readr     2.1.5     
+\end{verbatim}
+
+\begin{verbatim}
+-- Conflicts ------------------------------------------ tidyverse_conflicts() --
+x dplyr::filter() masks stats::filter()
+x dplyr::lag()    masks stats::lag()
+i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(stringr)}
+\FunctionTok{library}\NormalTok{(visdat)}
+\FunctionTok{library}\NormalTok{(naniar)}
+
+
+
+\CommentTok{\# File path of the result}
+\CommentTok{\# Fix when export}
+\NormalTok{path }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}/home/thanadol/Documents/GitHub/CB2110/lab2/sdrf\_openms\_design\_msstats\_in.csv\textquotesingle{}}
+\NormalTok{ms\_result }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(path)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Data overview}\label{data-overview}
+
+Let's check how do your data look. You can do it basically with any
+spreadsheet or texteditor software. R is also one of them so don't be
+afraid.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(ms\_result)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+            ProteinName        PeptideSequence PrecursorCharge FragmentIon
+1  sp|Q14974|IMB1_HUMAN     .(Acetyl)MELITILEK               2          NA
+2 sp|P55011|S12A2_HUMAN AAAAAAAAAAAAAAAGAGAGAK               2          NA
+3 sp|P55011|S12A2_HUMAN AAAAAAAAAAAAAAAGAGAGAK               2          NA
+4 sp|P55011|S12A2_HUMAN AAAAAAAAAAAAAAAGAGAGAK               2          NA
+5 sp|P55011|S12A2_HUMAN AAAAAAAAAAAAAAAGAGAGAK               3          NA
+6  sp|P07954|FUMH_HUMAN         AAAEVNQDYGLDPK               2          NA
+  ProductCharge IsotopeLabelType                          Condition
+1             0                L                             normal
+2             0                L colorectal cancer liver metastases
+3             0                L colorectal cancer liver metastases
+4             0                L colorectal cancer liver metastases
+5             0                L colorectal cancer liver metastases
+6             0                L colorectal cancer liver metastases
+  BioReplicate Run Intensity                              Reference
+1            2   4  11335670 140521_MO_H710_Tn8_1_140523083511.mzML
+2            1   1  71453700              140521_MO_H710_TP2_1.mzML
+3            1   2  79248010              140521_MO_H710_TP2_2.mzML
+4            1   3  61905350              140521_MO_H710_TP2_3.mzML
+5            1   3  43845410              140521_MO_H710_TP2_3.mzML
+6            1   2  11507960              140521_MO_H710_TP2_2.mzML
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# or }
+\CommentTok{\# View(ms\_result)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Q1.}\label{q1.}
+
+\textbf{What do you see in the output file? What are the columns and the
+rows}
+
+Ans.
+
+You can now see that it's difficult to see them clearly as there are
+many rows. It's hard to get an overview of the dataset. Let's dig a bit
+deeper and make it a little more organized. Let's now check numbers of
+samples. These should be related to what you have with the SDRF file
+previously.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Number of samples and what are they}
+\NormalTok{ms\_result }\SpecialCharTok{\%\textgreater{}\%} 
+  \CommentTok{\# Select column Reference and Condition}
+  \FunctionTok{select}\NormalTok{(Reference, Condition) }\SpecialCharTok{\%\textgreater{}\%} 
+  \CommentTok{\# Remove duplicated rows in the table}
+  \FunctionTok{distinct}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+                               Reference                          Condition
+1 140521_MO_H710_Tn8_1_140523083511.mzML                             normal
+2              140521_MO_H710_TP2_1.mzML colorectal cancer liver metastases
+3              140521_MO_H710_TP2_2.mzML colorectal cancer liver metastases
+4              140521_MO_H710_TP2_3.mzML colorectal cancer liver metastases
+5              140521_MO_H710_Tn8_2.mzML                             normal
+6              140521_MO_H710_Tn8_3.mzML                             normal
+\end{verbatim}
+
+Does it look similar? Definitely, haha.
+
+Now, look at the proteins.
+
+\subsection{Q2.}\label{q2.}
+
+\textbf{Let's check the peptides and proteins. How many unique proteins
+and peptides? What percentaged of matched protein from your library?}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Peptides and Protein }
+\CommentTok{\# Extract a table of three columns with unique proteins, peptides and precursor charge}
+
+\CommentTok{\# ms\_result \%\textgreater{}\% }
+\CommentTok{\#   select(\_,\_,\_) }
+\CommentTok{\#   distinct(\_\_\_)}
+\end{Highlighting}
+\end{Shaded}
+
+Ans.
+
+\subsection{Q3.}\label{q3.}
+
+\textbf{Do you see any modification during sample pereparation? If yes,
+why do we need them?}
+
+Ans.
+
+\subsection{BQ1.}\label{bq1.}
+
+\textbf{Please show a summarised table containing numbers of protein
+counts and the detectable peptide numbers. For example, there are 10
+proteins and each of them has 5 detectable peptides.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Peptide per protein count}
+\CommentTok{\# Hint: count()}
+\CommentTok{\# This will give you numbers of duplicated items in a particular vector column}
+\CommentTok{\# Fix the code below}
+\NormalTok{ms\_result }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(ProteinName, PeptideSequence) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{distinct}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{count}\NormalTok{(ProteinName) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{arrange}\NormalTok{(n) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{count}\NormalTok{(n)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Storing counts in `nn`, as `n` already present in input
+i Use `name = "new_name"` to pick a new name.
+\end{verbatim}
+
+\begin{verbatim}
+    n  nn
+1   1 491
+2   2 263
+3   3 149
+4   4  91
+5   5  50
+6   6  46
+7   7  22
+8   8  23
+9   9  15
+10 10   8
+11 11   6
+12 12   6
+13 13   5
+14 14   2
+15 15   5
+16 16   2
+17 18   1
+18 20   1
+19 23   1
+20 24   1
+21 25   1
+22 27   1
+23 30   1
+24 33   1
+25 34   1
+\end{verbatim}
+
+\section{Dynamic range}\label{dynamic-range}
+
+Now, let's roughly look at the intensity of the peptides. We will use
+ggplot2 to visualize the data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ms\_result }\SpecialCharTok{\%\textgreater{}\%} 
+  \CommentTok{\# Cobcatenate PeptideSequence and PrecursorCharge to new column}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{PeptideSequencePC =} \FunctionTok{str\_c}\NormalTok{(PeptideSequence, }\StringTok{"\_"}\NormalTok{, PrecursorCharge)) }\SpecialCharTok{\%\textgreater{}\%}
+  \CommentTok{\# plot the all peptide and Precursor and }
+  \CommentTok{\# color by Condition}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\FunctionTok{reorder}\NormalTok{(PeptideSequencePC, Intensity), }
+  \AttributeTok{y =}\NormalTok{ Intensity, }\AttributeTok{color =}\NormalTok{ Condition)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{4}\NormalTok{, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{color =}\NormalTok{ Reference)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_smooth}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{group =}\NormalTok{ Reference)) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Peptides"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Intensity"}\NormalTok{,}
+  \AttributeTok{title =} \StringTok{"Overall peptide Intensity"}\NormalTok{)}\SpecialCharTok{+} 
+  \FunctionTok{scale\_y\_log10}\NormalTok{(}\AttributeTok{trans =} \StringTok{\textquotesingle{}log10\textquotesingle{}}\NormalTok{, }\AttributeTok{breaks =} \DecValTok{10}\SpecialCharTok{\^{}}\NormalTok{(}\DecValTok{7}\SpecialCharTok{:}\DecValTok{12}\NormalTok{)) }\SpecialCharTok{+} 
+  \FunctionTok{theme\_classic}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{"bottom"}\NormalTok{,}
+  \AttributeTok{axis.text.x =} \FunctionTok{element\_blank}\NormalTok{(),}
+  \AttributeTok{axis.ticks.x =} \FunctionTok{element\_blank}\NormalTok{(),}
+  \AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{)) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+`geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{lab2_files/figure-pdf/unnamed-chunk-6-1.pdf}}
+
+You now can see the dynamic range of every proteins that were detected.
+The intensity of the peptides is quite different maybe in some samples.
+
+\subsection{Q4.}\label{q4.}
+
+\textbf{What can we imply from this plot? What is the dynamic range of
+the dataset?}
+
+Ans.
+
+\subsection{Q5.}\label{q5.}
+
+\textbf{Pick one protein that is comprised of 10 detectable peptides.
+Visulize the peptide intensity. Do we see every peptide in every sample?
+Does every peptide have the same intensity in each sample for each
+peptide. If not, why?}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Select a protein with 10 peptides that are detected in every sample}
+\CommentTok{\# Fix the code below}
+
+\NormalTok{prot\_10 }\OtherTok{\textless{}{-}}\NormalTok{ ms\_result }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(ProteinName, PeptideSequence) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{distinct}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{count}\NormalTok{(ProteinName) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(n }\SpecialCharTok{==} \DecValTok{10}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{slice\_sample}\NormalTok{(}\AttributeTok{n =} \DecValTok{1}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{pull}\NormalTok{(ProteinName)}
+
+\CommentTok{\# Print out the protein name}
+
+\FunctionTok{print}\NormalTok{(prot\_10)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "sp|Q9Y6C2|EMIL1_HUMAN"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Vislualize it }
+
+\NormalTok{ms\_result }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(ProteinName }\SpecialCharTok{==}\NormalTok{ prot\_10) }\SpecialCharTok{\%\textgreater{}\%}  
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\FunctionTok{reorder}\NormalTok{(PeptideSequence, Intensity, mean), }\AttributeTok{y =}\NormalTok{ Intensity, }\AttributeTok{color =}\NormalTok{ Reference, }\AttributeTok{group=}\NormalTok{Reference)) }\SpecialCharTok{+}
+  \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{PrecursorCharge) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{4}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{geom\_line}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme\_classic}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{lab2_files/figure-pdf/unnamed-chunk-7-1.pdf}}
+
+\#Ans.
+
+\section{Missing data}\label{missing-data}
+
+Let's now visualize the data that you already have with their
+intensities. We will look the data at the peptide precursor level.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{select\_pept }\OtherTok{\textless{}{-}}\NormalTok{ ms\_result }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(Reference, PeptideSequence, PrecursorCharge, Intensity) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{pivot\_wider}\NormalTok{(}\AttributeTok{names\_from =}\NormalTok{ Reference, }\AttributeTok{values\_from =}\NormalTok{ Intensity) }
+
+
+\FunctionTok{vis\_miss}\NormalTok{(select\_pept, }\AttributeTok{cluster =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{lab2_files/figure-pdf/unnamed-chunk-8-1.pdf}}
+
+The problem now is that we can detect some missing data in the dataset.
+This is a common problem in mass spectrometry data. We can see that some
+peptides are not detected in some samples.
+
+\subsection{Q6.}\label{q6.}
+
+\textbf{Why there are missing values with MS? Summarise the list of
+unique peptide to only one protein}
+
+Ans.
+
+Let's now select good quality peptide based on the missing data. We will
+remove the peptides that are not detected in more than 50\% of the
+samples.
+
+\subsection{Q7.}\label{q7.}
+
+\textbf{From \texttt{select\_pept} table, remove the peptides that are
+not detected in more than 50\% of the samples. How many protiens and
+peptides are left?}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Remove the peptides that are not detected in more than 50\% of the samples}
+\CommentTok{\# Hint: pivot\_longer() and filter()}
+\CommentTok{\# Fix the code below}
+
+\NormalTok{filter\_pept }\OtherTok{\textless{}{-}}\NormalTok{ select\_pept }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{pivot\_longer}\NormalTok{(}\AttributeTok{cols =} \SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(PeptideSequence, PrecursorCharge), }\AttributeTok{names\_to =} \StringTok{"Reference"}\NormalTok{, }\AttributeTok{values\_to =} \StringTok{"Intensity"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(PeptideSequence, PrecursorCharge) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{n\_na =} \FunctionTok{sum}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(Intensity))) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(n\_na }\SpecialCharTok{\textless{}} \DecValTok{3}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(PeptideSequence, PrecursorCharge)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+`summarise()` has grouped output by 'PeptideSequence'. You can override using
+the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ms\_result\_filt }\OtherTok{\textless{}{-}}\NormalTok{ ms\_result }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{inner\_join}\NormalTok{(filter\_pept, }\AttributeTok{by =} \FunctionTok{c}\NormalTok{(}\StringTok{"PeptideSequence"}\NormalTok{, }\StringTok{"PrecursorCharge"}\NormalTok{)) }
+
+\CommentTok{\# Protein count}
+\NormalTok{ms\_result\_filt }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(ProteinName, PeptideSequence) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{distinct}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{count}\NormalTok{(ProteinName) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{count}\NormalTok{(n)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Storing counts in `nn`, as `n` already present in input
+i Use `name = "new_name"` to pick a new name.
+\end{verbatim}
+
+\begin{verbatim}
+    n  nn
+1   1 228
+2   2  91
+3   3  38
+4   4  25
+5   5  12
+6   6  11
+7   7   3
+8   8   3
+9   9   2
+10 10   2
+11 11   1
+12 20   2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Peptide count}
+\NormalTok{ms\_result\_filt }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(ProteinName, PeptideSequence) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{distinct}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{count}\NormalTok{(PeptideSequence) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{count}\NormalTok{(n)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Storing counts in `nn`, as `n` already present in input
+i Use `name = "new_name"` to pick a new name.
+\end{verbatim}
+
+\begin{verbatim}
+  n  nn
+1 1 884
+\end{verbatim}
+
+Looks like we are more confident with the data now. Let's now calculate
+the missing data in the dataset. The rule is we expect all peptide
+precursors to be detected with similar intensity in every protein.
+Meaning that, we can average the intensity of the peptides in each
+protein and compare them with the rest.
+
+\subsection{Q8.}\label{q8.}
+
+\textbf{Calculate the missing data in the dataset. What is the protein
+concentration in each sample}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Hint: \# group\_by() and summarise()}
+\CommentTok{\# Fix the code below}
+
+\NormalTok{prot\_level }\OtherTok{\textless{}{-}}\NormalTok{ ms\_result\_filt }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(ProteinName, Reference) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{mean\_intensity =} \FunctionTok{mean}\NormalTok{(Intensity, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ungroup}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+`summarise()` has grouped output by 'ProteinName'. You can override using the
+`.groups` argument.
+\end{verbatim}
+
+\section{Protein concentration}\label{protein-concentration}
+
+\subsection{Q9.}\label{q9.}
+
+\textbf{Let's plot a dynamic range of protein concentration in each
+sample. What can we imply from this plot?}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{prot\_level }\SpecialCharTok{\%\textgreater{}\%} 
+   \FunctionTok{left\_join}\NormalTok{(ms\_result }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(Reference, Condition) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{distinct}\NormalTok{(), }\AttributeTok{by =} \StringTok{"Reference"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+   \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \FunctionTok{reorder}\NormalTok{(ProteinName, mean\_intensity), }\AttributeTok{y =}\NormalTok{ mean\_intensity, }\AttributeTok{color=}\NormalTok{ Reference)) }\SpecialCharTok{+}
+   \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{4}\NormalTok{) }\SpecialCharTok{+}  
+  \FunctionTok{geom\_smooth}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{group =}\NormalTok{ Condition, }\AttributeTok{color =}\NormalTok{ Condition)) }\SpecialCharTok{+}
+    \FunctionTok{scale\_y\_log10}\NormalTok{() }\SpecialCharTok{+} 
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Proteins"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Intensity"}\NormalTok{,}
+  \AttributeTok{title =} \StringTok{"Overall protein Intensity"}\NormalTok{)}\SpecialCharTok{+} 
+  \FunctionTok{theme\_classic}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{"bottom"}\NormalTok{,}
+  \AttributeTok{axis.text.x =} \FunctionTok{element\_blank}\NormalTok{(),}
+  \AttributeTok{axis.ticks.x =} \FunctionTok{element\_blank}\NormalTok{(),}
+  \AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+`geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{lab2_files/figure-pdf/unnamed-chunk-11-1.pdf}}
+
+\subsection{Q10.}\label{q10.}
+
+\textbf{Visualize the concentration of protein from PSMB3 gene with
+boxplot. What can we summarise here? What shall we find next?}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# hint}
+\CommentTok{\# Fix this code below}
+
+\CommentTok{\# Select Protein}
+\NormalTok{prot }\OtherTok{\textless{}{-}}\NormalTok{ prot\_level }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{left\_join}\NormalTok{(ms\_result }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(Reference, Condition) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{distinct}\NormalTok{(), }\AttributeTok{by =} \StringTok{"Reference"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{select}\NormalTok{(ProteinName, Condition, mean\_intensity) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{filter}\NormalTok{(ProteinName }\SpecialCharTok{==} \StringTok{\textquotesingle{}sp|O00264|PGRC1\_HUMAN\textquotesingle{}}\NormalTok{)}
+\CommentTok{\# \# Boxplot}
+\NormalTok{prot }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Condition, }\AttributeTok{y =}\NormalTok{ mean\_intensity, }\AttributeTok{fill =}\NormalTok{ Condition)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_boxplot}\NormalTok{() }\SpecialCharTok{+} 
+  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+} 
+  \FunctionTok{theme\_classic}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{lab2_files/figure-pdf/unnamed-chunk-12-1.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# prot}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{BQ2.}\label{bq2.}
+
+\textbf{Plot the concentration of the most highly differentiated
+protein}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{prot\_max }\OtherTok{\textless{}{-}}\NormalTok{ prot\_level }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{left\_join}\NormalTok{(ms\_result }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(Reference, Condition) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{distinct}\NormalTok{(), }\AttributeTok{by =} \StringTok{"Reference"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{select}\NormalTok{(ProteinName, Condition, mean\_intensity) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{group\_by}\NormalTok{(ProteinName, Condition) }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{summarise}\NormalTok{(}\AttributeTok{mean\_intensity =} \FunctionTok{mean}\NormalTok{(mean\_intensity)) }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{ungroup}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{pivot\_wider}\NormalTok{(}\AttributeTok{names\_from =}\NormalTok{ Condition, }\AttributeTok{values\_from =}\NormalTok{ mean\_intensity) }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{rename}\NormalTok{(}\AttributeTok{cancer =} \StringTok{\textasciigrave{}}\AttributeTok{colorectal cancer liver metastases}\StringTok{\textasciigrave{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{mutate}\NormalTok{(}\AttributeTok{diff =} \FunctionTok{abs}\NormalTok{(normal}\SpecialCharTok{{-}}\NormalTok{cancer)) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{filter}\NormalTok{(diff }\SpecialCharTok{==} \FunctionTok{max}\NormalTok{(diff)) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{pull}\NormalTok{(ProteinName)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+`summarise()` has grouped output by 'ProteinName'. You can override using the
+`.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(prot\_max)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "sp|P62805|H4_HUMAN"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{prot\_max }\OtherTok{\textless{}{-}}\NormalTok{ prot\_level }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{left\_join}\NormalTok{(ms\_result }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(Reference, Condition) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{distinct}\NormalTok{(), }\AttributeTok{by =} \StringTok{"Reference"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{select}\NormalTok{(ProteinName, Condition, mean\_intensity) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{filter}\NormalTok{(ProteinName }\SpecialCharTok{==}\NormalTok{ prot\_max)}
+
+\CommentTok{\# \# Boxplot}
+\NormalTok{prot\_max }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Condition, }\AttributeTok{y =}\NormalTok{ mean\_intensity, }\AttributeTok{fill =}\NormalTok{ Condition)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_boxplot}\NormalTok{() }\SpecialCharTok{+} 
+  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+} 
+  \FunctionTok{theme\_classic}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{lab2_files/figure-pdf/unnamed-chunk-13-1.pdf}}
+
+\subsection{BQ3.}\label{bq3.}
+
+\textbf{What are the advanageous and dis advantageous of MS acquition?}
+
+
+
+
+\end{document}

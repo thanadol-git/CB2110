@@ -103,7 +103,7 @@ Now, look at the proteins.
 Ans.
 
 ## Q3. 
-**Do you see any modification during sample pereparation? If yes, why do we need them?**
+**Do you see any peptide modification during sample pereparation? If yes, why do we need them?**
 
 Ans. 
 
@@ -188,7 +188,7 @@ ms_result %>%
 
 ```
 
-Ans.
+#Ans.
 
 # Missing data 
 Let's now visualize the data that you already have with their intensities. We will look the data at the peptide precursor level. 
@@ -216,7 +216,7 @@ Ans.
 Let's now select good quality peptide based on the missing data. We will remove the peptides that are not detected in more than 50% of the samples.
 
 ## Q7. 
-**From `select_pept` table, remove the peptides that are not detected in more than 50% of the samples. How many protiens and peptides are left?**
+**From `select_pept` table, remove the peptides that are not detected in more than 50% of the samples. How many nique protiens and peptides are left?**
 
 ```{r}
 # Remove the peptides that are not detected in more than 50% of the samples
@@ -230,8 +230,10 @@ filter_pept <- select_pept %>%
   filter(n_na < 3) %>% 
   select(PeptideSequence, PrecursorCharge)
   
+
 ms_result_filt <- ms_result %>%
   inner_join(filter_pept, by = c("PeptideSequence", "PrecursorCharge")) 
+
 
 # Protein count
 ms_result_filt %>% 
@@ -251,7 +253,7 @@ ms_result_filt %>%
 Looks like we are more confident with the data now. Let's now calculate the missing data in the dataset. The rule is we expect all peptide precursors to be detected with similar intensity in every protein. Meaning that, we can average the intensity of the peptides in each protein and compare them with the rest.
 
 ## Q8.
-**Calculate the missing data in the dataset. What is the protein concentration in each sample**
+**What are the protein concentrations in each sample?**
 
 ```{r}
 # Hint: # group_by() and summarise()
@@ -287,7 +289,7 @@ prot_level %>%
 ```
 
 ## Q10. 
-**Visualize the concentration of protein from PSMB3 gene with boxplot. What can we summarise here? What shall we find next?**
+**Visualize the concentration of protein from PSMB3 gene with boxplot. What can we summarise here? Additionally, if it is in your experiment, how would you proceed?**
 ```{r}
 # hint
 # Fix this code below
@@ -337,4 +339,4 @@ prot_max %>%
 ```
 
 ## BQ3.
-**What are the advanageous and dis advantageous of MS acquition?**
+**What are the advantages and disadvantages of MS acquisition?**
