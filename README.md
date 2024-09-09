@@ -25,10 +25,11 @@ For now, we move from Conda environment to Google Colab. You can access the lab 
 2. Open Google [Colab](https://colab.research.google.com/).
 3. Upload the file to Google Colab in `Upload`. One can just drag and drop the file there. 
 4. You may need to upload the input files to Google Colab as well. They usually are in the lab folder. 
-4. Run the code in Google Colab.
+5. Run the code in Google Colab.
+6. Once you finish it please download it as `.ipynb` file and submit it to Canvas.
 
 
-## Steps 
+## Steps in Conda 
 Here we will show you how to setup the environment for this course. Every lab is based on the R language and we will execute them through VScode with the Conda environment. Please follow the instruction here for conda installation and then follow the instruction for VScode installation. 
 
 1. Open your vscode. 
