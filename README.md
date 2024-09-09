@@ -7,8 +7,8 @@ Please check the status of each lab here.
 
 |  Status | Lab | Submission | Comments |
 |:-----|:-----| :--------:| :--------|
-|:white_check_mark:| Lab 1   | 170924 |   `code`  |
-|:x:| Lab 2   | 240924|  `code`  |
+|:white_check_mark:| Lab 1   | 171024 |   `code`  |
+|:white_check_mark:| Lab 2   | 241024|  `code`  |
 |:x:| Lab 3   | `code`  | `code`  |  
 |:x:| Lab 4   | `code`  | `code`  |  
 
@@ -18,6 +18,15 @@ There are two softwares that we require for this course. Please follow the instr
 
 1. [VS Code](https://code.visualstudio.com/download) 
 2. [Conda](https://conda.io/projects/conda/en/latest/user-guide/install/index.html) 
+
+## Google Colab
+For now, we move from Conda environment to Google Colab. You can access the lab with the steps below.
+1. Dowload `.ipynb` or `.quarto_ipynb` file to your local computer.
+2. Open Google [Colab](https://colab.research.google.com/).
+3. Upload the file to Google Colab in `Upload`. One can just drag and drop the file there. 
+4. You may need to upload the input files to Google Colab as well. They usually are in the lab folder. 
+4. Run the code in Google Colab.
+
 
 ## Steps 
 Here we will show you how to setup the environment for this course. Every lab is based on the R language and we will execute them through VScode with the Conda environment. Please follow the instruction here for conda installation and then follow the instruction for VScode installation. 
