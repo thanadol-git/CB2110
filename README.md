@@ -8,7 +8,7 @@ Please check the status of each lab here.
 |  Status | Lab | Submission | Comments |
 |:-----|:-----| :--------:| :--------|
 |:white_check_mark:| Lab 1   | 171024 | 1-month extension|
-|:white_check_mark:| Lab 2   | 241024|1-month extension|
+|:white_check_mark:| Lab 2   | 241024|1-month extension https://docs.google.com/presentation/d/1ZlaSHMj1pBQrKqhL3-2ql2Ilca6TUuN1/edit?usp=sharing&ouid=106271736390636087175&rtpof=true&sd=true|
 |:x:| Lab 3   | `code`  | `code`  |  
 |:x:| Lab 4   | `code`  | `code`  |  
 
