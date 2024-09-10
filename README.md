@@ -7,8 +7,8 @@ Please check the status of each lab here.
 
 |  Status | Lab | Submission | Comments |
 |:-----|:-----| :--------:| :--------|
-|:white_check_mark:| Lab 1   | 171024 |   `code`  |
-|:white_check_mark:| Lab 2   | 241024|  `code`  |
+|:white_check_mark:| Lab 1   | 171024 | 1-month extension|
+|:white_check_mark:| Lab 2   | 241024|1-month extension|
 |:x:| Lab 3   | `code`  | `code`  |  
 |:x:| Lab 4   | `code`  | `code`  |  
 
