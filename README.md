@@ -1,4 +1,8 @@
+
 # CB2110
+
+![alt_text](images/header.png)
+
 
 Welcome to the lab session. Every material for every lab in this  course can be found here. Please try to set up the environment that you have here as you need it for every lab in this course. What we need here is the environment so that you can execute the codes that we provide you during the lab. You will also be able to code some parts of them yourself. Once you finish answering the questions, you will just need to export the pdf file and upload them to Canvas where we can grade you with a lot of points there. There usually are 10 questions in each lab with additional 3 bonus questions that can help you with your final grade. This will definitely be a fun session so that you can enjoy and indulge with proteomics much better with a bit of coding. Don't worry if you need some help, we are always available for assistance during the labs. Besides, you can also try it yourself in advance. We will announce through canvas when each lab is ready. Good luck and have fun.  
 
