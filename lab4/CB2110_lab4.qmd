@@ -48,7 +48,7 @@ Start of document.
 
 ### Questions
 
-Questions are distributed throughout this notebook. You can view where the questions are by pressing on the "table of contents" icon right below the Google Collab icon, which is situatied on the top left on this page. Good luck with all the questions! Reach out to the TA's if you have any questions regarding this lab.
+Questions are distributed throughout this notebook. You can view where the questions are by pressing on the "table of contents" icon right below the Google Colab icon, which is situated on the top left on this page. Good luck with all the questions! Reach out to the TAs if you have any questions regarding this lab.
 
 ## Introduction
 
@@ -56,7 +56,7 @@ The content of the computer lab session focuses on applying tools for **multi-om
 
 ### Key Concepts
 
-* Integrating different omics data - Focusing on an unsupervised model such as Multi-Omics Factor Analys (MOFA)
+* Integrating different omics data - Focusing on an unsupervised model such as Multi-Omics Factor Analysis (MOFA)
 * Early, middle and late integration - Applying middle integration using MOFA
 
 ### Intended learning outcomes (ILOs)
@@ -104,6 +104,8 @@ options(repos = c(CRAN = "https://cran.rstudio.com"))
 ```
 
 ```{r}
+options("install.lock"=FALSE)
+
 if (!require("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 
@@ -111,6 +113,7 @@ BiocManager::install("MOFA2")
 ```
 
 ## Question 1
+
 What possible issues are there when trying to integrating different omics data?
 
 ```{r}
@@ -119,6 +122,10 @@ BiocManager::install("MOFAdata")
 
 ```{r}
 install.packages("psych")
+```
+
+```{r}
+install.packages("xfun")
 ```
 
 ```{r}
@@ -253,6 +260,20 @@ The next step is to train the actual model. To save time, we will load an alread
 
 # Load precomputed model
 
+From this point on, we will work with a precomputed model that we will load from the web. This model has been trained using the same data set and the same options as the one we just prepared. As a safety measure, we will remove all objects from the current environment before loading the model, as it could cause an error while loading the MOFA object to something already called "MOFAobject". Don't worry, this won't affect the loaded packages.
+
+```{r}
+rm(list = ls()) # Cleans the current environment, but keeps the loaded packages
+```
+
+We need to load the metadata file again.
+
+```{r}
+CLL_metadata <- fread("ftp://ftp.ebi.ac.uk/pub/databases/mofa/cll_vignette/sample_metadata.txt")
+```
+
+Now we load the precomputed model.
+
 ```{r}
 MOFAobject <- readRDS(url("http://ftp.ebi.ac.uk/pub/databases/mofa/cll_vignette/MOFA2_CLL.rds"))
 ```
@@ -343,6 +364,7 @@ plot_variance_explained(MOFAobject, plot_total = T)[[2]]
 ```
 
 # Characterisation of Factor 1
+
 There are a few systematic strategies to characterise the molecular etiology underlying the MOFA Factors and to relate them to the sample covariates:
 
 * **Association analysis between the sample metadata and the Factor values**.
@@ -351,6 +373,7 @@ There are a few systematic strategies to characterise the molecular etiology und
 * **Gene set enrichment analysis on the mRNA weights**.
 
 ## Association analysis
+
 Let’s test the association between MOFA Factors and Gender, survival outcome (dead vs alive) and age:
 
 ```{r}
@@ -361,6 +384,7 @@ correlate_factors_with_covariates(MOFAobject,
 ```
 
 ## Question 4
+
 What insights from the data can we learn just from inspecting this plot?
 
 ## Plot factor values
@@ -551,7 +575,7 @@ names(res.positive)
 ## Plot enrichment analysis results
 
 Plot an overview of the number of significant pathways per factor.
-It seems that most of the Factors do not have clear gene set signatures. A clear exception is Factor 5, which has a very strong enrichment for genes with positive weights.
+It seems that most of the factors do not have clear gene set signatures. A clear exception is Factor 5, which has a very strong enrichment for genes with positive weights.
 
 ```{r}
 plot_enrichment_heatmap(res.positive)
