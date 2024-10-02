@@ -456,10 +456,15 @@ plot_factor(MOFAobject,
 
 ## Question 7
 
-Pick 2 mutations from any selected feature (g.e., IGHV), use the function `plot_factor()` to show their distribution. For each gene, include the respective protein concentration as given in [the disease section](https://www.proteinatlas.org/humanproteome/disease) of [the Human Protein Atlas (HPA)](https://www.proteinatlas.org/).
-Here's an example using FLT3 (don't select FLT3): https://www.proteinatlas.org/ENSG00000122025-FLT3/disease
+Pick 2 mutations from any selected feature (e.g., IGHV), use the function `plot_factor()` to show their distribution using the argument `color_by = "YOUR GENE HERE"`, also choose which factor you want to highlight by using the argument `factors = YOUR FACTOR HERE`. For your selected genes, include the respective protein concentration (a screenshot of the boxplot) as given in [the disease section](https://www.proteinatlas.org/humanproteome/disease) of [the Human Protein Atlas (HPA)](https://www.proteinatlas.org/), together with the plot given by `plot_factor()`.
+
+Here's an example using [GFAP](https://www.proteinatlas.org/ENSG00000131095-GFAP/disease) (note that all proteins on the HPA is not included in this study).
+![](https://cdn.technologynetworks.com/tn/images/body/towardsnextgenerationcancerpredictionmedicine1670236818839.png)
+
 How does the protein expression look on the HPA? How does the gene look using the `plot_factor()`function? What differentiates these two plots?
-**TIP**: Gene names can be found by picking different factors using the function `plot_top_weights()`
+
+**TIP**: Gene names can be found by picking different factors using the function `plot_top_weights()` (don't pick any deletions, treatments or DNA methylation). 
+
 We can also plot Factor values coloured by other covariates, for example Gender. As shown above, this variable has no association with Factor 1:
 
 ```{r}
@@ -607,9 +612,11 @@ plot_enrichment_detailed(
 
 ## Question 10
 
-Working with latent factors and weights can be daunting as they can seem ambigious. To perhaps make more sense of the meaning of latent factor and weights, this data have been extracted into dataframes from the trained MOFA object as `factors_df` and `weights_df`.
+Working with latent factors and weights can be daunting as they can seem ambigious. To perhaps make more sense of the meaning of latent factor and weights, this data have been extracted into dataframes from the trained MOFA object as `factors_df` and `weights_df`. You can `view()` these dataframes below.
 
 Make your own plot in any way you see fit, you are allowed to use any generative AI model(s) to help you create your own plot. Then explain in your own words what you wish to tell using your figure.
+
+**Again**, you have total freedom in creating any sort of plot based on either `factors_df`, `weights_df` or both if you wish to combine them. Tap into your creativity. Then explain what you can tell from this figure. It can be as simple or complex as you like it to be.
 
 ```{r}
 factors <- get_factors(MOFAobject)
@@ -652,7 +659,7 @@ head(weights_df) # Try without head() to see the full data frame
 
 ## Bonus point:
 
-Pick a latent factor and run the code in this notebook to describe as much information you could get from that factor, i.e., association to outcome, relation to other factors, feature weights, top features, enrichment analysis, etc.
+Pick a single latent factor and run the code in this notebook to describe as much information you could get from that factor, i.e., association to outcome, relation to other factors, feature weights, top features, enrichment analysis, etc. Include figures and try to tell a story about what your selected factor could imply. You can think of this bonus point as a brief essay question.
 
 # sessionInfo
 
