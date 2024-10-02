@@ -117,7 +117,7 @@ BiocManager::install("MOFA2")
 What possible issues are there when trying to integrating different omics data?
 
 ```{r}
-BiocManager::install("MOFAdata")
+BiocManager::install("MOFAdata", type = "source")
 ```
 
 ```{r}
