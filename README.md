@@ -13,8 +13,8 @@ Please check the status of each lab here.
 |:-----|:-----| :--------:| :--------|
 |:white_check_mark:| Lab 1   | 111024 | Maximum extension|
 |:white_check_mark:| Lab 2   | 111024|Maximum extension https://docs.google.com/presentation/d/1ZlaSHMj1pBQrKqhL3-2ql2Ilca6TUuN1/edit?usp=sharing&ouid=106271736390636087175&rtpof=true&sd=true|
-|:x:| Lab 3   | `code`  | `code`  |  
-|:x:| Lab 4   | `code`  | `code`  |  
+|:white_check_mark:| Lab 3   | `code`  | `code`  |  
+|:white_check_mark:| Lab 4   | `code`  | `code`  |  
 
 Usually, the lab will be available 2 days before the session. You are advised to work by yourself. The submission is always 2 weeks after the lab session. 
 ## Downloads
