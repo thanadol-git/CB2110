@@ -5,12 +5,12 @@ Welcome to the lab session. Every material for every lab in this  course can be 
 ## LABs
 Please check the status of each lab here. 
 
-|  Date/Time | Lab | Submission | Comments |
+|  Date (Time) | Lab | Submission | Comments |
 |:-----|:-----| :--------:| :--------|
-|8 Sept 8-12| Lab 1   | 170924 |   `code`  |
-|18 Sept 8-12| Lab 2   | 240924|  `code`  |
-|25 Sept 8-12| Lab 3   | `code`  | `code`  |  
-|6 Oct 13-17| Lab 4   | `code`  | `code`  |  
+|8 Sept (8-12)| Lab 1   | `code`|   `code`  |
+|18 Sept (8-12)| Lab 2   | `code`|  `code`  |
+|25 Sept (8-12)| Lab 3   | `code`  | `code`  |  
+|6 Oct (13-17)| Lab 4   | `code`  | `code`  |  
 
 Usually, the lab will be available 2 days before the session. You are advised to work by yourself. The submission is always 2 weeks after the lab session. 
 ## Downloads
