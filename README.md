@@ -15,8 +15,15 @@ Please check the status of each lab here.
 |6 Oct (13-17)| Lab 4   | `code`  | `code`  |  
 
 Usually, the lab will be available 2 days before the session. You are advised to work by yourself. The submission is always 2 weeks after the lab session. 
+
+## For every labs
+
+One can run quarto markdown (.qmd) file in vscode. One can open the lab folder and open the markdown file there. One should be able to see the code chunks and the questions. Please try to answer the questions in the markdown file. Once you finish, one can export it to pdf by clicking on the export button on the top right corner of the markdown file. Then, submit the pdf file to Canvas.
+
+If you don't wish to run it locally, you can also upload the adjacent file, .quarto_ipynb to [Google Colab](https://colab.research.google.com/) and run it there. You will need to install the packages in the first code chunk. Likewise, once you finish, you can download it as pdf and submit it to Canvas.
+
 ## Downloads
-There are two softwares that we require for this course. Please follow the instructions below to download them.
+There are two softwares that we require. Please follow the instructions below to download them.
 
 1. [VS Code](https://code.visualstudio.com/download) 
 2. [Conda](https://conda.io/projects/conda/en/latest/user-guide/install/index.html) 
@@ -52,8 +59,3 @@ conda activate R-cb2110
 ```
 6. Now, you have the environment ready. You should be able to work with every lab in this course. 
 
-## For every labs
-
-You can run quarto markdown (.qmd) file in vscode. You can open the lab folder and open the markdown file there. You should be able to see the code chunks and the questions. Please try to answer the questions in the markdown file. Once you finish, you can export it to pdf by clicking on the export button on the top right corner of the markdown file. Then, submit the pdf file to Canvas.
-
-If you don't wish to run it locally, you can also upload the adjacent file, .quarto_ipynb to Google Colab and run it there. You will need to install the packages in the first code chunk. Likewise, one you finish, you can download it as pdf and submit it to Canvas.
