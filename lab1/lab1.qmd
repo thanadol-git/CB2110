@@ -95,7 +95,7 @@ Hooray! Once you finish answering the questions, please render this markdown to 
 
 ## Bonus questions
 ### BQ1
-***How does peptide identification step in [Q7.](## Q7.) work? ***  
+**How does peptide identification step in [Q7.](## Q7.) work?**  
 Ans. 
 
 ### BQ2
