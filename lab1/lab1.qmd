@@ -13,7 +13,7 @@ jupyter:
         display_name: "R 4.3.2"
 ---
 
-Welcome everyone to lab one. This worksheep will guide you to everything that you need including instructions, the questions and definitely the bonus questions for your extra scores. Before we start with anything, please fill in your information here so we can give you nice some nice scores later. 
+Welcome everyone to lab one. This worksheet will guide you to everything that you need including instructions, the questions and definitely the bonus questions for your extra scores. Before we start with anything, please fill in your information here so we can give you nice some nice scores later. 
 
 - Member1:
 - Member2: 
@@ -37,59 +37,58 @@ In this lab, we will explore mass spectrometry proteomics database where we can 
 
 <em>Let's begin by visiting [ProteomeCentral](https://proteomecentral.proteomexchange.org/), a central hub for searching mass spectrometry (MS) data repositories. Here, you can browse and access datasets from various proteomics resources such as PRIDE, PeptideAtlas, MassIVE, and more. That's because ProteomeCentral  belongs to [ProteomExchange](https://www.proteomexchange.org/) wihich is a centralized and standardized framework for all scientist working with proteomics mass spectrometry. Well, it does not keep the data itself. It just provides a link to where one can find the database and accession id easily. Of course, everything that one can see here is public. We are allowed to download and play with this data as we would like. Maybe at some point of your career time, one may publish MS data on ProteomExchange. 
 
-Try making a simple search from there. One can pick several parameters of interests including type of samples and type of MS experiment of machine.</em>
+Try making a simple search from there. One can pick several parameters of interests including type of samples and type of MS experiment or machine.</em>
 
 ## Q1. 
 **Pick one dataset from there. What is there dataset identifier? Summarise the experiment in a short paragraph (<100 words). What do we expect to find from this MS dataset?** 
-
+```
 Ans.
-
+```
 ## Q2.
 **What samples were used and located in the organism/s in this experiment?**
-
+```
 Ans. 
-
+```
 ## Q3. 
 **What is the model of the instrument? What is its set-up for example DIA or DDA? Is it labelled or labelled-free quantification?**
-
+```
 Ans.
-
+```
 ## Q4.
 **Do we see the data according to the information on the submission or the article? What else are missing?** 
-
+```
 Ans. 
-
+```
 ## Q5.
-**Does it include SDRF file there? Why do we need SDRF file?**
-
+**Does it include SDRF file there? Why do we need an SDRF file?**
+```
 Ans. 
-
-
+```
 ## Q6. 
 <em>Next step, peptide spectral matching (PSM) need a proteome to search against your experiment. Please just go to Uniprot.</em> **What proteome did you download from Uniprot? How many proteins are there?**
-
-Ans. 
-
+```
+Ans.
+```
 ## Q7. 
 **Does the number of proteins in the proteome impact the search? How? (Hint: Lukas's lecture)**
-
+```
 Ans. 
-
+```
 ## Q8.
 <em>At this step, you are able to do PSM. We can do it with a simple tool call [quantms](https://docs.quantms.org/latest/index.html). One can try running it with the tutorial [here](https://github.com/thanadol-git/quantms_example). It may take a few resources as MS data are always huge for any local computer</em> **Is there an alternative for quantms? How does the article work with PSM?**
-
+```
 Ans. 
-
+```
 ## Q9. 
 **Why do we need to add target decoys? How do they work?**
-
+```
 Ans. 
-
+```
 ## Q10.
 **What is the database containing adventitious proteins? Why are these proteins important?**
-
+```
 Ans. 
-
+```
 Hooray! Once you finish answering the questions, please render this markdown to pdf and upload it on Canvas.
 
 
