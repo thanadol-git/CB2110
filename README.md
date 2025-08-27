@@ -51,8 +51,7 @@ conda activate R-cb2110
 6. Now, you have the environment ready. You should be able to work with every lab in this course. 
 
 ## For every labs
-1. Activate your environment. 
-2. Open the markdown file in the lab folder.
-3. Answer the questions in the markdown file. 
-4. Export the file to pdf.
-5. Submit the pdf file to Canvas.
+
+You can run quarto markdown (.qmd) file in vscode. You can open the lab folder and open the markdown file there. You should be able to see the code chunks and the questions. Please try to answer the questions in the markdown file. Once you finish, you can export it to pdf by clicking on the export button on the top right corner of the markdown file. Then, submit the pdf file to Canvas.
+
+If you don't wish to run it locally, you can also upload the adjacent file, .quarto_ipynb to Google Colab and run it there. You will need to install the packages in the first code chunk. Likewise, one you finish, you can download it as pdf and submit it to Canvas.
