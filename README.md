@@ -2,7 +2,7 @@
 
 ![alt_text](images/header.png)
 
-Welcome to CB2110 labs. Every material for every lab in this course can be found in the repository here. Please try to set up the environment that you have here as you need it for every lab in this course. What we need here is the environment so that you can execute the codes that we provide you during the lab. You will also be able to code some parts of them yourself. Once you finish answering the questions, you will just need to export the `pdf` file and upload them to Canvas where we can grade you with a lot of points there. There usually are 10 questions in each lab with additional 3 bonus questions that can help you with your final grade. This will definitely be a fun session so that you can enjoy and indulge with proteomics much better with a bit of coding. Don't worry if you need some help, as we are TAs, we are always available for assistance during the labs. Besides, you can also try it yourself in advance. We will announce through canvas when each lab is ready. Good luck and have fun.
+Welcome to CB2110 labs. Every material for every lab in this course can be found in this repository. We will enjoy proteomics with a bit of coding which will mainly be in `R`. If one would like to work with it locally, please try to set up the environment that you have here as you need in this course. What we need here is the environment so that you can execute the codes that we provide you during the lab. Nonetheless, it's possible to work on `Colab`. Once you finish the exercise, you will just need to export the `pdf` file and upload them to Canvas where we can grade you with a lot of points there. There usually be 10 questions in each lab with additional 3 bonus questions that can help you with your final grade. Don't worry if you need some help, as we are TAs, we are always available for assistance during the labs. Besides, you can also try it yourself in advance. We will announce through canvas when each lab is ready. Good luck and have fun.
 
 ## LABs
 Please check the status of each lab here. 
@@ -20,7 +20,7 @@ Usually, the lab will be available 2 days before the session. You are advised to
 
 One can run quarto markdown (.qmd) file in vscode. One can open the lab folder and open the markdown file there. One should be able to see the code chunks and the questions. Please try to answer the questions in the markdown file. Once you finish, one can export it to pdf by clicking on the export button on the top right corner of the markdown file. Then, submit the pdf file to Canvas.
 
-If you don't wish to run it locally, you can also upload the adjacent file, .quarto_ipynb to [Google Colab](https://colab.research.google.com/) and run it there. You will need to install the packages in the first code chunk. Likewise, once you finish, you can download it as pdf and submit it to Canvas.
+If you don't wish to run it locally, you can also upload the adjacent file, `.quarto_ipynb` to [Google Colab](https://colab.research.google.com/) and run it there. You will need to install the packages in the first code chunk. Likewise, once you finish, you can download it as pdf and submit it to Canvas.
 
 ## Downloads
 There are two softwares that we require. Please follow the instructions below to download them.
