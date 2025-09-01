@@ -65,17 +65,17 @@ Ans.
 Ans. 
 ```
 ## Q6. 
-<em>Next step, peptide spectral matching (PSM) need a proteome to search against your experiment. Please just go to Uniprot.</em> **What proteome did you download from Uniprot? How many proteins are there?**
+<em>Next step, peptide spectral matching (PSM) need a proteome to search against your experiment. Please just go to Uniprot.</em> **What proteome would you download from Uniprot? How many proteins are there?**
 ```
 Ans.
 ```
 ## Q7. 
-**Does the number of proteins in the proteome impact the search? How? (Hint: Lukas's lecture)**
+**Does the number of proteins in the proteome impact the search? How (Hint: Lukas's lecture) ?**
 ```
 Ans. 
 ```
 ## Q8.
-<em>At this step, you are able to do PSM. We can do it with a simple tool call [quantms](https://docs.quantms.org/latest/index.html). One can try running it with the tutorial [here](https://github.com/thanadol-git/quantms_example). It may take a few resources as MS data are always huge for any local computer</em> **Is there an alternative for quantms? How does the article work with PSM?**
+<em>At this step, you are able to do PSM. We can do it with a simple tool call [quantms](https://docs.quantms.org/latest/index.html). One can try running it with the tutorial [here](https://github.com/thanadol-git/quantms_example). **In this lab, we will skip this step but one may try to strenghten skill in mass spectrometry.** It may take a few resources as MS data are usually huge for any local computer</em> **Is there an alternative for quantms? How does the article work with PSM?**
 ```
 Ans. 
 ```
@@ -85,7 +85,7 @@ Ans.
 Ans. 
 ```
 ## Q10.
-**What is the database containing adventitious proteins? Why are these proteins important?**
+**Can we search with proteomes from more than one organism? How?**
 ```
 Ans. 
 ```
@@ -94,17 +94,22 @@ Hooray! Once you finish answering the questions, please render this markdown to 
 
 ## Bonus questions
 ### BQ1
-**How does peptide identification step in [Q7.](## Q7.) work?**  
+**How does peptide identification step in Q8. work?**  
+```
 Ans. 
+```
 
 ### BQ2
-**How can we run mass spectrometry experiments sustainably?**  
+**How can we run mass spectrometry experiments sustainably?**
+```
 Ans. 
+```
 
 ### BQ3. 
-**Can we search with proteomes from more than one organism? How?**
-
-Ans. 
+**What is the database containing adventitious proteins? Why are these proteins important?**
+```
+Ans.
+```
 
 - - -
 
@@ -112,4 +117,7 @@ Ans.
 Generated: `r Sys.Date()`
 
 ## References
+
+<em>https://github.com/bigbio/proteomics-sample-metadata</em>
 <em>https://pwilmart.github.io/blog/2020/09/19/shotgun-quantification-part2</em>
+<em>https://github.com/thanadol-git/quantms_example.git</em>
