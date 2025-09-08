@@ -9,12 +9,12 @@ Please check the status of each lab here.
 
 |  Date (Time) | Lab | Submission | Comments |
 |:-----|:-----| :--------:| :--------|
-|8 Sept (8-12)| Lab 1   | `22092025`|   `Ready`  |
+|8 Sept (8-12)| Lab 1   | `15092025`|   `Ready`  |
 |18 Sept (8-12)| Lab 2   | `N/A`|  `N/A`  |
 |25 Sept (8-12)| Lab 3   | `N/A`  | `N/A`  |  
 |6 Oct (13-17)| Lab 4   | `N/A`  | `N/A`  |  
 
-Usually, the lab will be available 2 days before the session. You are advised to work by yourself. The submission is always 2 weeks after the lab session. 
+Usually, the lab will be available 2 days before the session. You are advised to work by yourself. The submission is always 1 weeks after the lab session. 
 
 ## For every labs
 
