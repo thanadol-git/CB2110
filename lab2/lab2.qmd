@@ -305,7 +305,7 @@ Looks like we are more confident with the data now. Let's now calculate the miss
 ```
 
 ## BQ2. 
-**Plot the concentration of the most highly differentiated protein**
+**Plot the abundance of the most differentiated protein**
 
 ```{r} 
 # indicate that you're running R code
@@ -316,4 +316,4 @@ Looks like we are more confident with the data now. Let's now calculate the miss
 ```
 
 ## BQ3.
-**What are the advantages and disadvantages of MS acquisition?**
+**What are the advantages and disadvantages of MS Proteomics?**
