@@ -76,7 +76,7 @@ library(naniar)
 
 # File path of the result
 # Fix when export
-path <- 'sdrf_openms_design_msstats_in.csv'
+path <- 'lab2/sdrf_openms_design_msstats_in.csv'
 ms_result <- read.csv(path)
 
 ```
