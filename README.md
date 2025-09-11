@@ -9,8 +9,8 @@ Please check the status of each lab here.
 
 |  Date (Time) | Lab | Submission | Comments |
 |:-----|:-----| :--------:| :--------|
-|8 Sept (8-12)| Lab 1   | `19092025`|   `Ready`  |
-|18 Sept (8-12)| Lab 2   | `N/A`|  `N/A`  |
+|8 Sept (8-12)| Lab 1   | `190925`|   `Ready`  |
+|18 Sept (8-12)| Lab 2   | `250925`|  `Ready`  |
 |25 Sept (8-12)| Lab 3   | `N/A`  | `N/A`  |  
 |6 Oct (13-17)| Lab 4   | `N/A`  | `N/A`  |  
 
