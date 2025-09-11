@@ -16,13 +16,15 @@ Please check the status of each lab here.
 
 Usually, the lab will be available 2 days before the session. You are advised to work by yourself. The submission is always 1 weeks after the lab session. 
 
-## For every labs
+## Instructions
 
 One can run quarto markdown (.qmd) file in vscode. One can open the lab folder and open the markdown file there. One should be able to see the code chunks and the questions. Please try to answer the questions in the markdown file. Once you finish, one can export it to html by clicking on the export button on the top right corner of the markdown file. Then, submit the html file to Canvas (Other files types would be fine).
 
+
+## Working on Colab
 If you don't wish to run it locally, you can also upload the adjacent file, `.quarto_ipynb` to [Google Colab](https://colab.research.google.com/) and run it there. You will need to install the packages in the first code chunk. Likewise, once you finish, you can download it as html and submit it to Canvas.
 
-## Downloads
+## Working locally
 To run it locally, there are two softwares that we require. Please follow the instructions below to download them.
 
 1. [VS Code](https://code.visualstudio.com/download) 
