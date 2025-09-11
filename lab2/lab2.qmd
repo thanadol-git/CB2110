@@ -264,7 +264,7 @@ ms_result_filt <- ms_result %>%
 Looks like we are more confident with the data now. Let's now calculate the missing data in the dataset. The rule is we expect all peptide precursors to be detected with similar intensity in every protein. Meaning that, we can average the intensity of the peptides in each protein and compare them with the rest.
 
 ## Q8.
-**What are the protein concentrations in each sample?**
+**What are the protein abundances in each sample?**
 
 ```{r} 
 # indicate that you're running R code
