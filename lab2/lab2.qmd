@@ -182,7 +182,7 @@ ms_result %>%
 
 ```
 
-You now can see the dynamic range of every proteins that were detected. The intensity of the peptides is quite different maybe in some samples.
+You now can see the dynamic range of every peptides that were detected. The intensity of the peptides is quite different maybe in some samples.
 
 ## Q4. 
 **What can we imply from this plot? What is the dynamic range of the dataset?**
