@@ -229,7 +229,7 @@ The problem now is that we can detect some missing data in the dataset. This is 
 
 
 ## Q6. 
-**Why there are missing values with MS? Summarise the list of unique peptide to only one protein**
+**Why there are missing values with MS?**
 
 
 Ans. 
