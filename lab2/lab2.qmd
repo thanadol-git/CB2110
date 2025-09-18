@@ -298,6 +298,10 @@ Looks like we are more confident with the data now. Let's now calculate the prot
 # Fix this code below
 
 # Select Protein
+prot <- prot_level %>% 
+    left_join(ms_result %>% select(Reference, Condition) %>% distinct(), by = "Reference") %>%
+    select(__, _, __) %>%
+    filter(ProteinName == '____')
 
 
 # # Boxplot
