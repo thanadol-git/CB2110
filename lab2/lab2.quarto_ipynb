@@ -272,7 +272,7 @@
         "\n",
         "```\n",
         "\n",
-        "Looks like we are more confident with the data now. Let's now calculate the missing data in the dataset. The rule is we expect all peptide precursors to be detected with similar intensity in every protein. Meaning that, we can average the intensity of the peptides in each protein and compare them with the rest.\n",
+        "Looks like we are more confident with the data now. Let's now calculate the protein abundance. The rule is we expect all peptide precursors to be detected with similar intensity in every protein. Meaning that, we can average the intensity of the peptides in each protein and compare them with the rest.\n",
         "\n",
         "## Q8.\n",
         "**What are the protein abundances in each sample?**\n",
