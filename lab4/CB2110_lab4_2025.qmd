@@ -610,6 +610,7 @@ rm(list = ls()) # Cleans the current environment, but keeps the loaded packages
 Now we load the precomputed model.
 
 ```{r}
+# Make sure to replace the path to where you have downloaded the data.
 MOFAobject.trained <- load_model("../data/covid/covid_model.hdf5")
 ```
 
@@ -617,18 +618,21 @@ Let's also read in the separate dataframes if you would like to use them in any 
 
 ```{r}
 # Read in the SOMAscan data
+# Make sure to replace the path to where you have downloaded the data.
 covid_soma_data <- read.csv("../data/covid/covid_soma_data.csv", row.names = 1)
 head(covid_soma_data, n = 10)
 ```
 
 ```{r}
 # Read in the cytokine data
+# Make sure to replace the path to where you have downloaded the data.
 covid_cytokine_data <- read.csv("../data/covid/covid_cytokine_data.csv", row.names = 1)
 head(covid_cytokine_data, n = 10)
 ```
 
 ```{r}
 # Read in the metadata
+# Make sure to replace the path to where you have downloaded the data.
 covid_metadata <- read.csv("../data/covid/covid_metadata.csv")
 head(covid_metadata, n = 10)
 ```
@@ -812,7 +816,7 @@ There are a few systematic strategies to characterise the molecular etiology und
 
 ## Association analysis
 
-Let’s test the association between MOFA Factors and Gender, survival outcome (dead vs alive) and age:
+Let’s test the association between MOFA Factors and sex, age, and COVID-19 status (positive vs. negative):
 
 ```{r Association by factor}
 correlate_factors_with_covariates(MOFAobject.trained,
