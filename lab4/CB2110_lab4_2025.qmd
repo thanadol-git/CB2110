@@ -245,9 +245,8 @@ For simplicity, we are going to assume that all patients under the age of 20 are
 
 ```{r}
 covid_metadata <- covid_metadata |>
-  mutate(Age = ifelse(Age < 20, 20, Age)) |> # replace ages below 20 with 20
-  mutate(Age = as.numeric(Age)) |> # convert Age to numeric
-  mutate(Age = ifelse(is.na(Age), median(Age, na.rm = TRUE), Age)) # replace NAs with median age
+  mutate(Age = ifelse(Age == "under 20", 20, Age)) |> # replace ages below 20 with 20
+  mutate(Age = as.numeric(Age)) # convert Age to numeric
 ```
 
 Let's check the data again.
