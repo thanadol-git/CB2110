@@ -2,7 +2,7 @@
 
 ![alt_text](images/header.png)
 
-Welcome to CB2110 labs. Every material for every lab in this course can be found in this repository. We will enjoy proteomics with a bit of coding which will mainly be in `R`. If one would like to work with it locally, please try to set up the environment that you have here as you need in this course. What we need here is the environment so that you can execute the codes that we provide you during the lab. Nonetheless, it's possible to work on `Colab`. Once you finish the exercise, please just upload the worksheet in Canvas where we can grade you with a lot of points there. There usually be 10 questions in each lab with additional 3 bonus questions that can help you with your final grade. Don't worry if you need some help, as we are TAs, we are always available for assistance during the labs. Besides, you can also try it yourself in advance. We will announce through canvas when each lab is ready. Good luck and have fun.
+Welcome to CB2110 labs. Every material for every lab in this course can be found in this repository. We will enjoy proteomics with a bit of coding in `Python`. If one would like to work with it locally, please try to set up the environment as described below. What we need here is the environment so that you can execute the codes that we provide you during the lab. Nonetheless, it's possible to work on Google Colab without any local installation. Once you finish the exercise, please just upload the worksheet in Canvas where we can grade you with a lot of points there. There usually be 10 questions in each lab with additional 3 bonus questions that can help you with your final grade. Don't worry if you need some help, as we are TAs, we are always available for assistance during the labs. Besides, you can also try it yourself in advance. We will announce through canvas when each lab is ready. Good luck and have fun.
 
 ## LABs
 Please check the status of each lab here. 
@@ -14,50 +14,93 @@ Please check the status of each lab here.
 |25 Sept (8-12)| Lab 3   | `N/A`  | `N/A`  |  
 |6 Oct (13-17)| Lab 4   | `131025`  | `Ready`  |  
 
-Usually, the lab will be available 2 days before the session. You are advised to work by yourself. The submission is always 1 weeks after the lab session. 
+Usually, the lab will be available 2 days before the session. You are advised to work by yourself. The submission is always 1 week after the lab session. 
 
-## Instructions
+---
 
-One can run quarto markdown (.qmd) file in vscode. One can open the lab folder and open the markdown file there. One should be able to see the code chunks and the questions. Please try to answer the questions in the markdown file. Once you finish, one can export it to html by clicking on the export button on the top right corner of the markdown file. Then, submit the html file to Canvas (Other files types would be fine).
+## Option A — Working locally with VS Code
 
+### Requirements
 
-## Working on Colab
-If you don't wish to run it locally, you can also upload the adjacent file, `.quarto_ipynb` to [Google Colab](https://colab.research.google.com/) and run it there. You will need to install the packages in the first code chunk. Likewise, once you finish, you can download it as html and submit it to Canvas.
+1. [VS Code](https://code.visualstudio.com/download)
+2. [Conda](https://conda.io/projects/conda/en/latest/user-guide/install/index.html)
+3. VS Code extensions: **Python** and **Jupyter** (install from the Extensions panel)
 
-## Working locally
-To run it locally, there are two softwares that we require. Please follow the instructions below to download them.
+### Steps
 
-1. [VS Code](https://code.visualstudio.com/download) 
-2. [Conda](https://conda.io/projects/conda/en/latest/user-guide/install/index.html) 
+**1. Clone the repository**
 
-## Steps 
-Here we will show you how to setup the environment for this course. Every lab is based on the R language and we will execute them through VScode with the Conda environment. Please follow the instruction here for conda installation and then follow the instruction for VScode installation. 
-
-1. Open your vscode. 
-
-2. Clone this github repository to your local. Open terminal and change the directory to your local computer of choice. Run this command. 
-
+Open a terminal and run:
+```bash
+git clone git@github.com:thanadol-git/CB2110.git
+cd CB2110
 ```
-git clone <github repo link>
-```
- 
-In this case the link should be `git@github.com:thanadol-git/CB2110.git`. You can also find it in the code/ssh tab. Similarly, you can basically download it directly from the github page in zip file.
+
+You can also find it in the Code/SSH tab on GitHub, or download it directly as a ZIP file.
+
 ![alt_text](images/lab0_1.png)
 
+**2. Create the conda environment**
 
-
-3. Set up a conda environment. 
-```
-conda env create -f config.yml
+```bash
+conda env create -f config_python.yml
 ```
 
-4. Now, you should have installed this environment with the name `R-cb2110`. You can list your env with: 
+This creates an environment named `py-cb2110` with Python and all required packages.
+
+**3. Register the Jupyter kernel**
+
+```bash
+conda activate py-cb2110
+python -m ipykernel install --user --name py-cb2110 --display-name "Python 3 (CB2110)"
 ```
-conda env list 
+
+**4. Open the notebook in VS Code**
+
+- Open VS Code and open the cloned `CB2110` folder (`File > Open Folder`)
+- Navigate to the lab folder (e.g. `lab1/`) and open `lab1.ipynb`
+- In the top-right corner of the notebook, click **Select Kernel** and choose **Python 3 (CB2110)**
+- You can now run cells and answer questions directly in the notebook
+
+**5. Export and submit**
+
+Once finished, export the notebook:
+- `File > Export > HTML` — then upload the `.html` file to Canvas
+- Alternatively, submit the `.ipynb` file directly if Canvas accepts it
+
+---
+
+## Option B — Working on Google Colab
+
+No local installation needed. You only need a Google account.
+
+**1. Upload the notebook**
+
+- Go to [Google Colab](https://colab.research.google.com/)
+- Click `File > Upload notebook` and upload the `.ipynb` file from the lab folder (e.g. `lab1/lab1.ipynb`)
+
+**2. Install required packages**
+
+At the top of the notebook, add and run a cell to install dependencies:
+```python
+!pip install pandas numpy matplotlib
 ```
-5. Activate the environment. 
-```
-conda activate R-cb2110
-```
-6. Now, you have the environment ready. You should be able to work with every lab in this course. 
+
+**3. Work through the lab**
+
+Answer the questions directly in the notebook cells.
+
+**4. Download and submit**
+
+- `File > Download > Download .ipynb` — upload to Canvas
+- Or `File > Print > Save as PDF` if a PDF is required
+
+---
+
+## Environment files
+
+| File | Language | Environment name | Use for |
+|:-----|:---------|:-----------------|:--------|
+| `config_python.yml` | Python 3.11 | `py-cb2110` | Lab 1, 2, 3 |
+| `config.yml` | R 4.3 | `R-cb2110` | Lab 4 (R/MOFA) |
 
