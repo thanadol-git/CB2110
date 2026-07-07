@@ -49,9 +49,10 @@ Once the Codespace terminal is open, pull this lab's helper files from the cours
 ```bash
 curl -sL https://raw.githubusercontent.com/thanadol-git/CB2110/main/lab2_qms/download_data.sh -o download_data.sh
 curl -sL https://raw.githubusercontent.com/thanadol-git/CB2110/main/lab2_qms/sdrf/01_HELA_CERVIX_x_201T_LUNG.sdrf.tsv -o custom.sdrf.tsv
+curl -sL https://raw.githubusercontent.com/thanadol-git/CB2110/main/lab2_qms/codespaces.config -o codespaces.config
 ```
 
-(Swap the last URL for a different file under `sdrf/` if you were assigned another
+(Swap the SDRF URL for a different file under `sdrf/` if you were assigned another
 HeLa-vs-organ pairing.)
 
 ## 3. Download the mzML files and FASTA database
@@ -93,13 +94,21 @@ a DIA run.
 ```bash
 nextflow run . \
     -profile docker \
+    -c codespaces.config \
     --input custom.sdrf.tsv \
-    --database data/<your_fasta_file>.fasta \
-    --outdir results
+    --database data/human_proteome.fasta \
+    --outdir results \
+    -resume
 ```
 
-If your Codespace disconnects or the run fails partway through, just re-run the same
-command with `-resume` appended — Nextflow will pick up from the last completed step.
+`codespaces.config` caps every process to 4 CPUs / 14 GB — without it, some steps (labelled
+`process_medium` in the pipeline) request 8 CPUs and will fail with
+`Process requirement exceeds available CPUs -- req: 8; avail: 4` on the standard Codespaces
+machine.
+
+`-resume` is included above so it's always safe to re-run this exact command — on a fresh
+run it has no effect, but if your Codespace disconnects or a step fails partway through,
+Nextflow will pick up from the last completed step instead of starting over.
 
 If it's slow or you're on a smaller machine, add `--performance_mode true` to trade a small
 amount of accuracy for speed/memory.
