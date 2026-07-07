@@ -12,13 +12,13 @@ DATA_DIR="data"
 
 if ! command -v gdown &> /dev/null; then
   echo "Installing gdown..."
-  pip install --quiet gdown
+  pip install --quiet gdown || pip install --quiet --break-system-packages gdown
 fi
 
 mkdir -p "${DATA_DIR}"
 
 echo "Downloading course data folder from Google Drive..."
-gdown --fuzzy --folder --remaining-ok -O "${DATA_DIR}" "${FOLDER_URL}"
+gdown --folder -O "${DATA_DIR}" "${FOLDER_URL}"
 
 echo "Done. Files in ${DATA_DIR}/:"
 find "${DATA_DIR}" -type f -exec ls -lh {} \;
