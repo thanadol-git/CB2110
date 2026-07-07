@@ -42,6 +42,23 @@ On completion of the lab, the student should be able to:
 > (`Codespaces` tab on github.com) when you're done for the day so you don't burn quota
 > sitting idle.
 
+### Optional: work from VS Code Desktop instead of the browser
+
+The Codespace still runs remotely on GitHub's servers either way — this just changes which
+editor you drive it from.
+
+1. Install the **GitHub Codespaces** extension in your local VS Code (Extensions panel,
+   search "GitHub Codespaces").
+2. Sign in to GitHub when prompted (top-left Accounts icon, or the extension will prompt you).
+3. Open the Command Palette (`Ctrl/Cmd+Shift+P`) and run **Codespaces: Create New Codespace**
+   → pick your `quantmsdiann` fork and the `master` branch → pick the 4-core/16GB machine
+   type.
+   - If you already created a Codespace in the browser (step 2 above), instead run
+     **Codespaces: Connect to Codespace** and select it from the list — no need to create a
+     second one.
+4. VS Code Desktop opens a remote window connected to that Codespace; use its integrated
+   terminal for every command in this lab exactly as if you were in the browser.
+
 ## 2. Get the lab helper files
 
 Once the Codespace terminal is open, pull this lab's helper files from the course repo:
