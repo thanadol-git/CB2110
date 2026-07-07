@@ -106,7 +106,34 @@ file, e.g. `data/190115_9131_004HL_007LQ_M04_S_1.mzML` (relative to where you ru
 `NT=Data-Independent Acquisition;AC=NCIT:C161786` — that's what tells the pipeline this is
 a DIA run.
 
-## 5. Run the pipeline
+## 5. (Optional but recommended) Reuse a pre-built spectral library
+
+`INSILICO_LIBRARY_GENERATION` only depends on the FASTA and search parameters — not on your
+mzML files — so it's identical for every HeLa-vs-organ pairing in `sdrf/`. If you've already
+generated a `.speclib`/`speclib.tsv` (e.g. with the standalone `diann --fasta ... --gen-spec-lib`
+command, run locally or in a previous Codespace session), put it in `data/` and pass it in
+with `--speclib` so the pipeline skips regenerating it:
+
+```bash
+nextflow run . \
+    -profile docker \
+    -c codespaces.config \
+    --input custom.sdrf.tsv \
+    --database data/human_proteome.fasta \
+    --speclib data/speclib.tsv \
+    --outdir results \
+    -resume
+```
+
+This skips only the fasta-search/prediction step — `PRELIMINARY_ANALYSIS` and
+`ASSEMBLE_EMPIRICAL_LIBRARY` still run afterward to calibrate this library against your
+actual mzML files, so results are unaffected; you just avoid paying the expensive
+in-silico prediction cost more than once.
+
+## 6. Run the pipeline
+
+If you don't have a pre-built `.speclib` yet, just drop `--speclib data/speclib.tsv` from
+the command above:
 
 ```bash
 nextflow run . \
@@ -130,7 +157,7 @@ Nextflow will pick up from the last completed step instead of starting over.
 If it's slow or you're on a smaller machine, add `--performance_mode true` to trade a small
 amount of accuracy for speed/memory.
 
-## 6. Inspect the results
+## 7. Inspect the results
 
 Look inside `results/` for:
 - The DIA-NN search report(s)
