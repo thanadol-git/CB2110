@@ -6,6 +6,13 @@ generate that kind of table yourself, by running the actual
 DIA mzML files and a FASTA protein database — no local installation required, everything
 runs in a free GitHub Codespace.
 
+You'll work with a real DIA SDRF from the [`sdrf/`](sdrf) folder:
+[`01_HELA_CERVIX_x_201T_LUNG.sdrf.tsv`](sdrf/01_HELA_CERVIX_x_201T_LUNG.sdrf.tsv), which
+pairs 6 DIA runs of **HeLa** (cervix) with 6 DIA runs of **201T** (lung cancer) from the
+PXD030304 cell-line proteomics study — 12 mzML files in total. (The `sdrf/` folder has 39
+other HeLa-vs-other-organ pairings if your instructor assigns you a different one — check
+`sdrf/manifest.tsv` for the full list.)
+
 ## Intended learning outcomes (ILOs)
 
 On completion of the lab, the student should be able to:
@@ -41,12 +48,28 @@ Once the Codespace terminal is open, pull this lab's helper files from the cours
 
 ```bash
 curl -sL https://raw.githubusercontent.com/thanadol-git/CB2110/main/lab2_qms/download_data.sh -o download_data.sh
-curl -sL https://raw.githubusercontent.com/thanadol-git/CB2110/main/lab2_qms/template.sdrf.tsv -o custom.sdrf.tsv
+curl -sL https://raw.githubusercontent.com/thanadol-git/CB2110/main/lab2_qms/sdrf/01_HELA_CERVIX_x_201T_LUNG.sdrf.tsv -o custom.sdrf.tsv
 ```
+
+(Swap the last URL for a different file under `sdrf/` if you were assigned another
+HeLa-vs-organ pairing.)
 
 ## 3. Download the mzML files and FASTA database
 
-Run the helper script (the download links will be announced on Canvas):
+`custom.sdrf.tsv` already lists the 12 mzML files this pairing needs (`comment[data file]`
+column):
+
+```
+190115_9131_004HL_007LQ_M04_S_1.mzML   190124_9131_004O3_0089Y_M04_S_1.mzML
+190116_9131_004IH_0082C_M06_S_1.mzML   190118_9131_004IH_00854_M04_S_1.mzML
+190115_9131_004HL_007L9_M06_S_1.mzML   191005_B43-T1-13_00DLF_00JCQ_M01_S_1.mzML
+190120_9131_004O3_0086J_M06_S_1.mzML   191017_B47-T3-13_00DN7_00KAK_M04_S_1.mzML
+191009_B43-T2-13_00DLF_00JG8_M03_S_1.mzML   191008_B47-T1-13_00DN7_00JFO_M01_S_1.mzML
+191008_B45-T2-13_00DMB_00JEP_M03_S_1.mzML   191006_B45-T1-13_00DMB_00JD7_M01_S_1.mzML
+```
+
+Run the helper script to fetch these plus the FASTA database (the download links will be
+announced on Canvas):
 
 ```bash
 bash download_data.sh
@@ -54,12 +77,14 @@ bash download_data.sh
 
 This creates a `data/` folder containing your `.mzML` files and the `.fasta` database.
 
-## 4. Fill in the SDRF file
+## 4. Point the SDRF at your downloaded files
 
-Open `custom.sdrf.tsv` and replace the placeholders (in `<...>`) with your actual sample
-details and file paths, e.g. `comment[file uri]` should point at `data/sample1.mzML`
-(relative to where you run `nextflow`). Add one row per mzML file. Keep the
-`comment[proteomics data acquisition method]` column exactly as
+`custom.sdrf.tsv` already has real sample metadata (organism, instrument, disease, etc.)
+for the 6 HeLa + 6 partner-organ runs — you don't need to fill anything in by hand. The
+only thing to update is `comment[file uri]`, which currently holds bare filenames (e.g.
+`190115_9131_004HL_007LQ_M04_S_1.mzML`); point each one at where `download_data.sh` put the
+file, e.g. `data/190115_9131_004HL_007LQ_M04_S_1.mzML` (relative to where you run
+`nextflow`). Leave `comment[proteomics data acquisition method]` as
 `NT=Data-Independent Acquisition;AC=NCIT:C161786` — that's what tells the pipeline this is
 a DIA run.
 
@@ -89,10 +114,11 @@ Look inside `results/` for:
 ## Questions (draft — to be finalized)
 
 ```
-1. How many mzML files did you process, and what organism/sample type were they?
+1. Which two cell lines/organs did you compare, and how many mzML files came from each?
 2. How many proteins and peptides were identified in total?
 3. Pick one QC metric from the MultiQC report and explain what it tells you about run quality.
-4. Compare the number of identifications between your two (or more) samples/runs.
+4. Compare the number of identifications between the two cell lines — are there differences,
+   and what might explain them biologically?
 5. What does the "Data-Independent Acquisition" SDRF tag actually change in how the
    pipeline processes each file, compared to a DDA run?
 ```
