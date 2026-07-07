@@ -97,6 +97,16 @@ Answer the questions directly in the notebook cells.
 
 ---
 
+## Option C — Running quantmsdiann via GitHub Codespaces (Lab 2 quantms)
+
+For `lab2_qms`, instead of installing Nextflow/Docker locally, you'll run the
+[quantmsdiann](https://github.com/bigbio/quantmsdiann) proteomics pipeline in a free
+GitHub Codespace. See [`lab2_qms/README.md`](lab2_qms/README.md) for full step-by-step
+instructions (fork the pipeline repo, open a Codespace, download the mzML/FASTA data,
+fill in the SDRF template, and run the pipeline).
+
+---
+
 ## Environment files
 
 | File | Language | Environment name | Use for |
