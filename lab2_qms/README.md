@@ -34,8 +34,14 @@ On completion of the lab, the student should be able to:
 1. Go to https://github.com/bigbio/quantmsdiann and click **Fork** (top right) so you have your
    own copy to work in and can push/save your work if you want.
 2. On your fork, click **Code > Codespaces > Create codespace on master**.
-3. If asked to choose a machine type, pick **4-core · 16 GB RAM** — this matches what the
-   pipeline's `.devcontainer` expects. Building the container the first time takes a few minutes.
+3. If asked to choose a machine type, pick **4-core · 16 GB RAM** — this matches the
+   `hostRequirements` declared in the pipeline's `.devcontainer/devcontainer.json`.
+4. Wait for the container to build. The devcontainer is based on `nfcore/devcontainer:latest`,
+   which already ships with Nextflow, Docker, and Java preinstalled, so there's nothing to
+   install or pre-pull yourself — GitHub builds it automatically the first time you open the
+   Codespace (a few minutes). The individual pipeline step containers (DIA-NN, etc.) are
+   separate again and get pulled automatically, one at a time, when `nextflow run` actually
+   reaches each step — not something you need to fetch in advance.
 
 > **Codespaces quota:** a free personal GitHub account gets 120 core-hours/month, which is
 > about 30 hours on a 4-core machine — plenty for this lab. Stop or delete your Codespace
