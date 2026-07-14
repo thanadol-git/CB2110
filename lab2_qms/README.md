@@ -118,11 +118,13 @@ with `--speclib` so the pipeline skips regenerating it:
 nextflow run . \
     -profile docker \
     -c codespaces.config \
-    --input custom.sdrf.tsv \
+    --input 01_HELA_CERVIX_x_201T_LUNG.sdrf.tsv \
     --database data/human_proteome.fasta \
-    --speclib data/speclib.tsv \
-    --outdir results \
-    -resume
+    --speclib lib.predicted.speclib \
+    --outdir results
+# Optionally add -resume to continue from previous runs:
+#    -resume
+```
 ```
 
 This skips only the fasta-search/prediction step — `PRELIMINARY_ANALYSIS` and
