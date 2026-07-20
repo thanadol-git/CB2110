@@ -59,7 +59,7 @@ python -m ipykernel install --user --name py-cb2110 --display-name "Python 3 (CB
 **4. Open the notebook in VS Code**
 
 - Open VS Code and open the cloned `CB2110` folder (`File > Open Folder`)
-- Navigate to the lab folder (e.g. `lab1/`) and open `lab1.ipynb`
+- Navigate to the lab folder (e.g. `lab0/`) and open `lab1.ipynb`
 - In the top-right corner of the notebook, click **Select Kernel** and choose **Python 3 (CB2110)**
 - You can now run cells and answer questions directly in the notebook
 
@@ -78,7 +78,7 @@ No local installation needed. You only need a Google account.
 **1. Upload the notebook**
 
 - Go to [Google Colab](https://colab.research.google.com/)
-- Click `File > Upload notebook` and upload the `.ipynb` file from the lab folder (e.g. `lab1/lab1.ipynb`)
+- Click `File > Upload notebook` and upload the `.ipynb` file from the lab folder (e.g. `lab0/lab1.ipynb`)
 
 **2. Install required packages**
 
@@ -100,9 +100,9 @@ Answer the questions directly in the notebook cells.
 
 ## Option C — Running quantmsdiann via GitHub Codespaces (Lab 2 quantms)
 
-For `lab2_qms`, instead of installing Nextflow/Docker locally, you'll run the
+For `lab1`, instead of installing Nextflow/Docker locally, you'll run the
 [quantmsdiann](https://github.com/bigbio/quantmsdiann) proteomics pipeline in a free
-GitHub Codespace. See [`lab2_qms/README.md`](lab2_qms/README.md) for full step-by-step
+GitHub Codespace. See [`lab1/README.md`](lab1/README.md) for full step-by-step
 instructions (fork the pipeline repo, open a Codespace, download the mzML/FASTA data,
 fill in the SDRF template, and run the pipeline).
 

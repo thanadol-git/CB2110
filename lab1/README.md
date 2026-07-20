@@ -74,9 +74,9 @@ editor you drive it from.
 Once the Codespace terminal is open, pull this lab's helper files from the course repo:
 
 ```bash
-curl -sL https://raw.githubusercontent.com/thanadol-git/CB2110/main/lab2_qms/download_data.sh -o download_data.sh
-curl -sL https://raw.githubusercontent.com/thanadol-git/CB2110/main/lab2_qms/sdrf/01_HELA_CERVIX_x_201T_LUNG.sdrf.tsv -o custom.sdrf.tsv
-curl -sL https://raw.githubusercontent.com/thanadol-git/CB2110/main/lab2_qms/codespaces.config -o codespaces.config
+curl -sL https://raw.githubusercontent.com/thanadol-git/CB2110/main/lab1/download_data.sh -o download_data.sh
+curl -sL https://raw.githubusercontent.com/thanadol-git/CB2110/main/lab1/sdrf/01_HELA_CERVIX_x_201T_LUNG.sdrf.tsv -o custom.sdrf.tsv
+curl -sL https://raw.githubusercontent.com/thanadol-git/CB2110/main/lab1/codespaces.config -o codespaces.config
 ```
 
 (Swap the SDRF URL for a different file under `sdrf/` if you were assigned another
