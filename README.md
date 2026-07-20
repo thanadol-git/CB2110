@@ -19,7 +19,34 @@ Usually, the lab will be available 2 days before the session. You are advised to
 
 ---
 
-## Option A — Working locally with VS Code
+## Option A — Working on Google Colab (Recommended)
+
+No local installation needed. You only need a Google account.
+
+**1. Upload the notebook**
+
+- Go to [Google Colab](https://colab.research.google.com/)
+- Click `File > Upload notebook` and upload the `.ipynb` file from the lab folder (e.g. `lab0/lab1.ipynb`)
+
+**2. Install required packages**
+
+At the top of the notebook, add and run a cell to install dependencies:
+```python
+!pip install pandas numpy matplotlib
+```
+
+**3. Work through the lab**
+
+Answer the questions directly in the notebook cells.
+
+**4. Download and submit**
+
+- `File > Download > Download .ipynb` — upload to Canvas
+- Or `File > Print > Save as PDF` if a PDF is required
+
+---
+
+## Option B — Working locally with VS Code
 
 ### Requirements
 
@@ -67,44 +94,28 @@ python -m ipykernel install --user --name py-cb2110 --display-name "Python 3 (CB
 
 Once finished, export the notebook:
 - `File > Export > HTML` — then upload the `.html` file to Canvas
-- Alternatively, submit the `.ipynb` file directly if Canvas accepts it
 
 ---
 
-## Option B — Working on Google Colab
 
-No local installation needed. You only need a Google account.
-
-**1. Upload the notebook**
-
-- Go to [Google Colab](https://colab.research.google.com/)
-- Click `File > Upload notebook` and upload the `.ipynb` file from the lab folder (e.g. `lab0/lab1.ipynb`)
-
-**2. Install required packages**
-
-At the top of the notebook, add and run a cell to install dependencies:
-```python
-!pip install pandas numpy matplotlib
-```
-
-**3. Work through the lab**
-
-Answer the questions directly in the notebook cells.
-
-**4. Download and submit**
-
-- `File > Download > Download .ipynb` — upload to Canvas
-- Or `File > Print > Save as PDF` if a PDF is required
-
----
-
-## Option C — Running quantmsdiann via GitHub Codespaces (Lab 2 quantms)
+## Option C — Running quantmsdiann via GitHub Codespaces (Lab 1 quantms)
 
 For `lab1`, instead of installing Nextflow/Docker locally, you'll run the
 [quantmsdiann](https://github.com/bigbio/quantmsdiann) proteomics pipeline in a free
-GitHub Codespace. See [`lab1/README.md`](lab1/README.md) for full step-by-step
-instructions (fork the pipeline repo, open a Codespace, download the mzML/FASTA data,
-fill in the SDRF template, and run the pipeline).
+GitHub Codespace.
+
+**Requirements**
+
+- A [GitHub account](https://github.com/join) (free — sign up if you don't already have one).
+- Nothing else to install locally: a Codespace is a full Linux dev environment (with
+  Nextflow, Docker, and Java preinstalled) that runs in GitHub's cloud and that you access
+  either from your browser or from VS Code Desktop. A free personal account includes 120
+  core-hours/month of Codespaces usage, which is enough for this lab as long as you stop or
+  delete the Codespace when you're done for the day.
+
+See [`lab1/README.md`](lab1/README.md) for full step-by-step instructions (fork the
+pipeline repo, open a Codespace, download the mzML/FASTA data, fill in the SDRF template,
+and run the pipeline).
 
 ---
 
@@ -112,6 +123,6 @@ fill in the SDRF template, and run the pipeline).
 
 | File | Language | Environment name | Use for |
 |:-----|:---------|:-----------------|:--------|
-| `config_python.yml` | Python 3.11 | `py-cb2110` | Lab 1, 2, 3 |
+| `config_python.yml` | Python 3.11 | `py-cb2110` | Lab 0, 2 |
 | `config.yml` | R 4.3 | `R-cb2110` | Lab 4 (R/MOFA) |
 

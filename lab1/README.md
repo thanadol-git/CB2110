@@ -31,6 +31,9 @@ On completion of the lab, the student should be able to:
 
 ## 1. Open a Codespace on quantmsdiann
 
+0. You'll need a [GitHub account](https://github.com/join) (free) to fork the repo and
+   create a Codespace. If you don't have one yet, sign up before continuing — no payment
+   details required for the free tier used in this lab.
 1. Go to https://github.com/bigbio/quantmsdiann and click **Fork** (top right) so you have your
    own copy to work in and can push/save your work if you want.
    <img width="1902" height="1033" alt="image" src="https://github.com/user-attachments/assets/f40ea2b1-b15d-4dce-939a-8dbae2fb0049" />
