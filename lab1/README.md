@@ -1,6 +1,6 @@
-# Lab 2 (quantms) — Running a DIA proteomics pipeline with quantmsdiann on GitHub Codespaces
+# Lab 1 (quantmsdiann) — Running a DIA proteomics pipeline with quantmsdiann on GitHub Codespaces
 
-In lab 2 you analyzed a table of already-processed mass-spec results. In this lab you will
+In lab 1 you analyzed a table of already-processed mass-spec results. In this lab you will
 generate that kind of table yourself, by running the actual
 [quantmsdiann](https://github.com/bigbio/quantmsdiann) pipeline (Nextflow + DIA-NN) on
 DIA mzML files and a FASTA protein database — no local installation required, everything
