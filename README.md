@@ -2,17 +2,18 @@
 
 ![alt_text](images/header.png)
 
-Welcome to CB2110 labs. Every material for every lab in this course can be found in this repository. We will enjoy proteomics with a bit of coding in `Python`. If one would like to work with it locally, please try to set up the environment as described below. What we need here is the environment so that you can execute the codes that we provide you during the lab. Nonetheless, it's possible to work on Google Colab without any local installation. Once you finish the exercise, please just upload the worksheet in Canvas where we can grade you with a lot of points there. There usually be 10 questions in each lab with additional 3 bonus questions that can help you with your final grade. Don't worry if you need some help, as we are TAs, we are always available for assistance during the labs. Besides, you can also try it yourself in advance. We will announce through canvas when each lab is ready. Good luck and have fun.
+Welcome to CB2110 labs. Every material for every lab in this course can be found in this repository. We will enjoy proteomics with a bit of coding in `Python` and `R`. If one would like to work with it locally, please try to set up the environment as described below. What we need here is the environment so that you can execute the codes that we provide you during the lab. Nonetheless, it's possible to work on Google Colab without any local installation. Once you finish the exercise, please just upload the worksheet in Canvas where we can grade you with a lot of points there. There usually be 10 questions in each lab with additional 3 bonus questions that can help you with your final grade. Don't worry if you need some help, as we are TAs, we are always available for assistance during the labs. Besides, you can also try it yourself in advance. We will announce through canvas when each lab is ready. Good luck and have fun.
 
 ## LABs
 Please check the status of each lab here. 
 
 |  Date (Time) | Lab | Submission | Comments |
 |:-----|:-----| :--------:| :--------|
-|8 Sept (8-12)| Lab 1   | `190925`|   `Ready`  |
-|18 Sept (8-12)| Lab 2   | `250925`|  `Ready`  |
-|25 Sept (8-12)| Lab 3   | `N/A`  | `N/A`  |  
-|6 Oct (13-17)| Lab 4   | `131025`  | `Ready`  |  
+|7 Sept (13-17)| Lab 1   | `140926`|   `N/A`  |
+|14 Sept (15-17) | Automation lecture | | |
+|17 Sept (8-12)| Lab 2   | `240926`|  `N/A`  |
+|25 Sept (8-12)| Lab 3   | `021026`  | `N/A`  |  
+|8 Oct (8-12)| Lab 4   | `151026`  | `N/A`  |  
 
 Usually, the lab will be available 2 days before the session. You are advised to work by yourself. The submission is always 1 week after the lab session. 
 
@@ -58,7 +59,7 @@ python -m ipykernel install --user --name py-cb2110 --display-name "Python 3 (CB
 **4. Open the notebook in VS Code**
 
 - Open VS Code and open the cloned `CB2110` folder (`File > Open Folder`)
-- Navigate to the lab folder (e.g. `lab1/`) and open `lab1.ipynb`
+- Navigate to the lab folder (e.g. `lab0/`) and open `lab1.ipynb`
 - In the top-right corner of the notebook, click **Select Kernel** and choose **Python 3 (CB2110)**
 - You can now run cells and answer questions directly in the notebook
 
@@ -77,7 +78,7 @@ No local installation needed. You only need a Google account.
 **1. Upload the notebook**
 
 - Go to [Google Colab](https://colab.research.google.com/)
-- Click `File > Upload notebook` and upload the `.ipynb` file from the lab folder (e.g. `lab1/lab1.ipynb`)
+- Click `File > Upload notebook` and upload the `.ipynb` file from the lab folder (e.g. `lab0/lab1.ipynb`)
 
 **2. Install required packages**
 
@@ -94,6 +95,16 @@ Answer the questions directly in the notebook cells.
 
 - `File > Download > Download .ipynb` — upload to Canvas
 - Or `File > Print > Save as PDF` if a PDF is required
+
+---
+
+## Option C — Running quantmsdiann via GitHub Codespaces (Lab 2 quantms)
+
+For `lab1`, instead of installing Nextflow/Docker locally, you'll run the
+[quantmsdiann](https://github.com/bigbio/quantmsdiann) proteomics pipeline in a free
+GitHub Codespace. See [`lab1/README.md`](lab1/README.md) for full step-by-step
+instructions (fork the pipeline repo, open a Codespace, download the mzML/FASTA data,
+fill in the SDRF template, and run the pipeline).
 
 ---
 
