@@ -138,33 +138,20 @@ a DIA run.
 `INSILICO_LIBRARY_GENERATION` only depends on the FASTA and search parameters — not on your
 mzML files — so it's identical for every HeLa-vs-organ pairing in `sdrf/`. If you've already
 generated a `.speclib`/`speclib.tsv` (e.g. with the standalone `diann --fasta ... --gen-spec-lib`
-command, run locally or in a previous Codespace session), put it in `data/` and pass it in
-with `--speclib` so the pipeline skips regenerating it:
-
-```bash
-nextflow run . \
-    -bg \
-    -profile docker \
-    -c codespaces.config \
-    --input 01_HELA_CERVIX_x_201T_LUNG.sdrf.tsv \
-    --database data/human_proteome.fasta \
-    --speclib lib.predicted.speclib \
-    --outdir results
-# Optionally add -resume to continue from previous runs:
-#    -resume
-```
-```
+command, run locally or in a previous Codespace session), put it in `data/` and add
+`--speclib data/your.speclib` to the `nextflow run` command in step 6 so the pipeline skips
+regenerating it — everything else about the command stays the same.
 
 This skips only the fasta-search/prediction step — `PRELIMINARY_ANALYSIS` and
 `ASSEMBLE_EMPIRICAL_LIBRARY` still run afterward to calibrate this library against your
 actual mzML files, so results are unaffected; you just avoid paying the expensive
-in-silico prediction cost more than once.
+in-silico prediction cost more than once. If you don't have a pre-built library yet, just
+skip this step — the pipeline will generate one for you.
 
 ## 6. Run the pipeline
 
 This pipeline can take longer than you'll want to keep a browser tab open and watching, so
-run it with Nextflow's `-bg` flag to detach it into the background. If you don't have a
-pre-built `.speclib` yet, just drop `--speclib data/speclib.tsv` from the command below:
+run it with Nextflow's `-bg` flag to detach it into the background:
 
 ```bash
 nextflow run . \
@@ -175,6 +162,7 @@ nextflow run . \
     --database data/human_proteome.fasta \
     --outdir results \
     -resume
+    # Add --speclib data/your.speclib here if you built one in step 5
 ```
 
 `-bg` detaches the run from your terminal and writes everything to `.nextflow.log` instead of
