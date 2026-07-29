@@ -4,7 +4,7 @@
 
 Welcome to CB2110 labs. Every material for every lab in this course can be found in this repository. We will enjoy proteomics with a bit of coding in `Python` and `R`. If one would like to work with it locally, please try to set up the environment as described below. What we need here is the environment so that you can execute the codes that we provide you during the lab. Nonetheless, it's possible to work on Google Colab without any local installation. Once you finish the exercise, please just upload the worksheet in Canvas where we can grade you with a lot of points there. There usually be 10 questions in each lab with additional 3 bonus questions that can help you with your final grade. Don't worry if you need some help, as we are TAs, we are always available for assistance during the labs. Besides, you can also try it yourself in advance. We will announce through canvas when each lab is ready. Good luck and have fun.
 
-## LABs
+## Labs
 Please check the status of each lab here. 
 
 |  Date (Time) | Lab | Submission | Comments |
@@ -16,6 +16,21 @@ Please check the status of each lab here.
 |8 Oct (8-12)| Lab 4   | `151026`  | `N/A`  |  
 
 Usually, the lab will be available 2 days before the session. You are advised to work by yourself. The submission is always 1 week after the lab session. 
+
+---
+
+## Before you start — GitHub account & Student Developer Pack
+
+Some labs (see Option C below) require a GitHub account, so it's best to set this up early.
+
+**1. Create a GitHub account**
+
+- Sign up for free at [github.com/join](https://github.com/join) using your student email if possible (this makes the Student Developer Pack verification in step 2 faster).
+
+**2. (Optional but recommended) Apply for the GitHub Student Developer Pack**
+
+- The [GitHub Student Developer Pack](https://education.github.com/pack) is free for verified students and unlocks extra perks such as additional Codespaces core-hours, GitHub Copilot, Pro-tier repository features, and free credits for other developer tools.
+- Apply at [education.github.com/pack](https://education.github.com/pack) using your student ID/school email. Verification can take anywhere from a few minutes to a few days, so apply as soon as possible if you plan to use it.
 
 ---
 
