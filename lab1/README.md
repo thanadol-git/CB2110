@@ -43,6 +43,15 @@ On completion of the lab, the student should be able to:
 
 4. If asked to choose a machine type, pick **4-core · 16 GB RAM** — this matches the
    `hostRequirements` declared in the pipeline's `.devcontainer/devcontainer.json`.
+   - Since this lab runs the pipeline in the background (see step 6), it's worth bumping the
+     **idle timeout** up before you create the Codespace, so GitHub doesn't stop the machine
+     out from under a run that's still going after you close the tab. Click the **...**
+     next to the **Create codespace** button → **New with options...**, and set **Idle
+     timeout** to its max (240 minutes / 4 hours). If you forget, you can also raise the
+     *default* used for all future Codespaces at
+     [github.com/settings/codespaces](https://github.com/settings/codespaces) → **Default
+     idle timeout**. Note this only covers inactivity — the pipeline itself can safely run
+     past that if you still have the tab or VS Code window open and connected.
 5. Wait for the container to build. The devcontainer is based on `nfcore/devcontainer:latest`,
    which already ships with Nextflow, Docker, and Java preinstalled, so there's nothing to
    install or pre-pull yourself — GitHub builds it automatically the first time you open the
@@ -134,6 +143,7 @@ with `--speclib` so the pipeline skips regenerating it:
 
 ```bash
 nextflow run . \
+    -bg \
     -profile docker \
     -c codespaces.config \
     --input 01_HELA_CERVIX_x_201T_LUNG.sdrf.tsv \
@@ -152,11 +162,13 @@ in-silico prediction cost more than once.
 
 ## 6. Run the pipeline
 
-If you don't have a pre-built `.speclib` yet, just drop `--speclib data/speclib.tsv` from
-the command above:
+This pipeline can take longer than you'll want to keep a browser tab open and watching, so
+run it with Nextflow's `-bg` flag to detach it into the background. If you don't have a
+pre-built `.speclib` yet, just drop `--speclib data/speclib.tsv` from the command below:
 
 ```bash
 nextflow run . \
+    -bg \
     -profile docker \
     -c codespaces.config \
     --input custom.sdrf.tsv \
@@ -165,10 +177,28 @@ nextflow run . \
     -resume
 ```
 
+`-bg` detaches the run from your terminal and writes everything to `.nextflow.log` instead of
+printing a live progress bar — the command returns immediately, and the pipeline keeps running
+even if you close the tab or your connection drops (as long as the Codespace itself is still
+running — see the idle timeout note in step 1). To check on it later:
+
+```bash
+# Follow the log live
+tail -f .nextflow.log
+
+# Confirm the Nextflow process is still alive
+ps aux | grep nextflow
+
+# Per-process status/timing once a few steps have finished
+cat results/pipeline_info/execution_trace.txt
+```
+
 `codespaces.config` caps every process to 4 CPUs / 14 GB — without it, some steps (labelled
 `process_medium` in the pipeline) request 8 CPUs and will fail with
 `Process requirement exceeds available CPUs -- req: 8; avail: 4` on the standard Codespaces
-machine.
+machine. It also turns on the `execution_report.html`/`execution_trace.txt`/
+`execution_timeline.html` files under `results/pipeline_info/`, which is what you'll want to
+check for progress and timing since `-bg` mode has no live progress bar.
 
 `-resume` is included above so it's always safe to re-run this exact command — on a fresh
 run it has no effect, but if your Codespace disconnects or a step fails partway through,
