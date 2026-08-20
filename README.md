@@ -7,13 +7,13 @@ Welcome to CB2110 labs. Every material for every lab in this course can be found
 ## Labs
 Please check the status of each lab here. 
 
-|  Date (Time) | Lab | Submission | Comments |
-|:-----|:-----| :--------:| :--------|
-|7 Sept (13-17)| Lab 1   | `140926`|   `N/A`  |
-|14 Sept (15-17) | Automation lecture | | |
-|17 Sept (8-12)| Lab 2   | `240926`|  `N/A`  |
-|25 Sept (8-12)| Lab 3   | `021026`  | `N/A`  |  
-|8 Oct (8-12)| Lab 4   | `151026`  | `N/A`  |  
+|  Date (Time) | Lab | Submission | Comments | Status |
+|:-----|:-----| :--------:| :--------| :-----:|
+|7 Sept (13-17)| Lab 1   | `140926`|   `N/A`  | ❌ |
+|14 Sept (15-17) | Automation lecture | | | ❌ |
+|17 Sept (8-12)| Lab 2   | `240926`|  `N/A`  | ❌ |
+|25 Sept (8-12)| Lab 3   | `021026`  | `N/A`  | ❌ |  
+|8 Oct (8-12)| Lab 4   | `151026`  | `N/A`  | ❌ |
 
 Usually, the lab will be available 2 days before the session. You are advised to work by yourself. The submission is always 1 week after the lab session. 
 
