@@ -143,7 +143,7 @@ nextflow run . \
 # Optionally add -resume to continue from previous runs:
 #    -resume
 ```
-```
+
 
 This skips only the fasta-search/prediction step — `PRELIMINARY_ANALYSIS` and
 `ASSEMBLE_EMPIRICAL_LIBRARY` still run afterward to calibrate this library against your
