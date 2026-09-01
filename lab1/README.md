@@ -16,12 +16,11 @@ other HeLa-vs-other-organ pairings if your instructor assigns you a different on
 ## Intended learning outcomes (ILOs)
 
 On completion of the lab, the student should be able to:
-```
+
 * describe the stages of a DIA (data-independent acquisition) proteomics workflow
 * configure an SDRF sample metadata file for a DIA experiment
 * execute a Nextflow/nf-core pipeline in a containerized cloud environment
 * interpret pipeline QC output and quantification results
-```
 
 - Member1:
 - Member2:
@@ -31,10 +30,10 @@ On completion of the lab, the student should be able to:
 
 ## 1. Open a Codespace on quantmsdiann
 
-0. You'll need a [GitHub account](https://github.com/join) (free) to fork the repo and
+1. You'll need a [GitHub account](https://github.com/join) (free) to fork the repo and
    create a Codespace. If you don't have one yet, sign up before continuing — no payment
    details required for the free tier used in this lab.
-1. Go to https://github.com/bigbio/quantmsdiann and click **Fork** (top right) so you have your
+2. Go to https://github.com/bigbio/quantmsdiann and click **Fork** (top right) so you have your
    own copy to work in and can push/save your work if you want.
    <img width="1902" height="1033" alt="image" src="https://github.com/user-attachments/assets/f40ea2b1-b15d-4dce-939a-8dbae2fb0049" />
 
@@ -72,11 +71,13 @@ editor you drive it from.
 4. VS Code Desktop opens a remote window connected to that Codespace; use its integrated
    terminal for every command in this lab exactly as if you were in the browser.
 
-## 2. Copy MS raw files from USB-drive/ 
-Eah of you is assigned to one project number, for example Thanadol is 1. Please find the usb drive from the class. Fredrik or TA will give you in person. 
-In the drive, there is a folder designating you project number. Pleas copy everything to your local computer and later to Codespace. The name and project number is 
-attached in this dir. One should see the files look like this. 
+## 2. Copy MS raw files from the USB drive
 
+Each of you is assigned a project number (for example, Thanadol is `1`). Get the USB drive
+from the class — Fredrik or a TA will hand it to you in person. On the drive, find the folder
+matching your project number and copy everything to your local computer, then on to your
+Codespace. The name-to-project-number mapping is in [`student_group_2026.csv`](student_group_2026.csv)
+in this directory. The files should look like this:
 
 ```
 190115_9131_004HL_007LQ_M04_S_1.mzML   190124_9131_004O3_0089Y_M04_S_1.mzML
@@ -86,7 +87,6 @@ attached in this dir. One should see the files look like this.
 191009_B43-T2-13_00DLF_00JG8_M03_S_1.mzML   191008_B47-T1-13_00DN7_00JFO_M01_S_1.mzML
 191008_B45-T2-13_00DMB_00JEP_M03_S_1.mzML   191006_B45-T1-13_00DMB_00JD7_M01_S_1.mzML
 ```
-
 
 ## 3. Get the lab helper files
 
@@ -118,7 +118,7 @@ announced on Canvas):
 bash download_data.sh
 ```
 
-This creates a `data/` folder containing the spectral library `.speclib` the `.fasta` database.
+This creates a `data/` folder containing the spectral library `.speclib` and the `.fasta` database.
 
 ## 5. Point the SDRF at your downloaded files
 
@@ -130,39 +130,43 @@ file, e.g. `data/190115_9131_004HL_007LQ_M04_S_1.mzML` (relative to where you ru
 `nextflow`). Leave `comment[proteomics data acquisition method]` as
 `NT=Data-Independent Acquisition;AC=NCIT:C161786` — that's what tells the pipeline this is
 a DIA run.
-
-## . (Optional but recommended) Reuse a pre-built spectral library
-
 `INSILICO_LIBRARY_GENERATION` only depends on the FASTA and search parameters — not on your
 mzML files — so it's identical for every HeLa-vs-organ pairing in `sdrf/`. If you've already
 generated a `.speclib`/`speclib.tsv` (e.g. with the standalone `diann --fasta ... --gen-spec-lib`
 command, run locally or in a previous Codespace session), put it in `data/` and pass it in
-with `--speclib` so the pipeline skips regenerating it:
+with `--speclib` so the pipeline skips regenerating it.
+
+## 6. Run the pipeline
 
 ```bash
 nextflow run . \
-    -profile docker \                                    # Use docker engine
-    -c codespaces.config \                               # config file for codespace
-    --input 01_HELA_CERVIX_x_201T_LUNG.sdrf.tsv \        # SDRF file
-    --database data/human_proteome.fasta \               # Proteome sequences
-    --speclib lib.predicted.speclib \                    # Spectral library from proteome sequences
-    --outdir results \                                   # Output folder
-# Optionally add -resume to continue from previous runs:
-   -resume
+    -profile docker \
+    -c codespaces.config \
+    --input 01_HELA_CERVIX_x_201T_LUNG.sdrf.tsv \
+    --database data/human_proteome.fasta \
+    --speclib lib.predicted.speclib \
+    --outdir results \
+    -resume
 ```
 
+- `-profile docker` — use the Docker execution engine.
+- `-c codespaces.config` — caps every process at the 4 CPUs / 14 GB a standard Codespaces
+  machine actually has. Without it, some steps (labelled `process_medium` in the pipeline)
+  request 8 CPUs and will fail with
+  `Process requirement exceeds available CPUs -- req: 8; avail: 4`.
+- `--input` — your SDRF file.
+- `--database` — the proteome FASTA.
+- `--speclib` — the spectral library generated from the proteome sequences.
+- `--outdir` — where results are written.
+- `-resume` — always safe to include: on a fresh run it has no effect, but if your
+  Codespace disconnects or a step fails partway through, Nextflow picks up from the last
+  completed step instead of starting over.
 
-Having the spectral libray skips only the fasta-search/prediction step — `PRELIMINARY_ANALYSIS` and
-`ASSEMBLE_EMPIRICAL_LIBRARY` still run afterward to calibrate this library against your
-actual mzML files, so results are unaffected; you just avoid paying the expensive
-in-silico prediction cost more than once. If you don't have a pre-built `.speclib` yet, just drop `--speclib data/speclib.tsv` from
-the command above:
-4 CPUs / 14 GB — without it, some steps (labelled
-`process_medium` in the pipeline) request 8 CPUs and will fail with
-`Process requirement exceeds available CPUs -- req: 8; avail: 4` on the standard Codespaces
-machine. `-resume` is included above so it's always safe to re-run this exact command — on a fresh
-run it has no effect, but if your Codespace disconnects or a step fails partway through,
-Nextflow will pick up from the last completed step instead of starting over.
+Having the spectral library only skips the FASTA-search/prediction step — `PRELIMINARY_ANALYSIS`
+and `ASSEMBLE_EMPIRICAL_LIBRARY` still run afterward to calibrate this library against your
+actual mzML files, so results are unaffected; you just avoid paying the expensive in-silico
+prediction cost more than once. If you don't have a pre-built `.speclib` yet, just drop
+`--speclib data/speclib.tsv` from the command above.
 
 If it's slow or you're on a smaller machine, add `--performance_mode true` to trade a small
 amount of accuracy for speed/memory.
@@ -173,6 +177,3 @@ Look inside `results/` for:
 - The DIA-NN search report(s)
 - An MSstats-format quantification table (similar to what you'll use in lab 2)
 - A MultiQC report summarizing run-level QC metrics
-
-## Questions (draft — to be finalized)
-
