@@ -178,4 +178,4 @@ Look inside `results/` for:
 - An MSstats-format quantification table (similar to what you'll use in lab 2)
 - A MultiQC report summarizing run-level QC metrics
 
-If you see all of the results here. Please upload MultiQC report to Canvas. I hope you have a fun time here. 
+If you see all of the results here, please upload the MultiQC report to [Canvas](https://canvas.kth.se). Hope you have a great time working on this lab!
