@@ -72,13 +72,13 @@ editor you drive it from.
 4. VS Code Desktop opens a remote window connected to that Codespace; use its integrated
    terminal for every command in this lab exactly as if you were in the browser.
 
-## 3. Copy MS raw files from USB-drive/ 
+## 2. Copy MS raw files from USB-drive/ 
 Eah of you is assigned to one project number, for example Thanadol is 1. Please find the usb drive from the class. Fredrik or TA will give you in person. 
 In the drive, there is a folder designating you project number. Pleas copy everything to your local computer and later to Codespace. The name and project number is 
 attached in this dir. 
 
 
-## 2. Get the lab helper files
+## 3. Get the lab helper files
 
 Once the Codespace terminal is open, pull this lab's helper files from the course repo:
 
@@ -96,7 +96,7 @@ curl -sL https://raw.githubusercontent.com/thanadol-git/CB2110/main/lab1/codespa
 (Swap the SDRF URL for a different file under `sdrf/` if you were assigned another
 HeLa-vs-organ pairing.)
 
-## 3. Download the mzML files and FASTA database
+## 4. Download the mzML files and FASTA database
 
 `custom.sdrf.tsv` already lists the 12 mzML files this pairing needs (`comment[data file]`
 column):
@@ -119,7 +119,7 @@ bash download_data.sh
 
 This creates a `data/` folder containing your `.mzML` files and the `.fasta` database.
 
-## 4. Point the SDRF at your downloaded files
+## 5. Point the SDRF at your downloaded files
 
 `custom.sdrf.tsv` already has real sample metadata (organism, instrument, disease, etc.)
 for the 6 HeLa + 6 partner-organ runs — you don't need to fill anything in by hand. The
@@ -130,7 +130,7 @@ file, e.g. `data/190115_9131_004HL_007LQ_M04_S_1.mzML` (relative to where you ru
 `NT=Data-Independent Acquisition;AC=NCIT:C161786` — that's what tells the pipeline this is
 a DIA run.
 
-## 5. (Optional but recommended) Reuse a pre-built spectral library
+## . (Optional but recommended) Reuse a pre-built spectral library
 
 `INSILICO_LIBRARY_GENERATION` only depends on the FASTA and search parameters — not on your
 mzML files — so it's identical for every HeLa-vs-organ pairing in `sdrf/`. If you've already
@@ -140,43 +140,26 @@ with `--speclib` so the pipeline skips regenerating it:
 
 ```bash
 nextflow run . \
-    -profile docker \
-    -c codespaces.config \
-    --input 01_HELA_CERVIX_x_201T_LUNG.sdrf.tsv \
-    --database data/human_proteome.fasta \
-    --speclib lib.predicted.speclib \
-    --outdir results
+    -profile docker \                                    # Use docker engine
+    -c codespaces.config \                               # config file for codespace
+    --input 01_HELA_CERVIX_x_201T_LUNG.sdrf.tsv \        # SDRF file
+    --database data/human_proteome.fasta \               # Proteome sequences
+    --speclib lib.predicted.speclib \                    # Spectral library from proteome sequences
+    --outdir results \                                   # Output folder
 # Optionally add -resume to continue from previous runs:
-#    -resume
+   -resume
 ```
 
 
-This skips only the fasta-search/prediction step — `PRELIMINARY_ANALYSIS` and
+Having the spectral libray skips only the fasta-search/prediction step — `PRELIMINARY_ANALYSIS` and
 `ASSEMBLE_EMPIRICAL_LIBRARY` still run afterward to calibrate this library against your
 actual mzML files, so results are unaffected; you just avoid paying the expensive
-in-silico prediction cost more than once.
-
-## 6. Run the pipeline
-
-If you don't have a pre-built `.speclib` yet, just drop `--speclib data/speclib.tsv` from
+in-silico prediction cost more than once. If you don't have a pre-built `.speclib` yet, just drop `--speclib data/speclib.tsv` from
 the command above:
-
-```bash
-nextflow run . \
-    -profile docker \
-    -c codespaces.config \
-    --input custom.sdrf.tsv \
-    --database data/human_proteome.fasta \
-    --outdir results \
-    -resume
-```
-
-`codespaces.config` caps every process to 4 CPUs / 14 GB — without it, some steps (labelled
+4 CPUs / 14 GB — without it, some steps (labelled
 `process_medium` in the pipeline) request 8 CPUs and will fail with
 `Process requirement exceeds available CPUs -- req: 8; avail: 4` on the standard Codespaces
-machine.
-
-`-resume` is included above so it's always safe to re-run this exact command — on a fresh
+machine. `-resume` is included above so it's always safe to re-run this exact command — on a fresh
 run it has no effect, but if your Codespace disconnects or a step fails partway through,
 Nextflow will pick up from the last completed step instead of starting over.
 
