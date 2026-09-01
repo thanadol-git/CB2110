@@ -75,7 +75,17 @@ editor you drive it from.
 ## 2. Copy MS raw files from USB-drive/ 
 Eah of you is assigned to one project number, for example Thanadol is 1. Please find the usb drive from the class. Fredrik or TA will give you in person. 
 In the drive, there is a folder designating you project number. Pleas copy everything to your local computer and later to Codespace. The name and project number is 
-attached in this dir. 
+attached in this dir. One should see the files look like this. 
+
+
+```
+190115_9131_004HL_007LQ_M04_S_1.mzML   190124_9131_004O3_0089Y_M04_S_1.mzML
+190116_9131_004IH_0082C_M06_S_1.mzML   190118_9131_004IH_00854_M04_S_1.mzML
+190115_9131_004HL_007L9_M06_S_1.mzML   191005_B43-T1-13_00DLF_00JCQ_M01_S_1.mzML
+190120_9131_004O3_0086J_M06_S_1.mzML   191017_B47-T3-13_00DN7_00KAK_M04_S_1.mzML
+191009_B43-T2-13_00DLF_00JG8_M03_S_1.mzML   191008_B47-T1-13_00DN7_00JFO_M01_S_1.mzML
+191008_B45-T2-13_00DMB_00JEP_M03_S_1.mzML   191006_B45-T1-13_00DMB_00JD7_M01_S_1.mzML
+```
 
 
 ## 3. Get the lab helper files
@@ -101,15 +111,6 @@ HeLa-vs-organ pairing.)
 `custom.sdrf.tsv` already lists the 12 mzML files this pairing needs (`comment[data file]`
 column):
 
-```
-190115_9131_004HL_007LQ_M04_S_1.mzML   190124_9131_004O3_0089Y_M04_S_1.mzML
-190116_9131_004IH_0082C_M06_S_1.mzML   190118_9131_004IH_00854_M04_S_1.mzML
-190115_9131_004HL_007L9_M06_S_1.mzML   191005_B43-T1-13_00DLF_00JCQ_M01_S_1.mzML
-190120_9131_004O3_0086J_M06_S_1.mzML   191017_B47-T3-13_00DN7_00KAK_M04_S_1.mzML
-191009_B43-T2-13_00DLF_00JG8_M03_S_1.mzML   191008_B47-T1-13_00DN7_00JFO_M01_S_1.mzML
-191008_B45-T2-13_00DMB_00JEP_M03_S_1.mzML   191006_B45-T1-13_00DMB_00JD7_M01_S_1.mzML
-```
-
 Run the helper script to fetch these plus the FASTA database (the download links will be
 announced on Canvas):
 
@@ -117,7 +118,7 @@ announced on Canvas):
 bash download_data.sh
 ```
 
-This creates a `data/` folder containing your `.mzML` files and the `.fasta` database.
+This creates a `data/` folder containing the spectral library `.speclib` the `.fasta` database.
 
 ## 5. Point the SDRF at your downloaded files
 
