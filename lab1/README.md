@@ -72,6 +72,12 @@ editor you drive it from.
 4. VS Code Desktop opens a remote window connected to that Codespace; use its integrated
    terminal for every command in this lab exactly as if you were in the browser.
 
+## 3. Copy MS raw files from USB-drive/ 
+Eah of you is assigned to one project number, for example Thanadol is 1. Please find the usb drive from the class. Fredrik or TA will give you in person. 
+In the drive, there is a folder designating you project number. Pleas copy everything to your local computer and later to Codespace. The name and project number is 
+attached in this dir. 
+
+
 ## 2. Get the lab helper files
 
 Once the Codespace terminal is open, pull this lab's helper files from the course repo:
