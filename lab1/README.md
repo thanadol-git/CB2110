@@ -177,3 +177,5 @@ Look inside `results/` for:
 - The DIA-NN search report(s)
 - An MSstats-format quantification table (similar to what you'll use in lab 2)
 - A MultiQC report summarizing run-level QC metrics
+
+If you see all of the results here. Please upload MultiQC report to Canvas. I hope you have a fun time here. 
