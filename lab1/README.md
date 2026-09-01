@@ -192,14 +192,3 @@ Look inside `results/` for:
 
 ## Questions (draft — to be finalized)
 
-```
-1. Which two cell lines/organs did you compare, and how many mzML files came from each?
-2. How many proteins and peptides were identified in total?
-3. Pick one QC metric from the MultiQC report and explain what it tells you about run quality.
-4. Compare the number of identifications between the two cell lines — are there differences,
-   and what might explain them biologically?
-5. What does the "Data-Independent Acquisition" SDRF tag actually change in how the
-   pipeline processes each file, compared to a DDA run?
-```
-
-3 bonus questions and full grading rubric: TBD by instructor.
