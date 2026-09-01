@@ -38,7 +38,7 @@ On completion of the lab, the student should be able to:
    own copy to work in and can push/save your work if you want.
    <img width="1902" height="1033" alt="image" src="https://github.com/user-attachments/assets/f40ea2b1-b15d-4dce-939a-8dbae2fb0049" />
 
-3. On your fork, click **Code > Codespaces > Create codespace on master**.
+3. On your fork, click **Code > Codespaces > Create codespace on main**.
    <img width="1902" height="1033" alt="image" src="https://github.com/user-attachments/assets/4343fa6d-86e1-4f9a-9f79-c7611358562f" />
 
 4. If asked to choose a machine type, pick **4-core · 16 GB RAM** — this matches the
@@ -64,7 +64,7 @@ editor you drive it from.
    search "GitHub Codespaces").
 2. Sign in to GitHub when prompted (top-left Accounts icon, or the extension will prompt you).
 3. Open the Command Palette (`Ctrl/Cmd+Shift+P`) and run **Codespaces: Create New Codespace**
-   → pick your `quantmsdiann` fork and the `master` branch → pick the 4-core/16GB machine
+   → pick your `quantmsdiann` fork and the `main` branch → pick the 4-core/16GB machine
    type.
    - If you already created a Codespace in the browser (step 2 above), instead run
      **Codespaces: Connect to Codespace** and select it from the list — no need to create a
