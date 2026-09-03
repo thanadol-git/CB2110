@@ -1,17 +1,5 @@
 # Lab 1 (quantmsdiann) — Running a DIA proteomics pipeline with quantmsdiann on GitHub Codespaces
 
-In lab 0 you analyzed a table of already-processed mass-spec results. In this lab you will
-generate that kind of table yourself, by running the actual
-[quantmsdiann](https://github.com/bigbio/quantmsdiann) pipeline (Nextflow + DIA-NN) on
-DIA mzML files and a FASTA protein database — no local installation required, everything
-runs in a free GitHub Codespace.
-
-You'll work with a real DIA SDRF from the [`sdrf/`](sdrf) folder:
-[`01_HELA_CERVIX_x_201T_LUNG.sdrf.tsv`](sdrf/01_HELA_CERVIX_x_201T_LUNG.sdrf.tsv), which
-pairs 6 DIA runs of **HeLa** (cervix) with 6 DIA runs of **201T** (lung cancer) from the
-PXD030304 cell-line proteomics study — 12 mzML files in total. (The `sdrf/` folder has 39
-other HeLa-vs-other-organ pairings if your instructor assigns you a different one — check
-`sdrf/manifest.tsv` for the full list.)
 
 ## Intended learning outcomes (ILOs)
 
@@ -74,10 +62,10 @@ editor you drive it from.
 ## 2. Copy MS raw files from the USB drive
 
 Each of you is assigned a project number (for example, Thanadol is `1`). Get the USB drive
-from the class — Fredrik or a TA will hand it to you in person. On the drive, find the folder
-matching your project number and copy everything to your local computer, then on to your
-Codespace. The name-to-project-number mapping is in [`student_group_2026.csv`](student_group_2026.csv)
-in this directory. The files should look like this:
+from the class — Fredrik or a TA will hand it to you in person. Inside it, find the folder
+matching your project number and copy everything to your local computer, then to your
+Codespace. The name-to-project-number mapping is in [`student_group_2026.csv`](student_group_2026.csv).
+The files should look like this:
 
 ```
 190115_9131_004HL_007LQ_M04_S_1.mzML   190124_9131_004O3_0089Y_M04_S_1.mzML
@@ -96,47 +84,24 @@ Once the Codespace terminal is open, pull this lab's helper files from the cours
 # Download *,mzML files, be sure that they are in your group
 curl -sL https://raw.githubusercontent.com/thanadol-git/CB2110/main/lab1/download_data.sh -o download_data.sh
 
-# Download SDRF, one can also copy from SDRF dir
-curl -sL https://raw.githubusercontent.com/thanadol-git/CB2110/main/lab1/sdrf/01_HELA_CERVIX_x_201T_LUNG.sdrf.tsv -o custom.sdrf.tsv
-
 # Download config file to run with full spec
 curl -sL https://raw.githubusercontent.com/thanadol-git/CB2110/main/lab1/codespaces.config -o codespaces.config
 ```
 
-(Swap the SDRF URL for a different file under `sdrf/` if you were assigned another
-HeLa-vs-organ pairing.)
-
 ## 4. Download the mzML files and FASTA database
 
-`custom.sdrf.tsv` already lists the 12 mzML files this pairing needs (`comment[data file]`
-column):
+At this point, please look at the sdrf file and the ,mzML files. You should find the file names according to `comment[data file]` column. 
 
-Run the helper script to fetch these plus the FASTA database (the download links will be
-announced on Canvas):
+Run the helper script to fetch additional files including proteome sequences and spectral library.
 
 ```bash
 bash download_data.sh
 ```
 
-This creates a `data/` folder containing the spectral library `.speclib` and the `.fasta` database.
+## 5. Run the pipeline
 
-## 5. Point the SDRF at your downloaded files
+Once you have downloaded everythign above, you should be ready to run the proteomics analysis pipeline. Please just follow the script below but check your path accordingly (I trick you somehow here).
 
-`custom.sdrf.tsv` already has real sample metadata (organism, instrument, disease, etc.)
-for the 6 HeLa + 6 partner-organ runs — you don't need to fill anything in by hand. The
-only thing to update is `comment[file uri]`, which currently holds bare filenames (e.g.
-`190115_9131_004HL_007LQ_M04_S_1.mzML`); point each one at where `download_data.sh` put the
-file, e.g. `data/190115_9131_004HL_007LQ_M04_S_1.mzML` (relative to where you run
-`nextflow`). Leave `comment[proteomics data acquisition method]` as
-`NT=Data-Independent Acquisition;AC=NCIT:C161786` — that's what tells the pipeline this is
-a DIA run.
-`INSILICO_LIBRARY_GENERATION` only depends on the FASTA and search parameters — not on your
-mzML files — so it's identical for every HeLa-vs-organ pairing in `sdrf/`. If you've already
-generated a `.speclib`/`speclib.tsv` (e.g. with the standalone `diann --fasta ... --gen-spec-lib`
-command, run locally or in a previous Codespace session), put it in `data/` and pass it in
-with `--speclib` so the pipeline skips regenerating it.
-
-## 6. Run the pipeline
 
 ```bash
 nextflow run . \
@@ -171,7 +136,7 @@ prediction cost more than once. If you don't have a pre-built `.speclib` yet, ju
 If it's slow or you're on a smaller machine, add `--performance_mode true` to trade a small
 amount of accuracy for speed/memory.
 
-## 7. Inspect the results
+## 6. Inspect the results
 
 Look inside `results/` for:
 - The DIA-NN search report(s)
