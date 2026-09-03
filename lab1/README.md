@@ -1,6 +1,5 @@
 # Lab 1 (quantmsdiann) — Running a DIA proteomics pipeline with quantmsdiann on GitHub Codespaces
 
-
 ## Intended learning outcomes (ILOs)
 
 On completion of the lab, the student should be able to:
@@ -9,10 +8,6 @@ On completion of the lab, the student should be able to:
 * configure an SDRF sample metadata file for a DIA experiment
 * execute a Nextflow/nf-core pipeline in a containerized cloud environment
 * interpret pipeline QC output and quantification results
-
-- Member1:
-- Member2:
-- Contact email:
 
 ---
 
@@ -81,7 +76,7 @@ The files should look like this:
 Once the Codespace terminal is open, pull this lab's helper files from the course repo:
 
 ```bash
-# Download *,mzML files, be sure that they are in your group
+# Download *.mzML files, be sure they are from your group
 curl -sL https://raw.githubusercontent.com/thanadol-git/CB2110/main/lab1/download_data.sh -o download_data.sh
 
 # Download config file to run with full spec
@@ -90,7 +85,7 @@ curl -sL https://raw.githubusercontent.com/thanadol-git/CB2110/main/lab1/codespa
 
 ## 4. Download the mzML files and FASTA database
 
-At this point, please look at the sdrf file and the ,mzML files. You should find the file names according to `comment[data file]` column. 
+At this point, please look at the SDRF file and the .mzML files. You should find the file names according to the `comment[data file]` column.
 
 Run the helper script to fetch additional files including proteome sequences and spectral library.
 
@@ -100,8 +95,7 @@ bash download_data.sh
 
 ## 5. Run the pipeline
 
-Once you have downloaded everythign above, you should be ready to run the proteomics analysis pipeline. Please just follow the script below but check your path accordingly (I trick you somehow here).
-
+Once you have downloaded everything above, you should be ready to run the proteomics analysis pipeline. Please just follow the script below but check your path accordingly (I might have tricked you somehow here).
 
 ```bash
 nextflow run . \
