@@ -9,7 +9,7 @@ Please check the status of each lab here.
 
 |  Date (Time) | Lab | Submission | Comments | Status |
 |:-----|:-----| :--------:| :--------| :-----:|
-|7 Sept (13-17)| Lab 1   | `140926`|   `N/A`  | ❌ |
+|7 Sept (13-17)| Lab 1   | `140926`|   `N/A`  | ✅ |
 |14 Sept (15-17) | Automation lecture | | | ❌ |
 |17 Sept (8-12)| Lab 2   | `240926`|  `N/A`  | ❌ |
 |25 Sept (8-12)| Lab 3   | `021026`  | `N/A`  | ❌ |  
