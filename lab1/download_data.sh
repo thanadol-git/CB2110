@@ -7,7 +7,7 @@
 #
 set -euo pipefail
 
-FOLDER_URL="https://drive.google.com/drive/folders/1QJtWNt6Nj-f6zrB7pGTlqnqgoIMv4wVQ?usp=sharing"
+FOLDER_URL="https://drive.google.com/drive/folders/1OsKP8rRKaUSf-J7nXuglRH0CZAWcrNYs?usp=sharing"
 DATA_DIR="data"
 
 if ! command -v gdown &> /dev/null; then
