@@ -2,7 +2,7 @@
 # Folders
 *libs*
 env
-
+.venv
 
 # Files 
 *code-workspace

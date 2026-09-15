@@ -10,4 +10,5 @@ dependencies:
   - numpy
   - matplotlib
   - seaborn
-  - missingno
+  - missingno 
+  - gdown
